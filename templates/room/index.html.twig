@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotello - Une chambre, un style !{% endblock %}
+
+{% block body %}
+
+{{ include('./_partials/_rooms-welcome-section.html.twig') }}
+
+        <!-- Room cards -->
+        <div class="room-cards">
+            <div class="room-cards__container">
+
+                <!-- Cards -->
+                <!-- 1 -->
+                <div class="card">
+                    <div class="card__img">
+                        <img src="./assets/img/montaigne.jpg" alt="Chambre 1">
+                    </div>
+                    <div class="card__content">
+                        <div class="card__content__left">
+                            <h3 class="room-title">Montaigne</h3>
+                            <ul>
+                                <li>Chambre double</li>
+                                <li>25m<sup>2</sup></li>
+                                <li>2 adultes</li>
+                                <li>0 enfants</li>
+                            </ul>
+                        </div>
+                        <div class="card__content__right">
+                            <p class="begin_at">à partir de</p>
+                            <p class="price">499<sup>€</sup></p>
+                            <p class="by_night">/ nuit</p>
+                        </div>
+                        
+                        <a href="{{ path('app_room_detail')}}" class="btn btn-green" title="Voir le détail">Voir le détail</a>
+                    </div>
+                </div>
+                <!-- 1 -->
+                <div class="card">
+                    <div class="card__img">
+                        <img src="./assets/img/montaigne.jpg" alt="Chambre 1">
+                    </div>
+                    <div class="card__content">
+                        <div class="card__content__left">
+                            <h3 class="room-title">Montaigne</h3>
+                            <ul>
+                                <li>Chambre double</li>
+                                <li>25m<sup>2</sup></li>
+                                <li>2 adultes</li>
+                                <li>0 enfants</li>
+                            </ul>
+                        </div>
+                        <div class="card__content__right">
+                            <p class="begin_at">à partir de</p>
+                            <p class="price">499<sup>€</sup></p>
+                            <p class="by_night">/ nuit</p>
+                        </div>
+                        
+                        <a href="{{ path('app_room_detail')}}" class="btn btn-green" title="Voir le détail">Voir le détail</a>
+                    </div>
+                </div>
+                <!-- 1 -->
+                <div class="card">
+                    <div class="card__img">
+                        <img src="./assets/img/montaigne.jpg" alt="Chambre 1">
+                    </div>
+                    <div class="card__content">
+                        <div class="card__content__left">
+                            <h3 class="room-title">Montaigne</h3>
+                            <ul>
+                                <li>Chambre double</li>
+                                <li>25m<sup>2</sup></li>
+                                <li>2 adultes</li>
+                                <li>0 enfants</li>
+                            </ul>
+                        </div>
+                        <div class="card__content__right">
+                            <p class="begin_at">à partir de</p>
+                            <p class="price">499<sup>€</sup></p>
+                            <p class="by_night">/ nuit</p>
+                        </div>
+                        
+                        <a href="{{ path('app_room_detail')}}" class="btn btn-green" title="Voir le détail">Voir le détail</a>
+                    </div>
+                </div>
+                <!-- 1 -->
+                <div class="card">
+                    <div class="card__img">
+                        <img src="./assets/img/montaigne.jpg" alt="Chambre 1">
+                    </div>
+                    <div class="card__content">
+                        <div class="card__content__left">
+                            <h3 class="room-title">Montaigne</h3>
+                            <ul>
+                                <li>Chambre double</li>
+                                <li>25m<sup>2</sup></li>
+                                <li>2 adultes</li>
+                                <li>0 enfants</li>
+                            </ul>
+                        </div>
+                        <div class="card__content__right">
+                            <p class="begin_at">à partir de</p>
+                            <p class="price">499<sup>€</sup></p>
+                            <p class="by_night">/ nuit</p>
+                        </div>
+                        
+                        <a href="{{ path('app_room_detail')}}" class="btn btn-green" title="Voir le détail">Voir le détail</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+</section>
+
+{{ include('./_partials/_services-plus-section.html.twig') }}
+{{ include('./_partials/_contact-section.html.twig') }}
+{{ include('./_partials/_goodwill.html.twig') }}
+
+{% endblock %}

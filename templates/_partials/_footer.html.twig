@@ -2,7 +2,7 @@
     <section id="newsletter-section" class="newsletter-section">
 
         <div class="newsletter-section__container reveal">
-            <img src="./assets/img/newsletter-icon-white.svg" alt="la newsletter Hotello">
+            <img src="{{ asset('./assets/img/newsletter-icon-white.svg')}}" alt="la newsletter Hotello">
             <h2>Gardons le contact</h2>
             <p class="service-section-title">Newsletter</p>
             <hr>
@@ -23,8 +23,8 @@
     <footer>
         <!-- logo container -->
         <div class="logo-container">
-            <a href="#" title="Hotello">
-                <img src="./assets/img/logo-welcome.svg" alt="Hotello">
+            <a href="{{ path('app_main')}}" title="Hotello">
+                <img src="{{ asset('./assets/img/logo-welcome.svg')}}" alt="Hotello">
             </a>
         </div>
 
@@ -35,10 +35,10 @@
                 <p>Navigation principale</p>
                 <nav>
                     <ul>
-                        <li><a href="#">Accueil</a></li>
-                        <li><a href="./nos-chambres.html">Nos chambres</a></li>
-                        <li><a href="#">Nos services</a></li>
-                        <li><a href="./contactez-nous.html">Nous contacter</a></li>
+                        <li><a href="{{ path('app_main')}}" title="Accueil">Accueil</a></li>
+                        <li><a href="{{ path('app_room')}}" title="Nos chambres">Nos chambres</a></li>
+                        <li><a href="{{ path('app_services')}}" title="Nos services">Nos services</a></li>
+                        <li><a href="{{ path('app_contact')}}" title="Nous contacter">Nous contacter</a></li>
                     </ul>
                 </nav>
              </div>
@@ -59,10 +59,10 @@
                     mail : <a href="mailto:bonjour@hotello.com">bonjour@hotello.com</a>
                 </p>
                 <div class="rs">
-                    <a href="#"><img src="./assets/img/fb-icon.svg" alt="facebook"></a>
-                    <a href="#"><img src="./assets/img/instagram-icon.svg" alt="instagram"></a>
-                    <a href="#"><img src="./assets/img/twitter-icon.svg" alt="twitter"></a>
-                    <a href="#"><img src="./assets/img/linkedin-icon.svg" alt="linkedin"></a>
+                    <a href="#"><img src="{{ asset('./assets/img/fb-icon.svg')}}" alt="facebook"></a>
+                    <a href="#"><img src="{{ asset('./assets/img/instagram-icon.svg')}}" alt="instagram"></a>
+                    <a href="#"><img src="{{ asset('./assets/img/twitter-icon.svg')}}" alt="twitter"></a>
+                    <a href="#"><img src="{{ asset('./assets/img/linkedin-icon.svg')}}" alt="linkedin"></a>
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
 
         <!-- mention handicap -->
         <div class="handicap">
-            <img src="./assets/img/handicap-icon.svg" alt="handicap">
+            <img src="{{ asset('./assets/img/handicap-icon.svg')}}" alt="handicap">
             <p>L’hôtel est adapté aux personnes à mobilité réduite.</p>
         </div>
 
@@ -95,5 +95,5 @@
 
     <!-- scroll Top -->
     <a href="#" class="btn-top-page " id="btn-top-page">
-        <img src="./assets/img/arrow-up.svg" alt="">
+        <img src="{{ asset('./assets/img/arrow-up.svg')}}" alt="">
     </a>

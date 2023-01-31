@@ -3,7 +3,7 @@
         <!-- left -->
         <div class="room-section__left">
             <div class="img-container revealVert">
-                <img src="./assets/img/room-img-general.jpg" alt="Hotello - Paris - Vue imprenable">
+                <img src="{{ asset('./assets/img/room-img-general.jpg')}}" alt="Hotello - Paris - Vue imprenable">
             </div>
             <p class="kate-font">Style et confort reconnu</p>
         </div>
@@ -22,37 +22,37 @@
                   <!-- Slides -->
                     <div class="swiper-slide">
                         <a href="#">
-                            <img src="./assets/img/montaigne.jpg" alt="Chambre Hotello Montaigne">
+                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Montaigne">
                             <p>Montaigne</p>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="#">
-                            <img src="./assets/img/montaigne.jpg" alt="Chambre Hotello Rivoli">
+                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Rivoli">
                             <p>Rivoli</p>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="#">
-                            <img src="./assets/img/montaigne.jpg" alt="Chambre Hotello Montorgueil">
+                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Montorgueil">
                             <p>Montorgueil</p>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="#">
-                            <img src="./assets/img/montaigne.jpg" alt="Chambre Hotello Oberkampf">
+                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Oberkampf">
                             <p>Oberkampf</p>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="#">
-                            <img src="./assets/img/montaigne.jpg" alt="Chambre Hotello Malakoff">
+                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Malakoff">
                             <p>Malakoff</p>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="#">
-                            <img src="./assets/img/montaigne.jpg" alt="Chambre Hotello Haussman">
+                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Haussman">
                             <p>Haussman</p>
                         </a>
                     </div>
@@ -72,6 +72,6 @@
 
             <h4>Le choix d’un style au-delà des modes du moment. </h4>
             <p>Fidèle aux essentiels de l’élégance, les 6 chambres de l’hôtel Hotello s’inspirent des classiques au long cours. Allure trench, lin chic ou esprit havane : l’inlassable bon genre pour prendre son bon temps.</p>
-            <a href="#" class="btn btn-green">Découvrir nos chambres</a>
+            <a href="{{ path('app_room')}}" class="btn btn-green">Découvrir nos chambres</a>
         </div>
     </section>

@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ServicesController!{% endblock %}
+
+{% block body %}
+
+<!-- Services section -->
+    <section class="services-welcome">
+            <div class="slider-container">
+                <!-- Slideshow container -->
+                <div class="slideshow-container">
+        
+                <!-- Full-width images with number and caption text -->
+                    <div class="mySlides fade">
+                        <img src="./assets/img/bar-2.jpg" alt="Bienvenue chez Hotello">
+                    </div>
+        
+                    <div class="mySlides fade">
+                        <img src="./assets/img/breakfast.jpg" alt="Bienvenue chez Hotello">
+                    </div>
+        
+                    <div class="mySlides fade">
+                        <img src="./assets/img/workplace.jpg" alt="Bienvenue chez Hotello">
+                    </div>
+
+                </div>
+
+        
+            </div>
+
+            <div class="intro-container">
+                <div class="intro-container__left">
+                    <h3>Le lieux idéal pour des moments inoubliables !</h3>
+                </div>
+                <div class="intro-container__right">
+                </div>
+            </div>
+    </section>
+
+    <!-- services presentation -->
+    <section class="services-presentation">
+
+        <!-- text intro -->
+        <div class="text-accueil">
+            <div class="left">
+                <h1 class="kate-font">Services</h1>
+            </div>
+            <div class="right">
+                <h2>Prendre du temps, ici et maintenant. </h2>
+                <p>Ici et là, du bar au salon, de la cheminée à la petite terrasse cachée, ou pile de l’autre côté de la rue, les instants deviendront vos moments : gourmands, conviviaux, rêveurs ou studieux mais toujours pensés pour vous en particulier.</p>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- BREAKFAST Services description -->
+    <div class="service-description breakfast">
+        <div class="service-description__container">
+
+            <!-- left -->
+            <div class="service-description__container__left revealVert">
+                <img src="./assets/img/breakfast.jpg" alt="Le Petit déjeuner version Hotello">
+                
+            </div>
+
+            <!-- right -->
+            <div class="service-description__container__right">
+                <p class="service-subtitle">service</p>
+                <h2>Petit déjeuner</h2>
+                <p class="service-description-text">Parfois pressé, d’abord énergisant, toujours savoureux : quelle que soit l’envie de petit-déjeuner, l’incontournable préambule aux belles journées se doit d’être à votre rythme, au café-lounge ou en chambre. L’iconique café-croissant parisien sait s’entourer de fraîcheurs salées comme de saveurs sucrées. Au gré des saisons et main dans la main avec des fournisseurs de proximité, le buffet dressé dans le café de l’hôtel Toujours saura tôt ou tard donner envie de tout goûter.</p>
+
+                <hr>
+
+                <a href="#" class="btn btn-green">Contactez-nous</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAR & Collations Services description -->
+    <div class="service-description bar">
+        <div class="service-description__container">
+
+            <!-- left -->
+            <div class="service-description__container__left revealVert">
+                <img src="./assets/img/bar.jpg" alt="Bar Hotello">
+                
+            </div>
+
+            <!-- right -->
+            <div class="service-description__container__right">
+                <p class="service-subtitle">service</p>
+                <h2>Bar & Collations</h2>
+                <p class="service-description-text">Ici se cultivent les classiques : ces rendez-vous informels, ces pauses essentielles, ces heures-heureuses qui étirent le prétexte d’un verre dans la convivialité d’un café.
+                Au bar de l’hôtel Hotello, les références des cocktails : Negroni, Bellini, Spritz & Gin Tonic… à accompagner en cas de petites faims par des planches salées, pizzas et croque-monsieur sur le pouce.                
+                </p>
+
+                <p class="clock">
+                    <img src="./assets/img/clock.svg" alt="Horloge"> - De 13:00 jusqu’à 00:30
+                </p>
+
+                <hr>
+
+                <a href="#" class="btn btn-green">Contactez-nous</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- workplace Services description -->
+    <div class="service-description workplace">
+        <div class="service-description__container">
+
+            <!-- left -->
+            <div class="service-description__container__left revealVert">
+                <img src="./assets/img/workplace.jpg" alt="workplace">
+                
+            </div>
+
+            <!-- right -->
+            <div class="service-description__container__right">
+                <p class="service-subtitle">service</p>
+                <h2>Espaces de travail</h2>
+                <p class="service-description-text">Pour les séjours bien affairés, c’est aussi juste en face de l’hôtel Hotello que ça se passe. Au format sur-mesure pour les réunions de travail et les rendez-vous professionnels. Vous n’aurez qu’à traverser le hall pour vous installer dans un bel environnement de travail partagé ou dans votre bureau privatif.
+                <br>
+                <br>
+                Coworking, bureaux privatifs, salles de conférenceÀ partir de 40,00 € la journée
+                <br>
+                <br>
+                Sur réservation auprès de l’hôtel Hotello</p>
+
+                <hr>
+
+                <a href="#" class="btn btn-green">Contactez-nous</a>
+            </div>
+        </div>
+    </div>
+
+<!-- General -->
+{{ include('./_partials/_spa-section.html.twig') }}
+{{ include('./_partials/_contact-section.html.twig') }}
+{{ include('./_partials/_goodwill.html.twig') }}
+{% endblock %}

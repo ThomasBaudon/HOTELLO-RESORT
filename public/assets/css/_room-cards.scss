@@ -35,7 +35,7 @@
         .right{
             width: 55%;
             h2{
-                font-family: 'playfaire display', serif;
+                font-family: 'Playfair display', serif;
                 font-weight: 700;
                 font-size: 3rem;
                 line-height: 130%;
@@ -120,17 +120,19 @@
                 }
 
                 &__content{
-                    width: 100%;
+                    width: 95%;
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: space-between;
+                    padding: 0 .5rem 1.6rem .5rem;
+                    margin: 0 auto;
 
                     &__left{
                         width: 80%;
 
                         h3{
                             color: var(--green);
-                            font-family: 'playfaire display', serif;
+                            font-family: 'Playfair display', serif;
                             font-weight: 700;
                             font-size: 2.4rem;
                             line-height: 130%;
@@ -175,7 +177,7 @@
                         }
                         .price{
                             color: var(--green);
-                            font-family: 'playfaire display', serif;
+                            font-family: 'Playfair display', serif;
                             font-weight: 300;
                             font-size: 3.2rem;
                             line-height: 100%;
@@ -184,7 +186,7 @@
                         }
                         .by_night{
                             color: var(--gold);
-                            font-family: 'playfaire display', serif;
+                            font-family: 'Playfair display', serif;
                             font-weight: 300;
                             font-size: 2rem;
                             line-height: 50%;
