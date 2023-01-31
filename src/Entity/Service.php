@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\ServiceRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Trait\SlugTrait;
 
 #[ORM\Entity(repositoryClass: ServiceRepository::class)]
 class Service
 {
+    use SlugTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
