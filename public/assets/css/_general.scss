@@ -1,0 +1,45 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*{
+  scroll-behavior: smooth;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+strong{
+  font-weight: 700;
+}
+
+sup{
+  position: relative;
+  font-size: 60%;
+  top: -0.5em;
+
+
+}
+
+.fixed{
+  position: fixed !important;
+  top: 0;
+  transition: 1s;
+  z-index: 1000;
+}
+
+
+
+@media screen and (min-width: 1024px) {
+  .menu-trigger{
+    display: none;
+  }
+}

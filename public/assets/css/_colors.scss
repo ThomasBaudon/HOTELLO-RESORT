@@ -1,0 +1,14 @@
+:root{
+
+    --gold: hsl(33, 39%, 53%);
+    --light-gold: hsl(36, 67%, 52%);
+    --green:hsl(161, 69%, 14%);
+    --dark-green: hsl(161, 22%, 17%);
+    --black: hsl(0, 0%, 0%);
+    --light-gray: hsl(0, 0%, 85%);
+    --white: hsl(0, 0%, 100%);
+
+}
+
+.gold{color: var(--gold);}
+.green{color: var(--green);}

@@ -1,0 +1,375 @@
+.room-presentation{
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+
+
+    .text-accueil{
+        width: 100%;
+        height: 25rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .left{
+            width: 25%;
+
+            h1{
+                font-family: 'Kate', serif;
+                font-weight: 700;
+                font-size: 4.8rem;
+                line-height: 130%;
+                color: var(--gold);
+                padding-left: 3rem;
+                width: 80%; 
+                margin: 0;
+                margin-bottom: 1rem;
+            }
+        }
+        .right{
+            width: 55%;
+            h2{
+                font-family: 'playfaire display', serif;
+                font-weight: 700;
+                font-size: 3rem;
+                line-height: 130%;
+                color: var(--green);
+                padding-left: 3rem;
+                width: 80%; 
+                margin: 0;
+                margin-bottom: 1rem;
+            }
+            p{
+                font-weight: 400;
+                font-family: 'Nunito', sans-serif;
+                font-size: 1.6rem;
+                line-height: 170%;
+                color: var(--black);
+                padding-left: 3rem;
+                width: 80%;
+                margin: 0; 
+            }
+        }
+
+        
+    }
+
+    .room-cards{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+
+        .room-cards__container{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 4rem;
+
+            .card{
+                position: relative;
+                width: 48%;
+                background-color: rgba($color: #d9d9d9, $alpha: 0.2) ;
+                border-radius: .5rem;
+                padding: 1rem;
+
+
+                &__img{
+                    position: relative;
+                    width: 100%;
+                    height: 35rem;
+                    background-color: var(--gold);
+                    margin-bottom: 2rem;
+                    border-radius: .5rem;
+                    overflow: hidden;
+
+                    &::after{
+                        position: absolute;
+                        content: '';
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        background-image: url(../img/door-hover-icon.svg);
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 8%;
+                        background-color: rgba($color: #121212, $alpha: 0.8) ;
+                        opacity: 0;
+                        transition: all .3s ease-in-out;
+                    }
+
+                    &:hover::after{
+                        opacity: 1;
+                    }
+
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                &__content{
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+
+                    &__left{
+                        width: 80%;
+
+                        h3{
+                            color: var(--green);
+                            font-family: 'playfaire display', serif;
+                            font-weight: 700;
+                            font-size: 2.4rem;
+                            line-height: 130%;
+                            margin: 0;
+                            margin-bottom: 1rem;
+                            text-transform: uppercase;
+                        }
+
+                        ul{
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: flex-start;
+                            align-items: flex-start;
+                            li{
+                                padding-left: 5%;
+                                color: var(--black);
+                                font-family: 'Nunito', sans-serif;
+                                font-weight: 400;
+                                font-size: 1.6rem;
+                                line-height: 100%;
+                                margin: 0;
+                                margin-bottom: 1rem;
+
+                                &:nth-of-type(1){
+                                    padding-left: 0;
+                                }
+                            }
+                        }
+                    }
+                    &__right{
+                        width: 20%;
+                        text-align: right;
+
+                        .begin_at{
+                            color: var(--black);
+                            font-family: 'Nunito', sans-serif;
+                            font-weight: 400;
+                            font-size: 1.2rem;
+                            line-height: 100%;
+                            margin: 0;
+                            margin-bottom: .5rem;
+                        }
+                        .price{
+                            color: var(--green);
+                            font-family: 'playfaire display', serif;
+                            font-weight: 300;
+                            font-size: 3.2rem;
+                            line-height: 100%;
+                            margin: 0;
+                            text-transform: uppercase;
+                        }
+                        .by_night{
+                            color: var(--gold);
+                            font-family: 'playfaire display', serif;
+                            font-weight: 300;
+                            font-size: 2rem;
+                            line-height: 50%;
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+}
+
+@media screen and(min-width:1025px) {
+    .room-presentation{
+        .text-accueil{
+            .left{
+                width: 30%;
+                h1{
+                    font-size: 4.8rem;
+                }
+            }
+            .right{
+                width: 50%;
+                h2{
+                    font-size: 3rem;
+                }
+                p{
+                    font-size: 1.6rem;
+                    line-height: 150%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .room-presentation{
+        width: 90%;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+
+        .text-accueil{
+            height: unset;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+
+            .left{
+                width: 35%;
+                h1{
+                    font-size: 3.6rem;
+                }
+            }
+            .right{
+                width: 65%;
+                h2{
+                    font-size: 2.4rem;
+                }
+                p{
+                    font-size: 1.4rem;
+                }
+            }
+        }
+
+        .room-cards{
+            .room-cards__container{
+                .card{
+                    width: 100%;
+                    &__img{
+                        height: 25rem;
+                    }
+                    &__content{
+                        &__left{
+                            width: 70%;
+                            h3{
+                                font-size: 2rem;
+                            }
+                            ul{
+                                li{
+                                    font-size: 1.6rem;
+                                }
+                            }
+                        }
+                        &__right{
+                            width: 30%;
+
+                            .begin_at{
+                                font-size: 1.4rem;
+                            }
+                            .price{
+                                font-size: 3.2rem;
+                            }
+                            .by_night{
+                                font-size: 2.4rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:575px){
+    .room-presentation{
+        width: 90%;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+
+        .text-accueil{
+            height: unset;
+            flex-direction: column;
+            margin-bottom: 3rem;
+
+            .left{
+                width: 100%;
+                h1{
+                    font-size: 3.6rem;
+                    text-align: left;
+                    padding-left: 0;
+                }
+            }
+            .right{
+                width: 100%;
+                h2{
+                    width: 90%;
+                    font-size: 3.2rem;
+                    text-align: left;
+                    padding-left: 0;
+                }
+                p{
+                    width: 90%;
+                    font-size: 1.4rem;
+                    text-align: left;
+                    padding-left: 0;
+                }
+            }
+        }
+
+        .room-cards{
+            .room-cards__container{
+                .card{
+                    width: 100%;
+                    &__img{
+                        height: 25rem;
+                    }
+                    &__content{
+                        justify-content: center;
+                        &__left{
+                            width: 100%;
+                            h3{
+                                font-size: 2rem;
+                                text-align: center;
+                            }
+                            ul{
+                                li{
+                                    font-size: 1.4rem;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                        &__right{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            text-align: center;
+                            margin-bottom: 2rem;
+
+                            .begin_at{
+                                font-size: 1.6rem;
+                                margin-right: 1rem;
+                            }
+                            .price{
+                                font-size: 3.2rem;
+                            }
+                            .by_night{
+                                font-size: 1.6rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

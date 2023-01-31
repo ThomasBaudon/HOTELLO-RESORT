@@ -1,0 +1,39 @@
+input[type=button]{
+    border: none;
+}
+
+.btn{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    font-size: 1.4rem;
+    padding: 12px 24px;
+    gap: 10px;
+    color: var(--white);
+    text-transform: uppercase;
+    border-radius: .4rem;
+}
+
+.btn-green{
+    background-color: var(--green);
+    &:hover{
+        background-color: var(--gold);
+    }
+}
+
+.btn-gold{
+    background-color: var(--gold);
+    &:hover{
+        background: var(--white);
+        color: var(--gold);
+    }
+}
+
+.btn-white{
+    background-color: var(--white);
+    color: var(--gold);
+    &:hover{
+        background: var(--gold);
+        color: var(--white);
+    }
+}

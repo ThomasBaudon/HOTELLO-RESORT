@@ -1,0 +1,192 @@
+.room-section{
+    position: relative;
+    background-color: var(--gold);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    &__left{
+        width: 40%;
+        .img-container{
+            position: relative;
+            top: -5rem;
+            width: 44rem;
+            height: 68rem;
+            margin-left: 8rem;
+            margin-bottom: 4rem;
+            visibility: hidden;
+
+            img{
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+        }
+        .kate-font{
+            position: relative;
+            margin-left: 8rem;
+            width: 25rem;
+            font-family: 'Kate', sans-serif;
+            font-size: 4.8rem;
+            line-height: 140%;
+            color: var(--white);
+            top:-8rem;
+        }
+    }
+
+    .separator{
+        width: 1px;
+        height: 70rem;
+        background-color: var(--white);
+        margin: 0 7rem 0 3rem;
+    }
+
+
+    &__right{
+        width: 60%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        .room-title{
+            font-family: 'Playfair Display', serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 4.8rem;
+            line-height: 5.4rem;
+            color: var(--white);
+            text-transform: uppercase;
+            margin-top: 0;
+        }
+        h4{
+            font-family: 'Playfair Display';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 2.4rem;
+            line-height: 3.2rem;
+            color: var(--green);
+            margin-bottom: 0;
+            width: 80%;
+        }
+        p{
+            font-size: 1.6rem;
+            line-height: 2.2rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            width: 80%;
+        }
+    }
+
+}
+
+@media screen and (max-width: 1024px){
+    .room-section{
+        flex-direction: column;
+        align-items: center;
+        &__left{
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .img-container{
+                width: 100%;
+                height: 80%;
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+        }
+        .separator{
+            width: 80%;
+            height: 1px;
+            background-color: var(--white);
+            margin: 0 0 3rem 0;
+        }
+        &__right{
+            width: 100%;
+            align-items: center;
+            overflow: hidden;
+            .room-title{
+                font-size: 3rem;
+            }
+            h4{
+                font-size: 4rem;
+                line-height: 4.8rem;
+                text-align: center;
+                width: 60%;
+                margin-bottom: 1rem;
+            }
+            p{
+                font-size: 1.6rem;
+                line-height: 2.2rem;
+                width: 60%;
+                text-align: center;
+            }
+            a{
+                margin-bottom: 3rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:960px){
+    .room-section{
+        margin-top: 5rem;
+        &__left{
+            .img-container{
+                width: 100%;
+                height: 80%;
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            .kate-font{
+                margin-left: 2rem;
+            }
+        }
+        &__right{
+            h4{
+                font-size: 3.2rem;
+                line-height: 3.8rem;
+                text-align: center;
+                width: 80%;
+                margin-bottom: 1rem;
+            }
+            p{
+                font-size: 1.6rem;
+                line-height: 2.2rem;
+                width: 80%;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px){
+    .room-section{
+        margin-top: 8rem;
+        height: unset;
+        &__left{
+            position: relative;
+            top: 0;
+            flex-direction: column;
+            .kate-font{
+                width: 100%;
+                top: -3rem;
+                margin-left: 0;
+            }
+        }
+        &__right{
+            justify-content: flex-start;
+            align-items: flex-start;
+            .room-title{
+                text-align: left;
+                line-height: 1.2;
+            }
+            h4{text-align: left; padding-left: 5%;}
+            p{text-align: left; padding-left: 5%;}
+            a{margin-left: 5%;}
+        }
+    }
+}

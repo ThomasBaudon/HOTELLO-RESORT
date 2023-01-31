@@ -1,0 +1,28 @@
+.btn-top-page{
+    position: fixed;
+  
+    right: -4rem;
+    bottom:2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: .25rem;
+    z-index: 2000;
+    background-color: var(--gold);
+    border: 1px solid var(--white);
+
+    transition: ease-in .3s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+     img{
+        width: 1.4rem;
+     }
+}
+
+.is-visible{
+    right: .5rem;
+    transition: ease-in .3s;
+    z-index: 10002;
+}
