@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Trait\CreatedAtTrait;
+use App\Repository\ContactRepository;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
 {
+
+    use CreatedAtTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -26,8 +30,6 @@ class Contact
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message_contact = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
 
     public function getId(): ?int
     {
@@ -78,18 +80,6 @@ class Contact
     public function setMessageContact(string $message_contact): self
     {
         $this->message_contact = $message_contact;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
-    {
-        $this->created_at = $created_at;
 
         return $this;
     }
