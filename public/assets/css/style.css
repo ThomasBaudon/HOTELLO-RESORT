@@ -258,6 +258,7 @@ header nav ul li a:hover::after {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  border: 1px solid var(--gold);
   border-radius: 0.4rem;
   transition: 0.3s;
 }
