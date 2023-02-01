@@ -43,11 +43,11 @@ class Room
     #[ORM\Column]
     private ?bool $status_room = null;
 
-    #[ORM\OneToMany(mappedBy: 'id_room', targetEntity: Equipment::class)]
-    private Collection $equipment;
-
     #[ORM\OneToMany(mappedBy: 'id_room', targetEntity: Review::class)]
     private Collection $reviews;
+
+    #[ORM\ManyToMany(targetEntity: Equipment::class, mappedBy: 'room')]
+    private Collection $equipment;
 
     public function __construct()
     {
@@ -157,36 +157,6 @@ class Room
     }
 
     /**
-     * @return Collection<int, Equipment>
-     */
-    public function getEquipment(): Collection
-    {
-        return $this->equipment;
-    }
-
-    public function addEquipment(Equipment $equipment): self
-    {
-        if (!$this->equipment->contains($equipment)) {
-            $this->equipment->add($equipment);
-            $equipment->setIdRoom($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEquipment(Equipment $equipment): self
-    {
-        if ($this->equipment->removeElement($equipment)) {
-            // set the owning side to null (unless already changed)
-            if ($equipment->getIdRoom() === $this) {
-                $equipment->setIdRoom(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Review>
      */
     public function getReviews(): Collection
@@ -211,6 +181,33 @@ class Room
             if ($review->getIdRoom() === $this) {
                 $review->setIdRoom(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Equipment>
+     */
+    public function getEquipment(): Collection
+    {
+        return $this->equipment;
+    }
+
+    public function addEquipment(Equipment $equipment): self
+    {
+        if (!$this->equipment->contains($equipment)) {
+            $this->equipment->add($equipment);
+            $equipment->addRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipment(Equipment $equipment): self
+    {
+        if ($this->equipment->removeElement($equipment)) {
+            $equipment->removeRoom($this);
         }
 
         return $this;
