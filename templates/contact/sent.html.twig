@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotello - Contactez-nous{% endblock %}
+
+{% block body %}
+
+    <!-- Contact section -->
+    <section id="contact-section" class="contact-section">
+        <div class="contact-section__left">
+            <p class="kate-font">Besoin d’un renseignement ? <span class="gold">Contactez-nous</span></p>
+            <div class="adress-container">
+                <img src="{{ asset('./assets/img/logo-welcome.svg')}}" alt="Hotello">
+                <span class="separator"></span>
+                <div class="adress-container__content">
+                    <p class="kate-font-little">
+                        Hotello Resort
+                    </p>
+                    <p class="adress">
+                        155 avenue de Malakoff <br>75116 Paris, France
+                    </p>
+                    <hr>
+                    <p class="phone">
+                        Tél. : <a href="tel:33145002345" title="Téléphonez nous">+33 (1) 45 00 23 45</a>
+                    </p>
+                    <p class="mail">
+                        mail : <a href="mailto:bonjour@hotello.com" title="Envoyez nous un mail">bonjour@hotello.com</a>
+                    </p>
+                    <div class="rs">
+                        <a href="#" title="facebook"><img src="{{ asset('./assets/img/fb-icon.svg')}}" alt="facebook"></a>
+                        <a href="#" title="instagram"><img src="{{ asset('./assets/img/instagram-icon.svg')}}" alt="instagram"></a>
+                        <a href="#" title="twitter"><img src="{{ asset('./assets/img/twitter-icon.svg')}}" alt="twitter"></a>
+                        <a href="#" title="linkedin"><img src="{{ asset('./assets/img/linkedin-icon.svg')}}" alt="linkedin"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-section__right">
+            <div class="valid-message-container">
+                <h2> Merci !</h2>
+                <p>Votre message a bien été envoyé ! Nous vous répondrons dans les plus brefs délais. </p>
+                <hr>
+                <p>Vous pouvez continuez votre navigation sur notre site.</p>
+                <a href="{{ path('app_main') }}" class="btn btn-gold" title="Retour à l'accueil">Retour à l'accueil</a>
+            </div>
+
+        </div>
+    </section>
+
+<!-- General -->
+{{ include('./_partials/_goodwill.html.twig') }}
+{% endblock %}

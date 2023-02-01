@@ -24,14 +24,20 @@ class ContactController extends AbstractController
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
 
             $contactRepository->save($contact, true);
-            
-            return $this->redirectToRoute('app_main');
+
+            return $this->redirectToRoute('app_sent');
         }
 
 
         return $this->render('contact/index.html.twig', [
             'contactForm' => $contactForm->createView(),
         ]);
+    }
+
+    #[Route('/sent', name: 'app_sent')]
+    public function sent(): Response
+    {
+        return $this->render('contact/sent.html.twig');
     }
 
 }
