@@ -28,7 +28,7 @@ class ClientFixtures extends Fixture
             $client->setCityClient($faker->city);
             $client->setCountryClient($faker->country);
             $client->setZipClient(str_replace(' ', '',$faker->postcode));
-            $client->setPhoneClient($faker->PhoneNumber);
+            $client->setPhoneClient(str_replace(' ', '',$faker->PhoneNumber));
             $client->setBirthdateClient($faker->datetime);
             $client->setRoles(['ROLE_CLIENT']);
             $client->setPassword(
