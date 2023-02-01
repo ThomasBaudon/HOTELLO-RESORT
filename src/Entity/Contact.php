@@ -30,6 +30,14 @@ class Contact
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message_contact = null;
 
+    #[ORM\Column(length: 20)]
+    private ?string $phone_contact = null;
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+    }
+
 
     public function getId(): ?int
     {
@@ -80,6 +88,18 @@ class Contact
     public function setMessageContact(string $message_contact): self
     {
         $this->message_contact = $message_contact;
+
+        return $this;
+    }
+
+    public function getPhoneContact(): ?string
+    {
+        return $this->phone_contact;
+    }
+
+    public function setPhoneContact(string $phone_contact): self
+    {
+        $this->phone_contact = $phone_contact;
 
         return $this;
     }
