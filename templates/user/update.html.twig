@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotello - 👋 Bonjour {{ app.user.firstnameuser }}{% endblock %}
+
+{% block body %}
+
+    <section id="espace-client-section" class="espace-client-section">
+        <img src="{{ asset('./assets/img/bonjour-icon.svg')}}" alt="Bonjour">
+        <h1>Bonjour {{ app.user.firstnameuser }}</h1>
+        <h2>Bienvenue dans votre espace personnel.</h2>
+        <p>Ici vous pourrez consulter et mettre à jour vos informations personnelles.</p>
+        <hr>
+
+        <div class="espace-client-section__container">
+
+        <pre>
+            {{ dump(UserForm) }}
+        </pre>
+
+
+    {{ form_start(UserForm) }}
+
+        {# <pre>
+            {{ dump(UserForm, {}) }}
+
+        {# name #}
+        <div class="input">
+            {{ form_widget(UserForm.lastname_user) }}
+            {{ form_errors(UserForm.lastname_user) }}
+        </div>
+
+        {# firstname #}
+        <div class="input">
+            {{ form_widget(UserForm.firstname_user) }}
+            {{ form_errors(UserForm.firstname_user) }}
+        </div>
+
+
+        {# email #}
+        <div class="input">
+            {{ form_widget(UserForm.email) }}
+            {{ form_errors(UserForm.email) }}
+        </div>
+
+        <hr>
+
+        {# adress #}
+        <div class="input">
+            {{ form_widget(UserForm.adress_user) }}
+            {{ form_errors(UserForm.adress_user) }}
+            {{ form_errors(UserForm.adress_user) }}
+        </div>
+
+        {# zip #}
+        <div class="input">
+            {{ form_widget(UserForm.zip_user) }}
+            {{ form_errors(UserForm.zip_user) }}
+            {{ form_errors(UserForm.zip_user) }}
+        </div>
+
+        {# city #}
+        <div class="input">
+            {{ form_widget(UserForm.city_user) }}
+            {{ form_errors(UserForm.city_user) }}
+        </div>
+
+
+        {# country #}
+        <div class="input">
+            {{ form_widget(UserForm.country_user) }}
+            {{ form_errors(UserForm.country_user) }}
+        </div>
+
+        {# phone #}
+        <div class="input">
+            {{ form_widget(UserForm.phone_user) }}
+            {{ form_errors(UserForm.phone_user) }}
+        </div>
+
+            <button type="submit" class="btn">Je m'inscris</button>
+        {{ form_end(UserForm) }}
+
+
+        </div>
+    </section>
+
+{% endblock %}

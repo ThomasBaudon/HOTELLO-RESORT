@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotello - 👋 Bonjour {{ app.user.firstnameuser }}{% endblock %}
+
+{% block body %}
+
+    <section id="espace-client-section" class="espace-client-section">
+        <img src="{{ asset('./assets/img/bonjour-icon.svg')}}" alt="Bonjour">
+        <h1>Bonjour {{ app.user.firstnameuser }}</h1>
+        <h2>Bienvenue dans votre espace personnel.</h2>
+        {# <p>Ici vous pourrez consulter et mettre à jour vos informations personnelles.</p>
+        <hr> #}
+        <hr>
+
+        <div class="espace-client-section__container">
+            <div class="espace-client-section__container__card">
+                <img src="{{ asset('./assets/img/mon-compte-icon.svg')}}" alt="Mon compte">
+                <h3>Mon compte</h3>
+                <p>Consultez et mettez à jour <br>
+                vos informations personnelles.</p>
+                <a href="{{ path('show_user',{'id': app.user.id}) }}" class="btn btn-green">Accéder à mon compte</a>
+                {# <a href="{{ path('app_account') }}">Accéder à mon compte</a> #}
+            </div>
+            <div class="espace-client-section__container__card">
+                <img src="{{ asset('./assets/img/mes-reservations-icon.svg')}}" alt="Mes réservations">
+                <h3>Mes réservations</h3>
+                <p>Consultez <br>
+                vos réservations et vos factures.</p>
+                <a href="{{ path('app_main') }}" class="btn btn-green">Accéder à mes réservations</a>
+                {# <a href="{{ path('app_reservations') }}">Accéder à mes réservations</a> #}
+            </div>
+            <div class="espace-client-section__container__card">
+                <img src="{{ asset('./assets/img/mes-avis-icon.svg')}}" alt="Mes avis">
+                <h3>Mes avis</h3>
+                <p>Consultez et mettez à jour <br>
+                vos avis.</p>
+                <a href="{{ path('app_main') }}" class="btn btn-green">Accéder à mes avis</a>
+                {# <a href="{{ path('app_avis') }}">Accéder à mes avis</a> #}
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

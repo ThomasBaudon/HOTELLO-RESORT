@@ -62,7 +62,14 @@
    {% if is_granted('ROLE_USER') %}
         <div class="connexion">
             <img src="{{ asset('./assets/img/avatar.svg')}}" alt="avatar">
-            <a href="{{ path('app_logout') }}" title="Déconnexion">Déconnexion</a>
+            {# <a href="{{ path('app_logout') }}" title="Déconnexion"> #}
+            <a href="{{path('show_user',{'id': app.user.id})}}" title="espace personnel">
+                {{ app.user.firstnameuser }}
+                {# <pre>
+                    {{ dump(app.user.firstnameuser) }}
+                </pre> #}
+            </a>
+
         </div>
     {% else %}
         <div class="connexion">

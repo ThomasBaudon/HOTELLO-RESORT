@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotello - 👋 Bonjour {{ app.user.firstnameuser }}{% endblock %}
+
+{% block body %}
+
+    <section id="espace-client-section" class="espace-client-section">
+        <img src="{{ asset('./assets/img/bonjour-icon.svg')}}" alt="Bonjour">
+        <h1>Bonjour {{ app.user.firstnameuser }}</h1>
+        <h2>Bienvenue dans votre espace personnel.</h2>
+        <p>Ici vous pourrez consulter et mettre à jour vos informations personnelles.</p>
+        <hr>
+
+        <div class="espace-client-section__container">
+
+        {# <pre>
+            {{ dump(app.user) }}
+        </pre> #}
+
+            <div class="espace-client-section__container__table">
+                <table>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ app.user.lastnameuser }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prénom</th>
+                        <td>{{ app.user.firstnameuser }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ app.user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Téléphone</th>
+                        <td>{{ app.user.phoneuser }}</td>
+                    </tr>
+                    <tr>
+                        <th>Adresse</th>
+                        <td>{{ app.user.adressuser }}</td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <th>Code postal</th>
+                        <td>{{ app.user.zipuser }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ville</th>
+                        <td>{{ app.user.cityuser }}</td>
+                    </tr>
+                    <tr>
+                        <th>Pays</th>
+                        <td>{{ app.user.countryuser }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de naissance</th>
+                        <td>{{ app.user.birthdateuser|date("d/m/Y") }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                             <a href="{{ path('edit_user',{'id': app.user.id})}}" class="btn btn-green">Modifier mes informations</a>
+                        </td>
+                    </tr>
+                </table>
+
+
+        </div>
+
+    </section>
+{% endblock %}
