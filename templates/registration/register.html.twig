@@ -87,6 +87,6 @@
         <button type="submit" class="btn">Je m'inscris</button>
     {{ form_end(registrationForm) }}
 
-    <p>Vous disposez déjà de votre espace personnel ? <a href="#" title="connectez-vous" class="gold"> connectez-vous ici.</p>
+    <p>Vous disposez déjà de votre espace personnel ? <a href="{{ path('app_login')}}" title="connectez-vous" class="gold"> connectez-vous ici.</p>
     </section>
 {% endblock %}
