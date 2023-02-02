@@ -1767,6 +1767,106 @@ footer .subfooter {
     border-radius: 0.4rem;
   }
 }
+.inscription-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 5rem;
+  width: 100%;
+}
+.inscription-section img {
+  width: 3.2rem;
+  margin-bottom: 2rem;
+}
+.inscription-section h1 {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 3.2rem;
+  line-height: 3.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 2rem;
+}
+.inscription-section p {
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  color: var(--black);
+  text-align: center;
+  width: 50%;
+  margin-bottom: 3rem;
+}
+.inscription-section form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+.inscription-section form .input {
+  width: 80%;
+  text-align: left;
+  margin-bottom: 1.6rem;
+}
+.inscription-section form .input label {
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 13rem;
+  font-size: 1.2rem;
+}
+.inscription-section form .input input {
+  border: 1px solid var(--green);
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1.6rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.4rem;
+  width: 100%;
+}
+.inscription-section form .input input:focus-visible {
+  outline: var(--gold) auto 1px;
+}
+.inscription-section form .input .checkbox {
+  display: inline;
+}
+.inscription-section form .input .checkbox input[type=checkbox] {
+  width: 2.4rem;
+  margin: 0 0 0 0;
+}
+.inscription-section form .input .checkbox label {
+  color: var(--black);
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  text-transform: unset;
+}
+.inscription-section form button[type=submit] {
+  border: none;
+  background-color: var(--green);
+  outline: none;
+  transition: 0.3s ease-in-out;
+  margin-bottom: 2rem;
+}
+.inscription-section form button[type=submit]:hover {
+  background-color: var(--gold);
+  color: var(--green);
+}
+
+@media screen and (max-width: 1024px) {
+  .inscription-section {
+    padding: 0 0 10rem 0;
+  }
+}
+@media screen and (max-width: 960px) {
+  .inscription-section {
+    padding: 0 0 10rem 0;
+  }
+  .inscription-section p {
+    width: 80%;
+  }
+}
 /* HOME */
 .container {
   display: flex;

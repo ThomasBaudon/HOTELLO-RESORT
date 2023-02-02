@@ -18,7 +18,7 @@ class Review
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'reviews')]
-    private ?Client $id_client = null;
+    private ?User $id_user = null;
 
     #[ORM\ManyToOne(inversedBy: 'reviews')]
     private ?Room $id_room = null;
@@ -34,14 +34,14 @@ class Review
         return $this->id;
     }
 
-    public function getIdClient(): ?Client
+    public function getIdUser(): ?User
     {
-        return $this->id_client;
+        return $this->id_user;
     }
 
-    public function setIdClient(?Client $id_client): self
+    public function setIdUser(?User $id_user): self
     {
-        $this->id_client = $id_client;
+        $this->id_user = $id_user;
 
         return $this;
     }

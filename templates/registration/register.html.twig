@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotello - Inscription{% endblock %}
+
+{% block body %}
+    <section id="inscription-section" class="inscription-section">
+        <img src="{{ asset('./assets/img/user-add.svg')}}" alt="les services Hotello">
+        <h1>Créez votre espace personnel</h1>
+        <p>Créer votre espace personnel chez Hotello. Il s'agit de vos premiers pas dans notre univers ! Soyez les bienvenus. </p>
+        <br>
+
+    {{ form_start(registrationForm) }}
+
+    {# name #}
+    <div class="input">
+        {{ form_widget(registrationForm.lastname_user, {'attr': {'placeholder': 'Nom'}}) }}
+        {{ form_errors(registrationForm.lastname_user) }}
+        </div>
+
+    {# firstname #}
+    <div class="input">
+        {{ form_widget(registrationForm.firstname_user, {'attr': {'placeholder': 'Prénom'}}) }}
+        {{ form_errors(registrationForm.firstname_user) }}
+    </div>
+
+    {# birthdate #}
+    <div class="input">
+        {{ form_label(registrationForm.birthdate_user) }}
+        {{ form_widget(registrationForm.birthdate_user) }}
+        {{ form_errors(registrationForm.birthdate_user) }}
+    </div>
+
+    {# email #}
+    <div class="input">
+        {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Adresse mail'}}) }}
+        {{ form_errors(registrationForm.email) }}
+    </div>
+    
+    {# password #}
+    <div class="input">
+        {{ form_widget(registrationForm.plainPassword, {'attr': {'placeholder': 'Mot de passe'}}) }}
+         {{ form_errors(registrationForm.plainPassword) }}
+    </div>
+
+    <hr>
+
+    {# adress #}
+    <div class="input">
+        {{ form_widget(registrationForm.adress_user, {'attr': {'placeholder': 'Votre adresse'}}) }}
+        {{ form_errors(registrationForm.adress_user) }}
+        {{ form_errors(registrationForm.adress_user) }}
+    </div>
+
+    {# zip #}
+    <div class="input">
+        {{ form_widget(registrationForm.zip_user, {'attr': {'placeholder': 'Votre code postal'}}) }}
+        {{ form_errors(registrationForm.zip_user) }}
+        {{ form_errors(registrationForm.zip_user) }}
+    </div>
+
+    {# city #}
+    <div class="input">
+        {{ form_widget(registrationForm.city_user, {'attr': {'placeholder': 'Votre ville, village, lieux-dit...'}}) }}
+        {{ form_errors(registrationForm.city_user) }}
+    </div>
+
+
+    {# country #}
+    <div class="input">
+        {{ form_widget(registrationForm.country_user, {'attr': {'placeholder': 'Votre Pays'}}) }}
+        {{ form_errors(registrationForm.country_user) }}
+    </div>
+
+    {# phone #}
+    <div class="input">
+        {{ form_widget(registrationForm.phone_user, {'attr': {'placeholder': 'Votre numéro de téléphone'}}) }}
+        {{ form_errors(registrationForm.phone_user) }}
+    </div>
+
+    <div class="input">
+        <div class="checkbox">
+            {{ form_widget(registrationForm.agreeTerms) }}
+            {{ form_label(registrationForm.agreeTerms) }}
+        </div>
+    </div>
+
+        <button type="submit" class="btn">Je m'inscris</button>
+    {{ form_end(registrationForm) }}
+
+    <p>Vous disposez déjà de votre espace personnel ? <a href="#" title="connectez-vous" class="gold"> connectez-vous ici.</p>
+    </section>
+{% endblock %}

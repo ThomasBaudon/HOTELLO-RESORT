@@ -32,11 +32,18 @@
                 <li><a href="{{ path('app_services')}}" title="Nos services">Nos services</a></li>
                 <li><a href="{{ path('app_contact')}}" title="Nous contacter">Nous contacter</a></li>
                 <li> <hr> </li>
-                <li> 
+                <li>
+                {% if is_granted('ROLE_USER') %}
                     <div class="connexion-mobile">
-                        <img src="./assets/img/avatar.svg" alt="">
-                        <a href="#" title="Connexion">Connexion</a>
+                        <img src="{{ asset('./assets/img/avatar.svg')}}" alt="avatar">
+                        <a href="{{ path('app_register') }}" title="Connexion">Connexion</a>
                     </div>
+                {% else %}
+                    <div class="connexion-mobile">
+                        <img src="{{ asset('./assets/img/avatar.svg')}}" alt="avatar">
+                        <a href="{{ path('app_register') }}" title="Connexion">Inscription</a>
+                    </div>
+                {% endif %}
                 </li>
                 <li> <hr> </li>
                 <li>
@@ -52,7 +59,14 @@
     </div>
 
     <!-- Connexion BTN -->
-    <div class="connexion">
-        <img src="{{ asset('./assets/img/avatar.svg')}}" alt="">
-        <a href="#" title="Connexion">Connexion</a>
-    </div>
+   {% if is_granted('ROLE_USER') %}
+        <div class="connexion">
+            <img src="{{ asset('./assets/img/avatar.svg')}}" alt="avatar">
+            <a href="{{ path('app_register') }}" title="Connexion">Connexion</a>
+        </div>
+    {% else %}
+        <div class="connexion">
+            <img src="{{ asset('./assets/img/avatar.svg')}}" alt="avatar">
+            <a href="{{ path('app_register') }}" title="Connexion">Inscription</a>
+        </div>
+    {% endif %}

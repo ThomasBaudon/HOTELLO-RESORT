@@ -60,6 +60,7 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'id_client', targetEntity: Review::class)]
     private Collection $reviews;
 
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
@@ -257,6 +258,23 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
                 $review->setIdClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        // set the owning side of the relation if necessary
+        if ($user->getClientId() !== $this) {
+            $user->setClientId($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }
