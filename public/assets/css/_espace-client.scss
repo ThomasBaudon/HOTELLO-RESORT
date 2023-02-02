@@ -57,6 +57,67 @@
         margin-bottom: 3rem;
     }
 
+    form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    // border: 1px solid red;
+
+    .input{
+        width: 80%;
+        text-align: left;
+        margin-bottom: 1.6rem;
+        label{
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 13rem;
+            font-size: 1.2rem;
+        }
+
+        input{
+            border: 1px solid var(--green);
+            width: 100%;
+            margin-top: 1rem;
+            margin-bottom: 1.6rem;
+            padding: 1rem 1.5rem;
+            border-radius: .4rem;
+            width: 100%;
+
+            &:focus-visible{
+                outline: var(--gold) auto 1px;
+            }
+        }
+
+        .checkbox{
+            display: inline;
+            input[type=checkbox]{
+                width : 2.4rem;
+                margin:0 0 0 0;
+            }
+            label{
+                color: var(--black);
+                font-size: 1.2rem;
+                line-height: 1.6rem;
+                text-transform: unset;
+            }
+        }
+    }
+    button[type=submit]{
+        border: none;
+        background-color: var(--green);
+        outline: none;
+        transition: .3s ease-in-out;
+        margin-bottom: 2rem;
+
+        &:hover{
+            background-color: var(--gold);
+            color: var(--green);
+        }
+    }       
+}
+
     &__container{
         display: flex;
         justify-content: center;

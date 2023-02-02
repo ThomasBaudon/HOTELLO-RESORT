@@ -44,7 +44,7 @@ class UserController extends AbstractController
             
                 $userRepository->save($user, true);
             
-                return $this->redirectToRoute('show_user/{id}' , ['id' => $user->getId()]);
+                return $this->redirectToRoute('show_user' , ['id' => $user->getId()]);
             }
             
         return $this->render('user/update.html.twig', [

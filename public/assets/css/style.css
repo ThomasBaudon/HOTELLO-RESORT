@@ -1914,6 +1914,60 @@ footer .subfooter {
   width: 50%;
   margin-bottom: 3rem;
 }
+.espace-client-section form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+.espace-client-section form .input {
+  width: 80%;
+  text-align: left;
+  margin-bottom: 1.6rem;
+}
+.espace-client-section form .input label {
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 13rem;
+  font-size: 1.2rem;
+}
+.espace-client-section form .input input {
+  border: 1px solid var(--green);
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1.6rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.4rem;
+  width: 100%;
+}
+.espace-client-section form .input input:focus-visible {
+  outline: var(--gold) auto 1px;
+}
+.espace-client-section form .input .checkbox {
+  display: inline;
+}
+.espace-client-section form .input .checkbox input[type=checkbox] {
+  width: 2.4rem;
+  margin: 0 0 0 0;
+}
+.espace-client-section form .input .checkbox label {
+  color: var(--black);
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  text-transform: unset;
+}
+.espace-client-section form button[type=submit] {
+  border: none;
+  background-color: var(--green);
+  outline: none;
+  transition: 0.3s ease-in-out;
+  margin-bottom: 2rem;
+}
+.espace-client-section form button[type=submit]:hover {
+  background-color: var(--gold);
+  color: var(--green);
+}
 .espace-client-section__container {
   display: flex;
   justify-content: center;
