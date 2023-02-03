@@ -6,6 +6,7 @@ use App\Entity\Room;
 use App\Entity\Contact;
 use App\Entity\Employee;
 use App\Entity\Equipment;
+use App\Entity\Review;
 use App\Entity\Service;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,6 +41,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Employés', 'fas fa-circle-user', Employee::class);
         yield MenuItem::linkToCrud('Équipements', 'fas fa-bath', Equipment::class);
         yield MenuItem::linkToCrud('Services', 'fas fa-bell-concierge', Service::class);
+        yield MenuItem::linkToCrud('Avis', 'fas fa-comments', Review::class);
     }
 
     public function configureAssets(): Assets
