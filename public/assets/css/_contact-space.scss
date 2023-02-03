@@ -196,6 +196,21 @@
                     padding: 1rem 1.5rem;
                     border-radius: .4rem;
                 }
+
+                .checkbox{
+                    display: flex;
+                    margin-bottom: 2.4rem;
+                    input[type=checkbox]{
+                        width : 2.4rem;
+                        margin:0 .8rem 0 0;
+                    }
+                    label{
+                        color: var(--white);
+                        font-size: 1.2rem;
+                        line-height: 1.6rem;
+                        text-transform: unset;
+                    }
+                }
             }
             
             .checkbox-container{

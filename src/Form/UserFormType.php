@@ -116,6 +116,7 @@ class UserFormType extends AbstractType
 
         /* zip */
         ->add('zip_user', TextType::class, [
+            'label' => 'Votre code postal',
             'required' => true,
             'constraints'=>
                 [

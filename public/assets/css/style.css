@@ -780,6 +780,20 @@ header nav ul li a:hover::after {
   padding: 1rem 1.5rem;
   border-radius: 0.4rem;
 }
+.contact-section__right form .input .checkbox {
+  display: flex;
+  margin-bottom: 2.4rem;
+}
+.contact-section__right form .input .checkbox input[type=checkbox] {
+  width: 2.4rem;
+  margin: 0 0.8rem 0 0;
+}
+.contact-section__right form .input .checkbox label {
+  color: var(--white);
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  text-transform: unset;
+}
 .contact-section__right form .checkbox-container {
   display: flex;
   justify-content: flex-start;

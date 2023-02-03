@@ -69,6 +69,15 @@
                     {{ form_widget(contactForm.message_contact, {'attr': {'placeholder': 'Votre message...'}}) }}
                     {{ form_errors(contactForm.message_contact) }}
                 </div>
+
+                <div class="input">
+                    <div class="checkbox">
+                        {{ form_widget(contactForm.agreeTerms) }}
+                        {{ form_label(contactForm.agreeTerms) }}
+                    </div>
+                </div>
+
+                
                     
                 {# submit #}
                     <input type="submit" value="Envoyer" class="btn btn-gold">
