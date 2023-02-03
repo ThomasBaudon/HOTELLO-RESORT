@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 
@@ -25,7 +26,7 @@ class UserCrudController extends AbstractCrudController
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
             ->setPaginatorPageSize(10)
             ->setSearchFields(['id', 'email', 'lastname_user', 'firstname_user', 'adress_user', 'city_user', 'zip_user', 'phone_user', 'country_user', 'birthdate_user'])
-            ->setDefaultSort(['id' => 'DESC']);
+            ->setDefaultSort(['id' => 'ASC']);
     }
 
     public function configureFields(string $pageName): iterable
@@ -40,6 +41,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('phone_user'),
             TextField::new('password')
                 ->setFormTypeOption('disabled', 'disabled')
+                ->hideOnIndex()
                 ->hideOnForm(),
             TextField::new('adress_user'),
             TextField::new('zip_user'),
@@ -49,6 +51,7 @@ class UserCrudController extends AbstractCrudController
             DateTimeField::new('created_at')
                 ->setFormTypeOption('disabled', 'disabled')
                 ->hideOnForm(),
+            ArrayField::new('roles'),
         ];
     }
 }
