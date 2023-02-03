@@ -3,22 +3,24 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Room;
+use App\Entity\User;
+use App\Entity\Review;
 use App\Entity\Contact;
+use App\Entity\Service;
 use App\Entity\Employee;
 use App\Entity\Equipment;
-use App\Entity\Review;
-use App\Entity\Service;
-use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin_index')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(): Response
     {
         return $this->render('admin/dashboard.html.twig');
