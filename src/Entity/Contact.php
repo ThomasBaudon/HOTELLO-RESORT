@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use Stringable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\ContactRepository;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
-class Contact
+class Contact implements Stringable
 {
 
     use CreatedAtTrait;
@@ -102,5 +103,10 @@ class Contact
         $this->phone_contact = $phone_contact;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->created_at->format('d/m/Y H:i:s');
     }
 }

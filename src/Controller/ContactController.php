@@ -43,7 +43,7 @@ class ContactController extends AbstractController
                 $mailer->send($email);                
 
                 // dd($mailer);
-                return $this->redirectToRoute('app_contact');
+                return $this->redirectToRoute('app_sent');
             }
 
 

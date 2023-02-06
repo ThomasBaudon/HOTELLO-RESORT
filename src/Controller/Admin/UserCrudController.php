@@ -3,15 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -42,34 +43,38 @@ class UserCrudController extends AbstractCrudController
         yield TextField::new('lastname_user', 'Nom');
         yield TextField::new('firstname_user', 'Prénom');
         yield TextField::new('email', 'Email');
+        yield TextField::new('password')
+                ->setFormTypeOption('disabled', 'disabled')
+                ->hideOnIndex()
+                ->hideOnForm();
         yield TextField::new('phone_user', 'Téléphone');
         yield TextField::new('adress_user', 'Adresse');
         yield TextField::new('zip_user', 'Code postal');
         yield TextField::new('city_user', 'Ville');
         yield TextField::new('country_user', 'Pays');
-
-
-        return [
-            IdField::new('id')
-                ->hideOnForm(),
-            TextField::new('lastname_user'),
-            TextField::new('firstname_user'),
-            TextField::new('email')
-                ->setFormTypeOption('disabled', 'disabled'),
-            TextField::new('phone_user'),
-            TextField::new('password')
+        yield DateTimeField::new('created_at', 'Date d\'inscription')
                 ->setFormTypeOption('disabled', 'disabled')
-                ->hideOnIndex()
-                ->hideOnForm(),
-            TextField::new('adress_user'),
-            TextField::new('zip_user'),
-            TextField::new('city_user'),
-            TextField::new('country_user'),
-            DateTimeField::new('birthdate_user'),
-            DateTimeField::new('created_at')
-                ->setFormTypeOption('disabled', 'disabled')
-                ->hideOnForm(),
-            ArrayField::new('roles'),
-        ];
+                ->hideOnIndex();
+        yield DateTimeField::new('birthdate_user', 'Date de naissance')
+                ->hideOnIndex();
+        yield ArrayField::new('roles')
+                ->hideOnIndex();
+
+    }
+
+     public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('lastname_user')
+            ->add('firstname_user')
+            ->add('email')
+            ->add('phone_user')
+            ->add('adress_user')
+            ->add('zip_user')
+            ->add('city_user')
+            ->add('country_user')
+            ->add('birthdate_user')
+            ->add('created_at')
+            ->add('roles');
     }
 }
