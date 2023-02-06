@@ -36,7 +36,7 @@ class RoomCrudController extends AbstractCrudController
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
             ->setPaginatorPageSize(10)
             ->setSearchFields(['id', 'title_room', 'description_room', 'type_room', 'slug'])
-            ->setDefaultSort(['id' => 'DESC']);
+            ->setDefaultSort(['id' => 'ASC']);
     }
 
     public function configureFields(string $pageName): iterable
@@ -54,14 +54,14 @@ class RoomCrudController extends AbstractCrudController
         yield IntegerField::new('children_cap', 'NB. Enfants');
         yield BooleanField::new('status_room', 'Occupée');
         yield TextField::new('slug', 'Slug');
-        // yield TextField::new('photoRooms', 'Image')
-        //     ->setFormType(VichImageType::class)
-        //     ->onlyOnForms();
-        yield ImageField::new('image', 'Image')
-            ->setBasePath($this->uploadDir)
-            ->hideOnForm();
 
-            // dd($this->uploadDir);
+        yield TextField::new('roomMainImage', 'Image')
+            ->setFormType(VichImageType::class)
+            ->onlyOnForms();
+
+        yield ImageField::new('image', 'Image')
+            ->hideOnForm()
+            ->setBasePath($this->uploadDir);
 
     }
 

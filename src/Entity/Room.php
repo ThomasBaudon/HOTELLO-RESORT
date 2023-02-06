@@ -7,16 +7,15 @@ use Doctrine\DBAL\Types\Types;
 use App\Entity\Trait\SlugTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RoomRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
-/**
- * @ORM\Entity(repositoryClass=RoomRepository::class)
- * @Vich\Uploadable
- */
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
+#[Uploadable]
 class Room implements Stringable
 {
     use SlugTrait;
@@ -57,10 +56,24 @@ class Room implements Stringable
     #[ORM\ManyToMany(targetEntity: Equipment::class, mappedBy: 'room')]
     private Collection $equipment;
 
+    #[ORM\OneToMany(mappedBy: 'room', targetEntity: PhotoRoom::class)]
+    private Collection $photo_room;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
+    #[UploadableField(mapping: 'room_images', fileNameProperty: 'image')]
+    private ?File $roomMainImage = null;
+
+    #[ORM\Column(type:"datetime_immutable", options: ['default' =>'CURRENT_TIMESTAMP'])]
+    private DateTimeImmutable $updated_at;
+
     public function __construct()
     {
         $this->equipment = new ArrayCollection();
         $this->reviews = new ArrayCollection();
+        $this->photo_room = new ArrayCollection();
+        $this->updated_at = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -225,6 +238,61 @@ class Room implements Stringable
     public function __toString(): string
     {
         return $this->title_room;
+    }
+
+    /**
+     * @return Collection<int, PhotoRoom>
+     */
+    public function getPhotoRoom(): Collection
+    {
+        return $this->photo_room;
+    }
+
+    public function addPhotoRoom(PhotoRoom $photoRoom): self
+    {
+        if (!$this->photo_room->contains($photoRoom)) {
+            $this->photo_room->add($photoRoom);
+            $photoRoom->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhotoRoom(PhotoRoom $photoRoom): self
+    {
+        if ($this->photo_room->removeElement($photoRoom)) {
+            // set the owning side to null (unless already changed)
+            if ($photoRoom->getRoom() === $this) {
+                $photoRoom->setRoom(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getRoomMainImage(): ?File
+    {
+        return $this->roomMainImage;
+    }
+
+    public function setRoomMainImage(?File $roomMainImage): self
+    {
+        $this->roomMainImage = $roomMainImage;
+        $this->updated_at = new DateTimeImmutable();
+
+        return $this;
     }
 
 }

@@ -1,8 +1,5 @@
 vich_uploader:
     db_driver: orm
-    metadata:
-        type: attribute
-        auto_detection: true
 
     mappings:
 

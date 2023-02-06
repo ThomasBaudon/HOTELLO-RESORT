@@ -25,7 +25,7 @@ class PhotoRoomCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Photos Chambres')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
             ->setPaginatorPageSize(10)
-            ->setSearchFields(['id', 'room_id', 'path_photo', 'created_at', 'updated_at'])
+            ->setSearchFields(['id', 'path_photo', 'created_at', 'updated_at'])
             ->setDefaultSort(['id' => 'ASC']);
     }
 
@@ -34,9 +34,6 @@ class PhotoRoomCrudController extends AbstractCrudController
         yield IdField::new('id', 'ID')
             ->hideOnForm();
         yield TextField::new('path_photo', 'Image');
-        // yield TextField::new('room_id', 'Chambre');
-        // yield AssociationField::new('room_id', 'Chambre')
-        // ->setCrudController(UserCrudController::class);
         yield DateTimeField::new('created_at', 'Créé le');
         yield DateTimeField::new('updated_at', 'Modifié le');
     }

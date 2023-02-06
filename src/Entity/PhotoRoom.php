@@ -20,8 +20,11 @@ class PhotoRoom implements Stringable
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column(type:"datetime_immutable", options: ['default' =>'CURRENT_TIMESTAMP'])]
+    #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
+
+    #[ORM\ManyToOne(inversedBy: 'photo_room')]
+    private ?Room $room = null;
 
     public function getId(): ?int
     {
@@ -67,5 +70,17 @@ class PhotoRoom implements Stringable
     public function __toString(): string
     {
         return $this->path_photo;
+    }
+
+    public function getRoom(): ?Room
+    {
+        return $this->room;
+    }
+
+    public function setRoom(?Room $room): self
+    {
+        $this->room = $room;
+
+        return $this;
     }
 }
