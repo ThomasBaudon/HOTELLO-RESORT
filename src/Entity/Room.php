@@ -11,6 +11,8 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\GreaterThan;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
 use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
@@ -29,21 +31,26 @@ class Room implements Stringable
     private ?string $title_room = null;
 
     #[ORM\Column]
+    #[GreaterThan(value: 0)]
     private ?int $price_room = null;
 
     #[ORM\Column(length: 25)]
     private ?string $type_room = null;
 
     #[ORM\Column]
+    #[GreaterThan(value: 0)]
     private ?int $size_room = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[NotBlank(message: 'Veuillez renseigner une description.')]
     private ?string $description_room = null;
 
     #[ORM\Column]
+     #[GreaterThan(value: 0)]
     private ?int $adults_cap = null;
 
     #[ORM\Column]
+     #[GreaterThan(value: 0)]
     private ?int $children_cap = null;
 
     #[ORM\Column]

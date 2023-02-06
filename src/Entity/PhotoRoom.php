@@ -3,10 +3,15 @@
 namespace App\Entity;
 
 use Stringable;
-use App\Repository\PhotoRoomRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PhotoRoomRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 #[ORM\Entity(repositoryClass: PhotoRoomRepository::class)]
+#[Uploadable]
 class PhotoRoom implements Stringable
 {
     #[ORM\Id]
@@ -17,6 +22,9 @@ class PhotoRoom implements Stringable
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $path_photo = null;
 
+    #[UploadableField(mapping: 'other_room_images', fileNameProperty: 'path_photo')]
+    private ?File $roomImages = null;
+
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
@@ -25,6 +33,7 @@ class PhotoRoom implements Stringable
 
     #[ORM\ManyToOne(inversedBy: 'photo_room')]
     private ?Room $room = null;
+  
 
     public function getId(): ?int
     {
@@ -80,6 +89,22 @@ class PhotoRoom implements Stringable
     public function setRoom(?Room $room): self
     {
         $this->room = $room;
+
+        return $this;
+    }
+
+    public function getRoomImages(): ?File
+    {
+        return $this->roomImages;
+    }
+
+    public function setRoomImages(?File $roomImages): self
+    {
+        $this->roomImages = $roomImages;
+
+        if ($this->roomImages instanceof UploadedFile) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
 
         return $this;
     }

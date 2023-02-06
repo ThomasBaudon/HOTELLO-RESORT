@@ -4,20 +4,28 @@ namespace App\Controller\Admin;
 
 use App\Entity\Room;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class RoomCrudController extends AbstractCrudController
 {
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions->add(Crud::PAGE_INDEX, 'detail', Action::DETAIL);
+    }
 
     public function __construct(private string $uploadDir)
     {     
@@ -53,7 +61,7 @@ class RoomCrudController extends AbstractCrudController
         yield IntegerField::new('adults_cap', 'NB. Adultes');
         yield IntegerField::new('children_cap', 'NB. Enfants');
         yield BooleanField::new('status_room', 'Occupée');
-        yield TextField::new('slug', 'Slug');
+        // yield TextField::new('slug', 'Slug');
 
         yield TextField::new('roomMainImage', 'Image')
             ->setFormType(VichImageType::class)
@@ -62,6 +70,9 @@ class RoomCrudController extends AbstractCrudController
         yield ImageField::new('image', 'Image')
             ->hideOnForm()
             ->setBasePath($this->uploadDir);
+
+        yield SlugField::new('slug', 'Slug')
+            ->setTargetFieldName('title_room');
 
     }
 
