@@ -6,9 +6,10 @@ use App\Repository\ReviewRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Trait\CreatedAtTrait;
+use Stringable;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
-class Review
+class Review implements Stringable
 {
     use CreatedAtTrait;
 
@@ -80,5 +81,10 @@ class Review
         $this->score = $score;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getReview();
     }
 }

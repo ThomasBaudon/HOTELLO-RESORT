@@ -4,12 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Room;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class RoomCrudController extends AbstractCrudController
 {
@@ -31,6 +32,16 @@ class RoomCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        yield TextField::new('title_room', 'Titre');
+        yield IntegerField::new('price_room', 'Prix');
+        yield TextField::new('type_room', 'Type');
+        yield IntegerField::new('size_room', 'Taille');
+        yield TextareaField::new('description_room', 'Description');
+        yield IntegerField::new('adults_cap', 'Capacité adultes');
+        yield IntegerField::new('children_cap', 'Capacité enfants');
+        yield BooleanField::new('status_room', 'Occupée');
+        yield TextField::new('slug', 'Slug');
+
         return [
             TextField::new('title_room'),
             IntegerField::new('price_room'),
@@ -45,6 +56,37 @@ class RoomCrudController extends AbstractCrudController
             // 'image',
             // 'updated_at',
         ];
+    }
+
+    public function configureFilters(Filters $filters): Filters{
+        return $filters
+            ->add('title_room', null, [
+                'label' => 'Titre'
+            ])
+            ->add('price_room' , null, [
+                'label' => 'Prix'
+            ])
+            ->add('type_room', null, [
+                'label' => 'Type'
+            ])
+            ->add('size_room' , null, [
+                'label' => 'Taille'
+            ])
+            ->add('description_room' , null, [
+                'label' => 'Description'
+            ])
+            ->add('adults_cap' , null, [
+                'label' => 'Capacité adultes'
+            ])
+            ->add('children_cap' , null, [
+                'label' => 'Capacité enfants'
+            ])
+            ->add('status_room' , null, [
+                'label' => 'Occupée'
+            ])
+            ->add('slug' , null, [
+                'label' => 'Slug'
+            ]);
     }
 
 }

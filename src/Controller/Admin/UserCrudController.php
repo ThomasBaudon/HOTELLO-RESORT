@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
@@ -18,6 +20,12 @@ class UserCrudController extends AbstractCrudController
         return User::class;
     }
 
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->add(Crud::PAGE_INDEX, 'detail', Action::DETAIL);
+    }
+
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
@@ -31,6 +39,16 @@ class UserCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        yield TextField::new('lastname_user', 'Nom');
+        yield TextField::new('firstname_user', 'Prénom');
+        yield TextField::new('email', 'Email');
+        yield TextField::new('phone_user', 'Téléphone');
+        yield TextField::new('adress_user', 'Adresse');
+        yield TextField::new('zip_user', 'Code postal');
+        yield TextField::new('city_user', 'Ville');
+        yield TextField::new('country_user', 'Pays');
+
+
         return [
             IdField::new('id')
                 ->hideOnForm(),

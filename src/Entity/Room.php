@@ -2,15 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\RoomRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Stringable;
 use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Trait\SlugTrait;
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\RoomRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+// use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
-class Room
+class Room implements Stringable
 {
     use SlugTrait;
 
@@ -211,5 +213,10 @@ class Room
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->title_room;
     }
 }

@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Contact;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -17,6 +19,7 @@ class ContactCrudController extends AbstractCrudController
         return Contact::class;
     }
 
+    /* Configure */
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
@@ -26,9 +29,15 @@ class ContactCrudController extends AbstractCrudController
             ->setDefaultSort(['id' => 'DESC']);
     }
 
-    
+    /* Affichage et Traductions champs */
     public function configureFields(string $pageName): iterable
     {
+        yield TextField::new('lastname_contact', 'Nom');
+        yield TextField::new('firstname_contact', 'Prénom');
+        yield TextField::new('email_contact', 'Email');
+        yield TextField::new('phone_contact', 'Téléphone');
+        yield TextareaField::new('message_contact', 'Message');
+
         return [
             TextField::new('lastname_contact'),
             TextField::new('firstname_contact'),
@@ -36,5 +45,16 @@ class ContactCrudController extends AbstractCrudController
             TextField::new('phone_contact'),
             TextareaField::new('message_contact'),
         ];
+    }
+
+    /* add filters */
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('lastname_contact')
+            ->add('firstname_contact')
+            ->add('email_contact')
+            ->add('phone_contact')
+            ->add('message_contact');
     }
 }
