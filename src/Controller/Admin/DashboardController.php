@@ -9,6 +9,7 @@ use App\Entity\Contact;
 use App\Entity\Service;
 use App\Entity\Employee;
 use App\Entity\Equipment;
+use App\Entity\PhotoRoom;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
@@ -38,6 +39,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Tableau de bord', 'fas fa-hotel');
         yield MenuItem::linkToCrud('Chambres', 'fas fa-bed', Room::class);
+        yield MenuItem::linkToCrud('Photos chambres', 'fa-solid fa-camera-retro', PhotoRoom::class);
         yield MenuItem::linkToCrud('Contacts', 'fas fa-inbox', Contact::class);
         yield MenuItem::linkToCrud('Clients', 'fas fa-user-group', User::class);
         yield MenuItem::linkToCrud('Employés', 'fas fa-circle-user', Employee::class);

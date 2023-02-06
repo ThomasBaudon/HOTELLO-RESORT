@@ -9,8 +9,13 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RoomRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-// use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+/**
+ * @ORM\Entity(repositoryClass=RoomRepository::class)
+ * @Vich\Uploadable
+ */
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 class Room implements Stringable
 {
@@ -44,6 +49,7 @@ class Room implements Stringable
 
     #[ORM\Column]
     private ?bool $status_room = null;
+
 
     #[ORM\OneToMany(mappedBy: 'id_room', targetEntity: Review::class)]
     private Collection $reviews;
@@ -215,8 +221,10 @@ class Room implements Stringable
         return $this;
     }
 
+    /* TO STRING */
     public function __toString(): string
     {
         return $this->title_room;
     }
+
 }

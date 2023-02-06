@@ -11,9 +11,18 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class RoomCrudController extends AbstractCrudController
 {
+
+    public function __construct(private string $uploadDir)
+    {     
+    }
+
     public static function getEntityFqcn(): string
     {
         return Room::class;
@@ -33,29 +42,27 @@ class RoomCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('title_room', 'Titre');
-        yield IntegerField::new('price_room', 'Prix');
         yield TextField::new('type_room', 'Type');
-        yield IntegerField::new('size_room', 'Taille');
-        yield TextareaField::new('description_room', 'Description');
-        yield IntegerField::new('adults_cap', 'Capacité adultes');
-        yield IntegerField::new('children_cap', 'Capacité enfants');
+        yield MoneyField::new('price_room', 'Prix')
+        ->setCurrency('EUR')
+        ->setNumDecimals(2)
+        ->setStoredAsCents(false);
+        yield IntegerField::new('size_room', 'Taille (m2)');
+        yield TextareaField::new('description_room', 'Description')
+        ->hideOnIndex();
+        yield IntegerField::new('adults_cap', 'NB. Adultes');
+        yield IntegerField::new('children_cap', 'NB. Enfants');
         yield BooleanField::new('status_room', 'Occupée');
         yield TextField::new('slug', 'Slug');
+        // yield TextField::new('photoRooms', 'Image')
+        //     ->setFormType(VichImageType::class)
+        //     ->onlyOnForms();
+        yield ImageField::new('image', 'Image')
+            ->setBasePath($this->uploadDir)
+            ->hideOnForm();
 
-        return [
-            TextField::new('title_room'),
-            IntegerField::new('price_room'),
-            TextField::new('type_room'),
-            IntegerField::new('size_room'),
-            TextareaField::new('description_room'),
-            IntegerField::new('adults_cap'),
-            IntegerField::new('children_cap'),
-            BooleanField::new('status_room'),
-            TextField::new('slug'),
-            // 'created_at',
-            // 'image',
-            // 'updated_at',
-        ];
+            // dd($this->uploadDir);
+
     }
 
     public function configureFilters(Filters $filters): Filters{

@@ -28,6 +28,8 @@ class Equipment
     #[ORM\ManyToMany(targetEntity: Room::class, inversedBy: 'equipment')]
     private Collection $room;
 
+    
+
     public function __construct()
     {
         $this->room = new ArrayCollection();
