@@ -44,29 +44,13 @@ class ReviewCrudController extends AbstractCrudController
             ->setCrudController(RoomCrudController::class);
         yield DateTimeField::new('created_at', 'Date de création');
 
-        return [
-            TextareaField::new('review'),
-            IntegerField::new('score'),
-            IntegerField::new('id_user_id'),
-            IntegerField::new('id_room_id'),
-            DateTimeField::new('created_at'),
+        // return [
+        //     TextareaField::new('review'),
+        //     IntegerField::new('score'),
+        //     IntegerField::new('id_user_id'),
+        //     IntegerField::new('id_room_id'),
+        //     DateTimeField::new('created_at'),
 
-        ];
+        // ];
     }
-
-    // public function configureFilters(Filters $filters): Filters{
-    //     return $filters
-    //         ->add('review', [
-    //             'label' => 'Avis'
-    //         ])
-    //         ->add('score' , [
-    //             'label' => 'Score'
-    //         ])
-    //         ->add('id_user_id', [
-    //             'label' => 'Client'
-    //         ])
-    //         ->add('id_room_id' , [
-    //             'label' => 'Chambre'
-    //         ]);
-    // }
 }

@@ -2,15 +2,25 @@
 
 namespace App\Entity;
 
-use App\Repository\ServiceRepository;
+use App\Entity\Trait\CreatedAtTrait;
+use App\Entity\Trait\UpdatedAtTrait;
 use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Trait\SlugTrait;
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ServiceRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+
 
 #[ORM\Entity(repositoryClass: ServiceRepository::class)]
+#[Uploadable]
 class Service
 {
     use SlugTrait;
+    use CreatedAtTrait;
+    use UpdatedAtTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -25,6 +35,9 @@ class Service
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image_service = null;
+
+    #[UploadableField(mapping: 'services_images', fileNameProperty: 'image_service')]
+    private ?File $roomImages = null;
 
     public function getId(): ?int
     {
@@ -63,6 +76,22 @@ class Service
     public function setImageService(?string $image_service): self
     {
         $this->image_service = $image_service;
+
+        return $this;
+    }
+
+    public function getRoomImages(): ?File
+    {
+        return $this->roomImages;
+    }
+
+    public function setRoomImages(?File $roomImages): self
+    {
+        $this->roomImages = $roomImages;
+
+        if ($this->roomImages instanceof UploadedFile) {
+            $this->updated_at = new \DateTimeImmutable('now');
+        }
 
         return $this;
     }

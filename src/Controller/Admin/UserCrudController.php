@@ -62,7 +62,7 @@ class UserCrudController extends AbstractCrudController
 
     }
 
-     public function configureFilters(Filters $filters): Filters
+    public function configureFilters(Filters $filters): Filters
     {
         return $filters
             ->add('lastname_user')

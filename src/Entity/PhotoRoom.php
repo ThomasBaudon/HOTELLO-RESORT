@@ -33,6 +33,9 @@ class PhotoRoom implements Stringable
 
     #[ORM\ManyToOne(inversedBy: 'photo_room')]
     private ?Room $room = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $name = null;
   
 
     public function getId(): ?int
@@ -105,6 +108,18 @@ class PhotoRoom implements Stringable
         if ($this->roomImages instanceof UploadedFile) {
             $this->updated_at = new \DateTimeImmutable();
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

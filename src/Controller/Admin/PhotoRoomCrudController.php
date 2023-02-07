@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\PhotoRoom;
-use App\Controller\Admin\UserCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -53,9 +52,14 @@ class PhotoRoomCrudController extends AbstractCrudController
             ->setFormType(VichImageType::class)
             ->onlyOnForms();
 
-            yield ImageField::new('path_photo', 'Image')
+        yield ImageField::new('path_photo', 'Image')
             ->hideOnForm()
             ->setBasePath($this->uploadDir);
+
+        yield TextField::new('name', 'Nom');
+
+        yield AssociationField::new('room', 'Chambre')
+            ->setCrudController(RoomCrudController::class);
             
         yield DateTimeField::new('created_at', 'Créé le');
         yield DateTimeField::new('updated_at', 'Modifié le');

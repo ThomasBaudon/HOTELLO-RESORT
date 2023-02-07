@@ -2,13 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\EmployeeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Trait\CreatedAtTrait;
+use App\Entity\Trait\UpdatedAtTrait;
+use App\Repository\EmployeeRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
+#[Uploadable]
 class Employee
 {
+    use CreatedAtTrait;
+    use UpdatedAtTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -25,6 +35,9 @@ class Employee
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo_employee = null;
+
+    #[UploadableField(mapping: 'employees', fileNameProperty: 'photo_employee')]
+    private ?File $employePicFile = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $arrival_date = null;
@@ -90,6 +103,24 @@ class Employee
     public function setArrivalDate(\DateTimeInterface $arrival_date): self
     {
         $this->arrival_date = $arrival_date;
+
+        return $this;
+    }
+
+
+    public function getEmployePicFile()
+    {
+        return $this->employePicFile;
+    }
+
+
+    public function setEmployePicFile($employePicFile)
+    {
+        $this->employePicFile = $employePicFile;
+
+        if ($this->employePicFile instanceof UploadedFile) {
+            $this->updated_at = new \DateTimeImmutable('now');
+        }
 
         return $this;
     }
