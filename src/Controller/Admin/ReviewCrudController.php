@@ -43,14 +43,5 @@ class ReviewCrudController extends AbstractCrudController
         yield AssociationField::new('id_room', 'Chambre')
             ->setCrudController(RoomCrudController::class);
         yield DateTimeField::new('created_at', 'Date de création');
-
-        // return [
-        //     TextareaField::new('review'),
-        //     IntegerField::new('score'),
-        //     IntegerField::new('id_user_id'),
-        //     IntegerField::new('id_room_id'),
-        //     DateTimeField::new('created_at'),
-
-        // ];
     }
 }

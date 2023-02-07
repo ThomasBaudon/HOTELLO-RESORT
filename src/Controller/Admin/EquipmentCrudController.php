@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 
 class EquipmentCrudController extends AbstractCrudController
 {
@@ -67,7 +68,12 @@ class EquipmentCrudController extends AbstractCrudController
 
         yield AssociationField::new('room', 'Chambre(s)')
             ->hideOnIndex()
+            ->hideOnDetail()
             ->setCrudController(RoomCrudController::class);
+
+        yield CollectionField::new('room', 'Chambre(s)')
+            ->hideOnForm()
+            ->setTemplatePath('admin/equipment/room.html.twig');
 
     }
 

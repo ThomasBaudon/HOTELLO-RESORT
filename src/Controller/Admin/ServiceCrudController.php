@@ -53,7 +53,7 @@ class ServiceCrudController extends AbstractCrudController
                 ->hideOnForm()
                 ->setBasePath($this->uploadDir);
             yield TextareaField::new('description_service');
-            yield TextField::new('image_service');
+
             yield TextField::new('slug');
 
                 yield DateTimeField::new('created_at', 'Créé le');
