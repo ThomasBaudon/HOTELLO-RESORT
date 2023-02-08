@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Stringable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -66,10 +67,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     #[ORM\OneToOne(mappedBy: 'client', cascade: ['persist', 'remove'])]
     private ?Newsletter $newsletter = null;
 
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Booking::class)]
+    private Collection $bookings;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->roles = ['ROLE_USER'];
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -279,6 +284,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         }
 
         $this->newsletter = $newsletter;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getUserId() === $this) {
+                $booking->setUserId(null);
+            }
+        }
 
         return $this;
     }

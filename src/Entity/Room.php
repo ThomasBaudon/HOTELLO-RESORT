@@ -78,12 +78,16 @@ class Room implements Stringable
     #[ORM\Column(type:"datetime_immutable", options: ['default' =>'CURRENT_TIMESTAMP'])]
     private DateTimeImmutable $updated_at;
 
+    #[ORM\OneToMany(mappedBy: 'room_id', targetEntity: Booking::class)]
+    private Collection $bookings;
+
     public function __construct()
     {
         $this->equipment = new ArrayCollection();
         $this->reviews = new ArrayCollection();
         $this->photo_room = new ArrayCollection();
         $this->updated_at = new DateTimeImmutable();
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -301,6 +305,36 @@ class Room implements Stringable
     {
         $this->roomMainImage = $roomMainImage;
         $this->updated_at = new DateTimeImmutable();
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setRoomId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getRoomId() === $this) {
+                $booking->setRoomId(null);
+            }
+        }
 
         return $this;
     }
