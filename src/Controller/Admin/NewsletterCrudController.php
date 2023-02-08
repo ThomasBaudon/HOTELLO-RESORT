@@ -2,23 +2,65 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use App\Entity\Newsletter;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Controller\Admin\UserCrudController;
+
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 
-class NewsletterCrudController extends AbstractCrudController
+
+
+class NewsletterCrudController extends AbstractCrudController 
+// implements EventSubscriberInterface
 {
+
+    /* ----------------------------------------------------- */
+    /* private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            BeforeCreatingEntity::class => 'checkEmail'
+        ];
+    }
+
+    public function checkEmail(GenericEvent $event)
+    {
+        $entity = $event->getSubject();
+
+        if (!$entity instanceof Newsletter) {
+            return;
+        }
+
+        $email = $entity->getEmail();
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
+
+        if ($user) {
+            $event->setArgument('message', "L'email appartient à un utilisateur enregistré");
+            $entity->setClient($user->getName());
+        }
+    } */
+    /* ----------------------------------------------------- */
+
+
     public static function getEntityFqcn(): string
     {
         return Newsletter::class;
     }
+    
 
     /* Configure */
     public function configureCrud(Crud $crud): Crud

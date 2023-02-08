@@ -8,6 +8,12 @@
         #[ORM\Column(type:"datetime_immutable", options: ['default' =>'CURRENT_TIMESTAMP'])]
         private ?\DateTimeImmutable $created_at = null;
 
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+    }
+
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;

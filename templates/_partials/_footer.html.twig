@@ -7,15 +7,32 @@
             <p class="service-section-title">Newsletter</p>
             <hr>
             <p class="service-section-text">Inscrivez-vous à notre newsletter pour recevoir nos dernières informations et profiter de nos promotions sur nos chambres et suites.</p>
-                <form action="">
+
+            {% if not form_submitted %}
+                {{ form_start(newsletterForm) }}
+
                     <div class="input">
-                        <input type="email" name="email-newsletter" id="email-newsletter" placeholder="Votre adresse mail">
+                        {{ form_widget(newsletterForm.email) }}
                     </div>
+
                     <div class="input">
                         <input type="submit" class="btn btn-white" value="Je m'inscris">
                     </div>
-                </form>
-            {# <a href="#" class="btn btn-white">Je m'inscris</a> #}
+                
+                {{ form_end(newsletterForm) }}
+
+            {% else %}
+
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+
+                {% for message in app.flashes('danger') %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+
+            {% endif %}
+
         </div>
         
     </section>

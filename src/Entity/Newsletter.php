@@ -20,8 +20,10 @@ class Newsletter
     #[ORM\Column(length: 150)]
     private ?string $email = null;
 
-    #[ORM\Column]
-    private ?bool $subscription_status = null;
+    // column default value
+
+    #[ORM\Column(options: ['default' => true])]
+    private ?bool $subscription_status = true;
 
     #[ORM\OneToOne(inversedBy: 'newsletter', cascade: ['persist', 'remove'])]
     private ?User $client = null;

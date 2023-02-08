@@ -10,13 +10,18 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class NewsletterFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('email_contact', EmailType::class, [
+        ->add('email', EmailType::class, [
+            'attr' => [
+                'placeholder' => 'Votre adresse email'
+            ],
+            'label' => 'Votre email',
             'constraints'=>
                 [
                     new NotBlank(['message' => 'Champs obligatoire']),
@@ -33,7 +38,12 @@ class NewsletterFormType extends AbstractType
                     
                 ]
         ])
-        ->add('submit', SubmitType::class)
+        // ->add('submit', SubmitType::class, [
+        //     'label' => 'Je m\'inscris',
+        //     'attr' => [
+        //         'class' => 'btn btn-gold'
+        //     ]
+        // ])
         ;
     }
 
