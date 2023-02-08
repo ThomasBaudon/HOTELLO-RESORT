@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Entity\Newsletter;
 use App\Form\ContactFormType;
+use App\Form\NewsletterFormType;
 use Symfony\Component\Mime\Email;
 use App\Repository\ContactRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,6 +18,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/contact', name: 'app_contact')]
     public function index(
         Request $request,
@@ -46,16 +55,106 @@ class ContactController extends AbstractController
                 return $this->redirectToRoute('app_sent');
             }
 
+            /* NEWSLETTER */
+                $newsletter = new Newsletter();
+                $newsletterForm = $this->createForm(NewsletterFormType::class, $newsletter);
+                $newsletterForm->handleRequest($request);
+
+                /* variable envoyée à twig pour vérification */
+                $form_submitted = $newsletterForm->isSubmitted();
+
+                /* soumission du formulaire */
+                if ($newsletterForm->isSubmitted() && $newsletterForm->isValid()) {
+                    $newsletter = $newsletterForm->getData();
+                    $email = $newsletterForm->get('email')->getData();
+
+                    /* Vérifie si l'email existe déjà */
+                    $existingEmail = $this->entityManager
+                        ->getRepository(Newsletter::class)
+                        ->findOneBy(['email' => $email]);
+
+                    /* Vérifie le statut de la souscription */
+                    $subscription_status = $this->entityManager
+                        ->getRepository(Newsletter::class)
+                        ->findOneBy(['subscription_status' => 1]);
+        
+                    if ($existingEmail)
+                    {
+                        $this->addFlash('danger', 'Vous êtes déjà inscrit à notre newsletter !');
+                        // return $this->redirectToRoute('app_main');
+                    }
+                    elseif ($subscription_status === 1){
+                        $this->addFlash('danger', 'Vous êtes déjà inscrit à notre newsletter !');
+                    }
+                    else
+                    {
+                        $manager->persist($newsletter);
+                        $manager->flush();
+                        $this->addFlash('success', 'Merci ! Votre email a bien été enregistré !');          
+                        // return $this->redirectToRoute('app_main');
+                    }
+
+                }
+                /* FIN NEWSLETTER */
+
 
             return $this->render('contact/index.html.twig', [
                 'contactForm' => $contactForm->createView(),
+                'newsletterForm' => $newsletterForm->createView(),
+                'form_submitted' => $form_submitted,
             ]);
         }
 
     #[Route('/sent', name: 'app_sent')]
-    public function sent(): Response
+    public function sent(Request $request, EntityManagerInterface $manager): Response
     {
-        return $this->render('contact/sent.html.twig');
+
+        /* NEWSLETTER */
+                $newsletter = new Newsletter();
+                $newsletterForm = $this->createForm(NewsletterFormType::class, $newsletter);
+                $newsletterForm->handleRequest($request);
+
+                /* variable envoyée à twig pour vérification */
+                $form_submitted = $newsletterForm->isSubmitted();
+
+                /* soumission du formulaire */
+                if ($newsletterForm->isSubmitted() && $newsletterForm->isValid()) {
+                    $newsletter = $newsletterForm->getData();
+                    $email = $newsletterForm->get('email')->getData();
+
+                    /* Vérifie si l'email existe déjà */
+                    $existingEmail = $this->entityManager
+                        ->getRepository(Newsletter::class)
+                        ->findOneBy(['email' => $email]);
+
+                    /* Vérifie le statut de la souscription */
+                    $subscription_status = $this->entityManager
+                        ->getRepository(Newsletter::class)
+                        ->findOneBy(['subscription_status' => 1]);
+        
+                    if ($existingEmail)
+                    {
+                        $this->addFlash('danger', 'Vous êtes déjà inscrit à notre newsletter !');
+                        // return $this->redirectToRoute('app_main');
+                    }
+                    elseif ($subscription_status === 1){
+                        $this->addFlash('danger', 'Vous êtes déjà inscrit à notre newsletter !');
+                    }
+                    else
+                    {
+                        $manager->persist($newsletter);
+                        $manager->flush();
+                        $this->addFlash('success', 'Merci ! Votre email a bien été enregistré !');          
+                        // return $this->redirectToRoute('app_main');
+                    }
+
+                }
+                /* FIN NEWSLETTER */
+        return $this->render('contact/sent.html.twig',
+        [
+            'newsletterForm' => $newsletterForm->createView(),
+            'form_submitted' => $form_submitted,
+        ]);
     }
 
 }
