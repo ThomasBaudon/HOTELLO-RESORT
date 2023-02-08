@@ -18,6 +18,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 #[Uploadable]
@@ -49,11 +50,11 @@ class Room implements Stringable
     private ?string $description_room = null;
 
     #[ORM\Column]
-     #[GreaterThan(value: 0)]
+    #[Assert\GreaterThanOrEqual(1)]
     private ?int $adults_cap = null;
 
     #[ORM\Column]
-     #[GreaterThan(value: 0)]
+    #[Assert\GreaterThanOrEqual(0)]
     private ?int $children_cap = null;
 
     #[ORM\Column]
