@@ -5,17 +5,11 @@
                 <div class="slideshow-container">
         
                 <!-- Full-width images with number and caption text -->
+                {% for photoRoom in photoRooms %}
                     <div class="mySlides fade">
-                        <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Bienvenue chez Hotello">
+                        <img src="{{ asset( vich_uploader_asset(photoRoom, 'roomImages'))}}" alt="Bienvenue chez Hotello">
                     </div>
-        
-                    <div class="mySlides fade">
-                        <img src="{{ asset('./assets/img/montaigne-2.jpg')}}" alt="Bienvenue chez Hotello">
-                    </div>
-        
-                    <div class="mySlides fade">
-                        <img src="{{ asset('./assets/img/montaigne-3.jpg')}}" alt="Bienvenue chez Hotello">
-                    </div>
+                {% endfor %}
 
                 </div>
 
@@ -26,7 +20,7 @@
                 <div class="intro-container__left">
                     <h3>Chambre</h3>
                     <h4 class="kate-font">
-                        Montaigne
+                        {{room.titleRoom}}
                     </h4>
                 </div>
                 <div class="intro-container__right">

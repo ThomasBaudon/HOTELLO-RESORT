@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotello - Titre de la chambre{% endblock %}
+
+{% block body %}
+<!-- room slider + title -->
+{{ include('./_partials/_room-details-welcome.html.twig') }}
+
+<!-- room specs -->
+{{ include('./_partials/_room-details-specifications.html.twig') }}
+
+
+<!-- room description -->
+{{ include('./_partials/_room-description.html.twig') }}
+
+<!-- room images -->
+{{ include('./_partials/_room-images.html.twig') }}
+
+<!-- General -->
+{{ include('./_partials/_services-plus-section.html.twig') }}
+{{ include('./_partials/_contact-section.html.twig') }}
+{{ include('./_partials/_goodwill.html.twig') }}
+
+{% endblock %}

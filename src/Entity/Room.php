@@ -3,17 +3,20 @@
 namespace App\Entity;
 
 use Stringable;
+use App\Entity\Review;
+use DateTimeImmutable;
+use App\Entity\Equipment;
+use App\Entity\PhotoRoom;
 use Doctrine\DBAL\Types\Types;
 use App\Entity\Trait\SlugTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RoomRepository;
-use DateTimeImmutable;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
