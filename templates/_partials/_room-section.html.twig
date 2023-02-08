@@ -20,52 +20,18 @@
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                   <!-- Slides -->
+
+                  {% for room in rooms %}
                     <div class="swiper-slide">
-                        <a href="#">
-                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Montaigne">
-                            <p>Montaigne</p>
+                        <a href="{{ path('app_room_show',{'id': room.id}) }}" title="{{ room.titleRoom }}">
+                            <img src="{{ asset( vich_uploader_asset(room, 'roomMainImage'))}}" alt="Chambre Hotello {{ room.titleRoom }}">
+                            <p>{{ room.titleRoom }}</p>
                         </a>
                     </div>
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Rivoli">
-                            <p>Rivoli</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Montorgueil">
-                            <p>Montorgueil</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Oberkampf">
-                            <p>Oberkampf</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Malakoff">
-                            <p>Malakoff</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <img src="{{ asset('./assets/img/montaigne.jpg')}}" alt="Chambre Hotello Haussman">
-                            <p>Haussman</p>
-                        </a>
-                    </div>
+                    {% endfor %}
+
+                    
                 </div>
-                <!-- If we need pagination -->
-                <!-- <div class="swiper-pagination"></div> -->
-              
-                <!-- If we need navigation buttons -->
-                <!-- <div class="swiper-button-prev"></div> -->
-                <!-- <div class="swiper-button-next"></div> -->
-              
-                <!-- If we need scrollbar -->
-                <!-- <div class="swiper-scrollbar"></div> -->
               </div>
 
             <!-- fin swiper -->

@@ -63,6 +63,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: Review::class)]
     private Collection $reviews;
 
+    #[ORM\OneToOne(mappedBy: 'client', cascade: ['persist', 'remove'])]
+    private ?Newsletter $newsletter = null;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -240,50 +243,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->firstname_user . ' ' . $this->lastname_user;
     }
 
-    // /**
-    //  * @return Collection<int, Review>
-    //  */
-    // public function getReviews(): Collection
-    // {
-    //     return $this->reviews;
-    // }
+    /**
+     * @return Collection|Review[]
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
 
-    // public function addReview(Review $review): self
-    // {
-    //     if (!$this->reviews->contains($review)) {
-    //         $this->reviews->add($review);
-    //         $review->setIdUser($this);
-    //     }
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setIdUser($this);
+        }
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
-    // public function removeReview(Review $review): self
-    // {
-    //     if ($this->reviews->removeElement($review)) {
-    //         // set the owning side to null (unless already changed)
-    //         if ($review->getIdUser() === $this) {
-    //             $review->setIdUser(null);
-    //         }
-    //     }
+    public function getNewsletter(): ?Newsletter
+    {
+        return $this->newsletter;
+    }
 
-    //     return $this;
-    // }
+    public function setNewsletter(?Newsletter $newsletter): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($newsletter === null && $this->newsletter !== null) {
+            $this->newsletter->setClient(null);
+        }
 
-    // public function getUser(): ?User
-    // {
-    //     return $this->user;
-    // }
+        // set the owning side of the relation if necessary
+        if ($newsletter !== null && $newsletter->getClient() !== $this) {
+            $newsletter->setClient($this);
+        }
 
-    // public function setUser(User $user): self
-    // {
-    //     // set the owning side of the relation if necessary
-    //     if ($user->getId() !== $this) {
-    //         $user->setId($this);
-    //     }
+        $this->newsletter = $newsletter;
 
-    //     $this->user = $user;
-
-    //     return $this;
-    // }
+        return $this;
+    }
 }

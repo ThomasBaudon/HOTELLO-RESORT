@@ -28,7 +28,7 @@ class RoomController extends AbstractController
     {
         $room = $roomRepository->find($id);
         $equipments = $room->getEquipment();
-        $photoRooms = $room->getPhotoRoom();
+        $photoRooms = $room->getPhotoRoom()->slice(0, 3);
         return $this->render('room/show.html.twig', [
             'room' => $room,
             'equipments' => $equipments,

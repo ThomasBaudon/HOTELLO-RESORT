@@ -52,19 +52,19 @@
 	transform: translateY(-10px) rotate(45deg);
 }
 
-@media screen and(min-width:1024px) {
+@media screen and (min-width:1024px) {
 	.menu-trigger{
 		display: none;
 	}
 }
 
-@media screen and(max-width:1023px) {
+@media screen and (max-width:1023px) {
 	.menu-trigger{
 		display: block;
 	}
 }
 
-@media screen and(max-width:575px) {
+@media screen and (max-width:575px) {
 	.menu-trigger{
 		display: block;
 		right: 1rem;

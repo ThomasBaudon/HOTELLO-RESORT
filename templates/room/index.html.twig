@@ -13,11 +13,12 @@
 
                 {% for room in rooms %}
 
-                    
                     <div class="card">
-                        <div class="card__img">
-                            <img src="{{ asset( vich_uploader_asset(room, 'roomMainImage'))}}" alt="{{room.titleRoom}}">
-                        </div>
+                        <a href="{{ path('app_room_show',{'id': room.id}) }}" title="{{room.titleRoom}}">
+                            <div class="card__img">
+                                <img src="{{ asset( vich_uploader_asset(room, 'roomMainImage'))}}" alt="{{room.titleRoom}}">
+                            </div>
+                        </a>
                         <div class="card__content">
                             <div class="card__content__left">
                                 <h3 class="room-title">{{room.titleRoom}}</h3>
@@ -37,9 +38,6 @@
                             <a href="{{ path('app_room_show',{'id': room.id}) }}" class="btn btn-green" title="Voir le détail">Voir le détail</a>
                         </div>
                     </div>
-
-
-
                 {% endfor %}
 
             </div>

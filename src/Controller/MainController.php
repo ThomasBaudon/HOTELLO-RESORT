@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\RoomRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,12 +12,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
-    #[Route('/', name: 'app_main')]
-    public function index(UserRepository $userRepository): Response
+    #[Route('/', name: 'app_main',  methods: ['GET'])]
+    public function index(UserRepository $userRepository, RoomRepository $roomRepository): Response
     {
         $clients = $userRepository->findAll();
+        $rooms = $roomRepository->findAll();
         return $this->render('main/index.html.twig', [
             'clients' => $clients,
+            'rooms' => $rooms,
         ]);
     }
 

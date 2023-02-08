@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,8 +10,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ServicesController extends AbstractController
 {
     #[Route('/services', name: 'app_services')]
-    public function index(): Response
+    public function index(ServiceRepository $serviceRepository): Response
     {
-        return $this->render('services/index.html.twig');
+        $services = $serviceRepository->findAll();
+        return $this->render('services/index.html.twig',[
+            'services' => $services,
+        ]);
     }
 }

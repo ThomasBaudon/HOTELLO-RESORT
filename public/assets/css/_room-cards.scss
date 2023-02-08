@@ -67,14 +67,14 @@
         align-items: flex-start;
         flex-wrap: wrap;
 
-        .room-cards__container{
+        &__container{
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             flex-wrap: wrap;
             gap: 4rem;
-
+            
             .card{
                 position: relative;
                 width: 48%;
@@ -195,13 +195,14 @@
                     }
                 }
             }
-
+    
+    
         }
 
     }
 }
 
-@media screen and(min-width:1025px) {
+@media screen and (min-width:1025px) {
     .room-presentation{
         .text-accueil{
             .left{

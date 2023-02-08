@@ -3,9 +3,11 @@
         <div class="room-images__container">
             <p>La chambre en images :</p>
             <div class="room-images__container__galery">
-                <img src="{{ asset('./assets/img/montaigne-4.jpg')}}" class="image-room-galery" alt="image">
-                <img src="{{ asset('./assets/img/montaigne-5.jpg')}}" class="image-room-galery" alt="image">
-                <img src="{{ asset('./assets/img/montaigne-6.jpg')}}" class="image-room-galery" alt="image">
+            {% for photoRoom in photoRooms %}
+                <a data-fslightbox="gallery" href="{{ asset( vich_uploader_asset(photoRoom, 'roomImages'))}}">
+                    <img src="{{ asset( vich_uploader_asset(photoRoom, 'roomImages'))}}" class="image-room-galery" alt="{{photoRoom.name}}">
+                </a>
+            {% endfor %}
             </div>
         </div>
     </div>
