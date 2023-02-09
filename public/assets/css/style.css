@@ -2270,6 +2270,9 @@ footer .subfooter {
   height: 4rem;
   background-color: var(--gold);
 }
+.welcome .welcome-container__left__container .reservation-container form input[type=submit] {
+  border: none;
+}
 .welcome .welcome-container__right {
   width: 50%;
   height: 100%;

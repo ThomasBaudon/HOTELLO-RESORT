@@ -104,6 +104,10 @@
                             height: 4rem;
                             background-color: var(--gold);
                         }
+
+                        input[type=submit]{
+                            border: none;
+                        }
                     }
                 }
             }

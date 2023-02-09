@@ -14,7 +14,7 @@
                     <!-- Reservation container -->
                 <div class="reservation-container">
                     <!-- Rservation Form -->
-                    <form action="">
+                    {# <form action="">
                         <!-- arrival -->
                         <div class="input-reservation">
                             <label for="arrival">Arrivée</label>
@@ -57,10 +57,45 @@
 
                         <span class="separator"></span>
 
-                        <input type="button" class="btn btn-green" value="Voir les chambres">
+                        <input type="submit" class="btn btn-green" value="Voir les chambres">
                         <!-- <a href="#" class="btn btn-green" title="Voir les chambres">Voir les chambres</a> -->
 
-                    </form>
+                    </form> #}
+
+                    {{ form_start(bookingForm) }}
+                        <div class="input-reservation">
+                            {{ form_label(bookingForm.start_date) }}
+                            {{ form_widget(bookingForm.start_date) }}
+                        </div>
+
+                        <span class="separator"></span>
+
+                        <div class="input-reservation">
+                            {{ form_label(bookingForm.end_date) }}
+                            {{ form_widget(bookingForm.end_date) }}
+                        </div>
+
+                        <span class="separator"></span>
+
+                        <div class="input-reservation">
+                            {{ form_label(bookingForm.adults_cap) }}
+                            {{ form_widget(bookingForm.adults_cap) }}
+                        </div>
+
+                        <span class="separator"></span>
+
+                        <div class="input-reservation">
+                            {{ form_label(bookingForm.children_cap) }}
+                            {{ form_widget(bookingForm.children_cap) }}
+                        </div>
+
+
+                        <span class="separator"></span>
+
+                        <input type="submit" class="btn btn-green" value="Voir les chambres">
+
+
+                    {{ form_end(bookingForm) }}
                 </div>
                 </div>
 
