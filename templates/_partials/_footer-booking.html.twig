@@ -1,0 +1,77 @@
+        <footer class="footer-booking">
+        <!-- logo container -->
+        <div class="logo-container">
+            <a href="{{ path('app_main')}}" title="Hotello">
+                <img src="{{ asset('./assets/img/logo-welcome.svg')}}" alt="Hotello">
+            </a>
+        </div>
+
+        <!-- Menu & contact section -->
+        <section id="footer-content" class="footer-content">
+            <!-- menu -->
+             <div class="footer-content__menu">
+                <p>Navigation principale</p>
+                <nav>
+                    <ul>
+                        <li><a href="{{ path('app_main')}}" title="Accueil">Accueil</a></li>
+                        <li><a href="{{ path('app_room')}}" title="Nos chambres">Nos chambres</a></li>
+                        <li><a href="{{ path('app_services')}}" title="Nos services">Nos services</a></li>
+                        <li><a href="{{ path('app_contact')}}" title="Nous contacter">Nous contacter</a></li>
+                    </ul>
+                </nav>
+             </div>
+
+             <!-- Contact -->
+             <div class="footer-content__adress">
+                <p class="kate-font-little">
+                    Hotello Resort
+                </p>
+                <p class="adress">
+                    155 avenue de Malakoff <br>75116 Paris, France
+                </p>
+                <hr>
+                <p class="phone">
+                    Tél. : <a href="tel:33145002345">+33 (1) 45 00 23 45</a>
+                </p>
+                <p class="mail">
+                    mail : <a href="mailto:bonjour@hotello.com">bonjour@hotello.com</a>
+                </p>
+                <div class="rs">
+                    <a href="#"><img src="{{ asset('./assets/img/fb-icon.svg')}}" alt="facebook"></a>
+                    <a href="#"><img src="{{ asset('./assets/img/instagram-icon.svg')}}" alt="instagram"></a>
+                    <a href="#"><img src="{{ asset('./assets/img/twitter-icon.svg')}}" alt="twitter"></a>
+                    <a href="#"><img src="{{ asset('./assets/img/linkedin-icon.svg')}}" alt="linkedin"></a>
+                </div>
+            </div>
+
+             <!-- Informations -->
+             <div class="footer-content__info">
+                <p>Informations</p>
+                <nav>
+                    <ul>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">recrutement</a></li>
+                        <li><a href="#">politique de confidentialité</a></li>
+                        <li><a href="#">c.g.v.</a></li>
+                    </ul>
+                </nav>
+             </div>
+        </section>
+
+        <!-- mention handicap -->
+        <div class="handicap">
+            <img src="{{ asset('./assets/img/handicap-icon.svg')}}" alt="handicap">
+            <p>L’hôtel est adapté aux personnes à mobilité réduite.</p>
+        </div>
+
+        <!-- sub footer -->
+        <div class="subfooter">
+            <p>© 2023 - Hotello Resort - ® Tous droits réservés - Propulsed by Thomas Baudon</p>
+        </div>
+    </footer>
+
+
+    <!-- scroll Top -->
+    <a href="#" class="btn-top-page " id="btn-top-page">
+        <img src="{{ asset('./assets/img/arrow-up.svg')}}" alt="">
+    </a>

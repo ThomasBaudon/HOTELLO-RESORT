@@ -1,0 +1,85 @@
+<section class="hero-image">
+</section>
+ <section id="welcome-booking" class="welcome">
+    <img src="{{ asset('./assets/img/tag-room.svg')}}" alt="panneau de porte">
+    <h1>Réservez votre chambre</h1>
+    <hr>
+    <h2>Trouvez la chambre parfaite pour votre prochain séjour</h2>
+     <div class="reservation-container">
+        {{ form_start(bookingForm) }}
+            <div class="input-reservation">
+                {{ form_label(bookingForm.start_date) }}
+                {{ form_widget(bookingForm.start_date) }}
+            </div>
+
+            <span class="separator"></span>
+
+            <div class="input-reservation">
+                {{ form_label(bookingForm.end_date) }}
+                {{ form_widget(bookingForm.end_date) }}
+            </div>
+
+            <span class="separator"></span>
+
+            <div class="input-reservation">
+                {{ form_label(bookingForm.adults_cap) }}
+                {{ form_widget(bookingForm.adults_cap) }}
+            </div>
+
+            <span class="separator"></span>
+
+            <div class="input-reservation">
+                {{ form_label(bookingForm.children_cap) }}
+                {{ form_widget(bookingForm.children_cap) }}
+            </div>
+
+
+            <span class="separator"></span>
+
+            <input type="submit" class="btn btn-green" value="Voir les chambres">
+
+
+        {{ form_end(bookingForm) }}
+     </div>
+</section>
+<section class="room-presentation">
+
+    <!-- Room cards -->
+        <div class="room-cards">
+            <div class="room-cards__container">
+                
+
+                {% for room in rooms %}
+
+                    <div class="card">
+                        <a href="{{ path('app_room_show',{'id': room.id}) }}" title="{{room.titleRoom}}">
+                            <div class="card__img">
+                                <img src="{{ asset( vich_uploader_asset(room, 'roomMainImage'))}}" alt="{{room.titleRoom}}">
+                            </div>
+                        </a>
+                        <div class="card__content">
+                            <div class="card__content__left">
+                                <h3 class="room-title">{{room.titleRoom}}</h3>
+                                <ul>
+                                    <li>{{room.typeRoom}}</li>
+                                    <li>{{room.sizeRoom}}m<sup>2</sup></li>
+                                    <li>{{room.adultsCap}} adultes</li>
+                                    <li>{{room.childrenCap}} enfants</li>
+                                </ul>
+                            </div>
+                            <div class="card__content__right">
+                                <p class="begin_at">à partir de</p>
+                                <p class="price">{{room.priceRoom}}<sup>€</sup></p>
+                                <p class="by_night">/ nuit</p>
+                            </div>
+                            
+                            <a href="{{ path('app_room_show',{'id': room.id}) }}" class="btn btn-white" title="Voir le détail">Voir le détail</a>
+                            <a href="{{ path('app_booking_show',{'id': room.id}) }}" class="btn btn-green book" title="Réserver">Réserver</a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+</section>

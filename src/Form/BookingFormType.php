@@ -19,11 +19,13 @@ class BookingFormType extends AbstractType
     {
         $builder
             ->add('start_date', DateType::class, [
+                'label' => 'Arrivée',
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
             ])
 
             ->add('end_date', DateType::class, [
+                'label' => 'Départ',
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
             ])

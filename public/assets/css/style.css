@@ -173,6 +173,12 @@ sup {
   z-index: 1000;
 }
 
+.blank {
+  height: 50vh;
+  display: flex;
+  background: #fff;
+}
+
 @media screen and (min-width: 1024px) {
   .menu-trigger {
     display: none;
@@ -197,7 +203,9 @@ sup {
 }
 
 header {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1405,6 +1413,10 @@ footer .subfooter {
   text-align: center;
 }
 
+.footer-booking {
+  padding-top: 4.8rem;
+}
+
 @media screen and (max-width: 960px) {
   footer {
     padding-top: 15rem;
@@ -2176,7 +2188,6 @@ footer .subfooter {
 }
 .welcome {
   position: relative;
-  top: -11rem;
 }
 .welcome .welcome-container {
   position: relative;
@@ -2347,6 +2358,73 @@ footer .subfooter {
   padding-left: 3rem;
   width: 80%;
   margin: 0;
+}
+
+#welcome-booking {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dark-green);
+  position: relative;
+  height: unset;
+  padding: 4rem 0 0 0;
+  border-radius: 0 0 0 3.2rem;
+}
+#welcome-booking img {
+  height: 5rem;
+  margin-bottom: 1.6rem;
+}
+#welcome-booking h1 {
+  font-size: 3.2rem;
+  line-height: 100%;
+  font-family: "Kate", sans-serif;
+  color: var(--white);
+  margin: 0;
+}
+#welcome-booking hr {
+  width: 30%;
+  background-color: var(--gold);
+  border: none;
+  height: 1px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+#welcome-booking h2 {
+  font-size: 2.4rem;
+  line-height: 120%;
+  font-family: "Playfair display", serif;
+  font-weight: 400;
+  color: var(--white);
+}
+#welcome-booking .reservation-container {
+  position: relative;
+  bottom: -4rem;
+  width: 70%;
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 8px 20px rgba(11, 59, 44, 0.15);
+}
+#welcome-booking .reservation-container form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2.5rem;
+}
+#welcome-booking .reservation-container form .input-reservation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+#welcome-booking .reservation-container form .separator {
+  width: 1px;
+  height: 4rem;
+  background-color: var(--gold);
+}
+#welcome-booking .reservation-container form input[type=submit] {
+  border: none;
 }
 
 @media screen and (max-width: 1024px) {
@@ -3876,7 +3954,7 @@ input[type=button] {
   width: 95%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 0 0.5rem 1.6rem 0.5rem;
   margin: 0 auto;
 }
@@ -3915,6 +3993,7 @@ input[type=button] {
 .room-presentation .room-cards__container .card__content__right {
   width: 20%;
   text-align: right;
+  margin-bottom: 2.4rem;
 }
 .room-presentation .room-cards__container .card__content__right .begin_at {
   color: var(--black);
@@ -3941,6 +4020,12 @@ input[type=button] {
   font-size: 2rem;
   line-height: 50%;
   margin: 0;
+}
+.room-presentation .room-cards__container .card__content .btn:nth-of-type(1) {
+  margin-left: 0rem;
+}
+.room-presentation .room-cards__container .card__content .btn:nth-of-type(2) {
+  margin-left: 1.6rem;
 }
 
 @media screen and (min-width: 1025px) {
@@ -4088,4 +4173,261 @@ input[type=button] {
   .room-presentation .room-cards .room-cards__container .card__content__right .by_night {
     font-size: 1.6rem;
   }
+}
+/* BOOKING */
+.hero-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 11rem;
+  background-image: url(../img/hotello-room-welcome-1.jpg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: cover;
+  background-color: var(--black);
+}
+
+.room-presentation-detail {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  padding-top: 6.4rem;
+}
+.room-presentation-detail__container {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.room-presentation-detail__container__left {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.room-presentation-detail__container__left .room-cards {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 2.4rem;
+}
+.room-presentation-detail__container__left .room-cards__container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 4rem;
+}
+.room-presentation-detail__container__left .room-cards__container .card {
+  position: relative;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+.room-presentation-detail__container__left .room-cards__container .card__img {
+  position: relative;
+  width: 100%;
+  height: 35rem;
+  background-color: var(--gold);
+  margin-bottom: 2rem;
+  border-radius: 0.4rem;
+  overflow: hidden;
+}
+.room-presentation-detail__container__left .room-cards__container .card__img::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: url(../img/door-hover-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 8%;
+  background-color: rgba(18, 18, 18, 0.8);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+.room-presentation-detail__container__left .room-cards__container .card__img:hover::after {
+  opacity: 1;
+}
+.room-presentation-detail__container__left .room-cards__container .card__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0 auto;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content__left {
+  width: 80%;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content__left h3 {
+  color: var(--green);
+  font-family: "Playfair display", serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 130%;
+  margin: 0;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content__left ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content__left ul li {
+  padding-left: 5%;
+  color: var(--black);
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 100%;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content__left ul li:nth-of-type(1) {
+  padding-left: 0;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content__right {
+  width: 20%;
+  text-align: right;
+  margin-bottom: 1.6rem;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content__right .begin_at {
+  color: var(--black);
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 100%;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content__right .price {
+  color: var(--green);
+  font-family: "Playfair display", serif;
+  font-weight: 300;
+  font-size: 3.2rem;
+  line-height: 100%;
+  margin: 0;
+  text-transform: uppercase;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content__right .by_night {
+  color: var(--gold);
+  font-family: "Playfair display", serif;
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 50%;
+  margin: 0;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content .btn:nth-of-type(1) {
+  margin-left: 0rem;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content .btn:nth-of-type(2) {
+  margin-left: 1.6rem;
+}
+.room-presentation-detail__container__left hr {
+  width: 100%;
+  margin-bottom: 2.4rem;
+}
+.room-presentation-detail__container__left .room-services {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.room-presentation-detail__container__left .room-services h2 {
+  color: var(--black);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  margin-bottom: 2.4rem;
+}
+.room-presentation-detail__container__left .room-services__detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.room-presentation-detail__container__left .room-services__detail__icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-right: 1.6rem;
+}
+.room-presentation-detail__container__left .room-services__detail__text {
+  color: var(--black);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+}
+.room-presentation-detail__container .horizontal-separator {
+  width: 1px;
+  height: 95vh;
+  background-color: var(--gold);
+}
+.room-presentation-detail__container__right {
+  position: sticky;
+  top: 3rem;
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 4rem;
+  border-radius: 0.4rem;
+}
+.room-presentation-detail__container__right h2 {
+  color: var(--gold);
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  margin-bottom: 2.4rem;
+  text-transform: uppercase;
+  text-align: right;
+}
+.room-presentation-detail__container__right table {
+  width: 90%;
+}
+.room-presentation-detail__container__right table thead tr {
+  background-color: unset;
+  padding: 0;
+  margin: 0;
+}
+.room-presentation-detail__container__right table thead tr th h3 {
+  color: var(--black);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 2.4rem;
+  margin-bottom: 1.6rem;
+}
+.room-presentation-detail__container__right table tr {
+  display: inline-block;
+  background-color: var(--white);
+  margin-bottom: 1rem;
+  padding: 0 0 0 2rem;
+  width: 100%;
+}
+.room-presentation-detail__container__right table tr td {
+  font-size: 1.6rem;
+  line-height: 150%;
+  padding: 1rem 0;
 }

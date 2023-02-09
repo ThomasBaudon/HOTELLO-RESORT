@@ -123,7 +123,7 @@
                     width: 95%;
                     display: flex;
                     flex-wrap: wrap;
-                    justify-content: space-between;
+                    justify-content: flex-start;
                     padding: 0 .5rem 1.6rem .5rem;
                     margin: 0 auto;
 
@@ -165,6 +165,7 @@
                     &__right{
                         width: 20%;
                         text-align: right;
+                        margin-bottom: 2.4rem;
 
                         .begin_at{
                             color: var(--black);
@@ -191,6 +192,14 @@
                             font-size: 2rem;
                             line-height: 50%;
                             margin: 0;
+                        }
+                    }
+                    .btn{
+                        &:nth-of-type(1){
+                            margin-left: 0rem;
+                        }
+                        &:nth-of-type(2){
+                            margin-left: 1.6rem;
                         }
                     }
                 }

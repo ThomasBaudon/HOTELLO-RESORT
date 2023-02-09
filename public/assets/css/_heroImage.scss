@@ -1,0 +1,12 @@
+.hero-image{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 11rem;
+    background-image: url(../img/hotello-room-welcome-1.jpg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    background-color: var(--black);
+}
