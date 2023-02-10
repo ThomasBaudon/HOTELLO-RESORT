@@ -39,6 +39,36 @@ class BookingRepository extends ServiceEntityRepository
         }
     }
 
+    public function filters(Booking $entity): array
+    {
+        $filters = [];
+        //QueryBuilder --> DQL
+        $qb = $this->createQueryBuilder('b');
+        $qb->where('b.start_date = :start_date')->setParameter('start_date', $entity->getStartDate());
+;
+
+        if ($entity->getStartDate()) {
+            $filters['start_date'] = $entity->getStartDate();
+            // $qb->andWhere()
+        }
+
+        if ($entity->getEndDate()) {
+            $filters['end_date'] = $entity->getEndDate();
+        }
+
+        if ($entity->getAdultsCap()) {
+            $filters['adults_cap'] = $entity->getAdultsCap();
+        }
+
+        if ($entity->getChildrenCap()) {
+            $filters['children_cap'] = $entity->getChildrenCap();
+        }
+
+
+        return $qb->getQuery()->getResult();
+    }
+
+
 //    /**
 //     * @return Booking[] Returns an array of Booking objects
 //     */

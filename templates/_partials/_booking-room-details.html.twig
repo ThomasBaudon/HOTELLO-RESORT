@@ -38,7 +38,7 @@
 
             <span class="separator"></span>
 
-            <input type="submit" class="btn btn-green" value="Voir les chambres">
+            <input type="submit" class="btn btn-green" value="Réserver">
 
         {{ form_end(bookingForm) }}
     </div>
@@ -118,6 +118,23 @@
                     </tr>
 
                     <tr>
+                        {% set earliestStartDate = null %}
+                        {% set latestEndDate = null %}
+                            <td>
+                                <p class="subtitle">Dates du séjour :</p>
+                                {% for booking in bookings %}
+                                    {% set startDate = booking.startDate %}
+                                    {% set endDate = booking.endDate %}
+                                <p>
+                                    Arrivée : {{ startDate|date('d-m-Y') }}
+                                    <br>
+                                    Départ : {{ endDate|date('d-m-Y') }}
+                                </p>
+                                {% endfor %}    
+                            </td>
+                    </tr>
+
+                    <tr>
                         <td>
                             <p class="subtitle">Taxe de séjour :</p>
                             <p>2%</p>
@@ -144,9 +161,17 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
-                        Prix total €
-                        </td>
+                    {% set totalCost = 0 %}
+                    {% for booking in bookings %}
+                        {% set startDate = booking.startDate %}
+                        
+                        {% set endDate = booking.endDate %}
+
+                        {% set duration = endDate.diff(startDate) %}
+                        {% set numDays = duration.days + 1 %}
+                        {% set totalCost = numDays * 699 %}
+                    {% endfor %}
+                        <td>{{ totalCost }} €</td>
                     </tr>
                 </tbody>
             </table>

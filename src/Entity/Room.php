@@ -79,7 +79,7 @@ class Room implements Stringable
     #[ORM\Column(type:"datetime_immutable", options: ['default' =>'CURRENT_TIMESTAMP'])]
     private DateTimeImmutable $updated_at;
 
-    #[ORM\OneToMany(mappedBy: 'room_id', targetEntity: Booking::class)]
+    #[ORM\OneToMany(mappedBy: 'room', targetEntity: Booking::class)]
     private Collection $bookings;
 
     public function __construct()
@@ -322,7 +322,7 @@ class Room implements Stringable
     {
         if (!$this->bookings->contains($booking)) {
             $this->bookings->add($booking);
-            $booking->setRoomId($this);
+            $booking->setRoom($this);
         }
 
         return $this;
@@ -332,8 +332,8 @@ class Room implements Stringable
     {
         if ($this->bookings->removeElement($booking)) {
             // set the owning side to null (unless already changed)
-            if ($booking->getRoomId() === $this) {
-                $booking->setRoomId(null);
+            if ($booking->getRoom() === $this) {
+                $booking->setRoom(null);
             }
         }
 

@@ -272,6 +272,14 @@
                         font-size: 1.6rem;
                         line-height: 150%;
                         padding: 1rem 0;
+
+                        .subtitle{
+                            color: var(--gold);
+                            font-size: 1.2rem;
+                            font-weight: 400;
+                            line-height: 1rem;
+                            margin-bottom: 1rem;
+                        }
                     }
                 }
             }

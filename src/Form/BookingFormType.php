@@ -90,6 +90,8 @@ class BookingFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
+            'method' => 'GET',
+            'csrf_protection' => false,
             'data_class' => Booking::class,
         ]);
     }

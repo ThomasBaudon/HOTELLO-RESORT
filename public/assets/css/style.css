@@ -4432,3 +4432,10 @@ input[type=button] {
   line-height: 150%;
   padding: 1rem 0;
 }
+.room-presentation-detail__container__right table tr td .subtitle {
+  color: var(--gold);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1rem;
+  margin-bottom: 1rem;
+}
