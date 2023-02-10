@@ -22,12 +22,14 @@ class BookingFormType extends AbstractType
                 'label' => 'Arrivée',
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
+                'data' => new \DateTimeImmutable('now'),
             ])
 
             ->add('end_date', DateType::class, [
                 'label' => 'Départ',
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
+                'data' => new \DateTimeImmutable('now + 1 day'),
             ])
             ->add('adults_cap', ChoiceType::class, [
                 'choices' => [

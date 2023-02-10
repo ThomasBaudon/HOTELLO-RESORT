@@ -28,7 +28,7 @@ class MainController extends AbstractController
     }
 
 
-    #[Route('/', name: 'app_main')]
+    #[Route('', name: 'app_main')]
     public function index(
         UserRepository $userRepository,
         RoomRepository $roomRepository,

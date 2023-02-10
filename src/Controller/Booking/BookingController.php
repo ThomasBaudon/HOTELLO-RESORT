@@ -49,12 +49,9 @@ class BookingController extends AbstractController
             $manager->persist($booking);
             $manager->flush();
 
-            return $this->redirectToRoute('app_main');
+            return $this->redirectToRoute('app_booking');
         }
         /* END Booking Form */
-
-
-
 
 
         /* Check Availability */
@@ -74,9 +71,6 @@ class BookingController extends AbstractController
         }
         /* END Check Availability */
 
-
-
-
         return $this->render('booking/index.html.twig', [
             'bookingForm' => $bookingForm->createView(),
             'rooms' => $roomRepository->findAll(),
@@ -84,10 +78,10 @@ class BookingController extends AbstractController
     }
 
 
-    #[Route('/booking/{id}', name: 'app_booking_show', requirements: ['id'=>'\d+'], methods: ['GET'])]
+    #[Route('/booking/{id}', name: 'app_booking_show', requirements: ['id'=>'\d+'], methods: ['GET', 'POST'])]
     public function show(
-        int $id,
         Booking $booking,
+        int $id,
         Room $room,
         UserRepository $userRepository,
         RoomRepository $roomRepository,
@@ -96,6 +90,8 @@ class BookingController extends AbstractController
         EquipmentRepository $equipmentRepository
     ): Response
     {
+
+        /* END Booking Form */
         $equipments = $equipmentRepository->findAll();
         $clients = $userRepository->findAll();
         $rooms = $roomRepository->findAll();
@@ -110,16 +106,21 @@ class BookingController extends AbstractController
             $manager->persist($booking);
             $manager->flush();
 
-            return $this->redirectToRoute('app_main');
+            return $this->redirectToRoute('app_booking');
         }
         /* END Booking Form */
 
+        
+
         return $this->render('booking/show.html.twig', [
+            'booking' => $booking->getId(),
             'bookingForm' => $bookingForm->createView(),
-            'booking' => $booking,
             'rooms' => $roomRepository->findAll(),
             'room' => $room,
             'equipments' => $equipments,
         ]);
     }
+
+
+
 }

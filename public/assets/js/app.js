@@ -2,7 +2,6 @@
 
 console.log("hello Thomas");
 
-
 /* ------------------------------------------------------------------------------------------ */
 /* BURGER MENU */
 /* Toggle burger-menu */
@@ -64,6 +63,7 @@ const swiper = new Swiper('.swiper', {
 
  
 });
+
 
 /* ------------------------------------------------------------------------------------------ */
 /* Image reveal */
@@ -200,3 +200,22 @@ window.addEventListener('scroll', checkPosition);
 //     loader.className += ' hidden';
 // }
 // );
+
+/* ------------------------------------------------------------------------------------------ */
+/* Datepicker home set value now */
+/* ------------------------------------------------------------------------------------------ */
+
+function setToday() {
+    /* Const */
+    const arrivalInput = document.getElementById("arrival");
+    const now = new Date();
+    const departureInput = document.getElementById("departure");
+    const tomorrow = new Date(now);
+
+    /* logique */
+    arrivalInput.value = now.toISOString().split("T")[0];
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    departureInput.value = tomorrow.toISOString().split("T")[0];
+}
+
+setToday();
