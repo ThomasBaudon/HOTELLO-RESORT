@@ -3,6 +3,9 @@
 {% block title %}Hello - Réserver une chambre{% endblock %}
 
 {% block body %}
+     <pre>
+          {{ dump(booking) }}
+     </pre>
      {% include('_partials/_booking-form-section.html.twig')%}
 
 {% endblock %}

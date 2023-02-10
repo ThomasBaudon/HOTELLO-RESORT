@@ -5,6 +5,7 @@ namespace App\Controller\Booking;
 use App\Entity\Room;
 use App\Entity\Booking;
 use App\Form\BookingFormType;
+use App\Controller\Search\BookingSearch;
 use App\Repository\RoomRepository;
 use App\Repository\UserRepository;
 use App\Repository\BookingRepository;
@@ -21,25 +22,29 @@ class BookingController extends AbstractController
 {
 
     private $entityManager;
+    private $bookingSearch;
 
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
+    
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        BookingSearch $bookingSearch,
+        )
+        {
+            $this->entityManager = $entityManager;
+            $this->bookingSearch = $bookingSearch;
+        }
+        
+    
     /* ROUTE BOOKING ACCUEIL */
     #[Route('/booking', name: 'app_booking')]
     public function index(
         BookingRepository $bookingRepository,
-        UserRepository $userRepository,
-        RoomRepository $roomRepository,
         Request $request,
-        EntityManagerInterface $manager
-    ): Response
+        RoomRepository $roomRepository,
+        ): Response
     {
         /* Get all rooms */
         $rooms = $roomRepository->findAll();
-        /* Get all bookings */
         /* Booking Form */
         $booking = new Booking();
         $bookingForm = $this->createForm(BookingFormType::class, $booking);
@@ -47,13 +52,16 @@ class BookingController extends AbstractController
         /* END Booking Form */
         
         $bookings = $bookingRepository->filters($booking);
+        // Renvoie les informations sous forme de tableau
+        // dd($booking);
         
-        /* ------------------------------------------------------------------------------------------------ */
-        /* RETURNS ON FRONT */
+    /* ------------------------------------------------------------------------------------------------ */
+    /* RETURNS ON FRONT */
         return $this->render('booking/index.html.twig', [
             'bookingForm' => $bookingForm->createView(),
             'rooms' => $rooms,
             'bookings' => $bookings,
+            'booking' => $booking,
         ]);
     }
 
@@ -61,16 +69,16 @@ class BookingController extends AbstractController
 
 
 
-    /* ROUTE BOOKING DÉTAIL CHAMBRE CHOISIE */
-    #[Route('/booking/show/{id}', name: 'app_booking_show', requirements: ['id'=>'\d+'], methods: ['GET', 'POST'])]
+/* ROUTE BOOKING DÉTAIL CHAMBRE CHOISIE */
+#[Route('/booking/show/{id}', name: 'app_booking_show', requirements: ['id'=>'\d+'], methods: ['GET', 'POST'])]
     public function show(
+        BookingRepository $bookingRepository,
+        EquipmentRepository $equipmentRepository,
+        EntityManagerInterface $manager,
+        Request $request,
         Room $room,
         RoomRepository $roomRepository,
-        BookingRepository $bookingRepository,
-        Request $request,
-        EntityManagerInterface $manager,
-        EquipmentRepository $equipmentRepository
-    ): Response
+        ): Response
     {
 
         // Récupération des dates stockées dans les sessions pour les afficher dans le formulaire

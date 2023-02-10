@@ -39,33 +39,37 @@ class BookingRepository extends ServiceEntityRepository
         }
     }
 
-    public function filters(Booking $entity): array
+    public function filters(Booking $booking): array
     {
-        $filters = [];
+        // $filters = [];
         //QueryBuilder --> DQL
         $qb = $this->createQueryBuilder('b');
-        $qb->where('b.start_date = :start_date')->setParameter('start_date', $entity->getStartDate());
-;
+        $qb->where('b.start_date = :start_date')->setParameter('start_date', $booking->getStartDate());
 
-        if ($entity->getStartDate()) {
-            $filters['start_date'] = $entity->getStartDate();
-            // $qb->andWhere()
+
+        if ($booking->getStartDate()) {
+            $filters['start_date'] = $booking->getStartDate();
+            $qb->andWhere('b.start_date = :start_date')->setParameter('start_date', $booking->getStartDate());
         }
 
-        if ($entity->getEndDate()) {
-            $filters['end_date'] = $entity->getEndDate();
+        if ($booking->getEndDate()) {
+            $filters['end_date'] = $booking->getEndDate();
+            $qb->andWhere('b.end_date = :end_date')->setParameter('end_date', $booking->getEndDate());
         }
 
-        if ($entity->getAdultsCap()) {
-            $filters['adults_cap'] = $entity->getAdultsCap();
+        if ($booking->getAdultsCap()) {
+            $filters['adults_cap'] = $booking->getAdultsCap();
+            $qb->andWhere('b.adults_cap = :adults_cap')->setParameter('adults_cap', $booking->getAdultsCap());
         }
 
-        if ($entity->getChildrenCap()) {
-            $filters['children_cap'] = $entity->getChildrenCap();
+        if ($booking->getChildrenCap()) {
+            $filters['children_cap'] = $booking->getChildrenCap();
+            $qb->andWhere('b.children_cap = :children_cap')->setParameter('children_cap', $booking->getChildrenCap());
         }
 
 
         return $qb->getQuery()->getResult();
+
     }
 
 
