@@ -52,7 +52,10 @@ class BookingController extends AbstractController
         /* END Booking Form */
         
         $bookings = $bookingRepository->filters($booking);
-        // Renvoie les informations sous forme de tableau
+        // dd($bookings);    
+
+        
+        // Renvoie les informations sous forme d’objet
         // dd($booking);
         
     /* ------------------------------------------------------------------------------------------------ */

@@ -57,6 +57,7 @@ class BookingRepository extends ServiceEntityRepository
             $qb->andWhere('b.end_date = :end_date')->setParameter('end_date', $booking->getEndDate());
         }
 
+
         if ($booking->getAdultsCap()) {
             $filters['adults_cap'] = $booking->getAdultsCap();
             $qb->andWhere('b.adults_cap = :adults_cap')->setParameter('adults_cap', $booking->getAdultsCap());
@@ -72,29 +73,4 @@ class BookingRepository extends ServiceEntityRepository
 
     }
 
-
-//    /**
-//     * @return Booking[] Returns an array of Booking objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('b.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Booking
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

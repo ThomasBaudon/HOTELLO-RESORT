@@ -42,17 +42,16 @@
         {{ form_end(bookingForm) }}
      </div>
 </section>
+
+{# ROOM PRESENTATION #}
 <section class="room-presentation">
 
     <!-- Room cards -->
-        <div class="room-cards">
-            <div class="room-cards__container">
-
-               
+            <div class="room-cards">
+                <div class="room-cards__container">
 
                 {% for room in rooms %}
-                    {% if room.adultsCap >= booking.adultsCap and room.childrenCap >= booking.childrenCAp %}
-
+                    {% if room.adultsCap >= booking.adultsCap and room.childrenCap >= booking.childrenCap %}
                         <div class="card">
                             <a href="{{ path('app_room_show',{'id': room.id}) }}" title="{{room.titleRoom}}">
                                 <div class="card__img">
@@ -79,10 +78,17 @@
                                 <a href="{{ path('app_booking_show',{'id': room.id}) }}" class="btn btn-green book" title="Réserver">Réserver</a>
                             </div>
                         </div>
+
+                    {# {% elseif room.adultsCap <= booking.adultsCap and room.childrenCap <= booking.childrenCap %}
+                       
+                        <div class="">
+                            <p>Il n'y a pas de chambre disponible pour votre séjour</p>
+                        </div> #}
+
                     {% endif %}
                 {% endfor %}
-
+                </div>
             </div>
-        </div>
+
 
 </section>
