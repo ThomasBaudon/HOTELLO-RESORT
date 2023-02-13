@@ -57,7 +57,6 @@ class BookingRepository extends ServiceEntityRepository
             $qb->andWhere('b.end_date = :end_date')->setParameter('end_date', $booking->getEndDate());
         }
 
-
         if ($booking->getAdultsCap()) {
             $filters['adults_cap'] = $booking->getAdultsCap();
             $qb->andWhere('b.adults_cap = :adults_cap')->setParameter('adults_cap', $booking->getAdultsCap());
