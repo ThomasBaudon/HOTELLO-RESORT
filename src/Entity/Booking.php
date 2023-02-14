@@ -38,7 +38,7 @@ class Booking
     private ?Room $room_id = null;
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
-    private ?User $user = null;
+    private ?User $user_id = null;
 
     #[ORM\Column]
     private ?int $adults_cap = null;
@@ -106,12 +106,12 @@ class Booking
 
     public function getUser(): ?User
     {
-        return $this->user;
+        return $this->user_id;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(?User $user_id): self
     {
-        $this->user = $user;
+        $this->user_id = $user_id;
 
         return $this;
     }

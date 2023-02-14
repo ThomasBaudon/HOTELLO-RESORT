@@ -79,7 +79,7 @@ class Room implements Stringable
     #[ORM\Column(type:"datetime_immutable", options: ['default' =>'CURRENT_TIMESTAMP'])]
     private DateTimeImmutable $updated_at;
 
-    #[ORM\OneToMany(mappedBy: 'room', targetEntity: Booking::class)]
+    #[ORM\OneToMany(mappedBy: 'room_id', targetEntity: Booking::class)]
     private Collection $bookings;
 
     public function __construct()
