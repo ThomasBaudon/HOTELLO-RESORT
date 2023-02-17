@@ -18,7 +18,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
 
@@ -120,8 +119,8 @@ class BookingController extends AbstractController
 
         $roomData = ['room_id' => $room->getId()];
         //convert in string $roomData
-        $roomData = strval($roomData);
-        dd($roomData);
+        // $roomData = strval($roomData);
+        // dd($roomData);
         $bookingConfirm = new BookingConfirmation();
         $bookingConfirmForm = $this->createForm(BookingConfirmationType::class, $bookingConfirm, ['data' => $roomData]);
         $bookingConfirmForm->handleRequest($request);

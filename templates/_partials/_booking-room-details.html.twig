@@ -167,7 +167,7 @@
             </pre>
 
             <hr>
-
+            {# Formulaire récap à transmettre à la bdd BookingConfirm #}
             {{ form_start(bookingConfirmForm, {'room_id': room.id}) }}
                 {{ form_widget(bookingConfirmForm.room_id, {'value': room_id}) }}
                 {{ form_widget(bookingConfirmForm.adults_cap, {'value': adults}) }}
