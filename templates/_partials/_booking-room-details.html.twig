@@ -2,7 +2,7 @@
 </section>
 
 
-<section id="welcome-booking" class="welcome">
+{# <section id="welcome-booking" class="welcome">
     <img src="{{ asset('./assets/img/tag-room.svg')}}" alt="panneau de porte">
     <h1>Réservez votre chambre</h1>
     <hr>
@@ -42,7 +42,7 @@
 
         {{ form_end(bookingForm) }}
     </div>
-</section>
+</section> #}
 
 
 <section class="room-presentation-detail">
@@ -56,7 +56,7 @@
             <div class="room-cards">
                 <div class="room-cards__container">
                     <div class="card">
-                        <a href="{{ path('app_room_show',{'id': room.id}) }}" title="{{room.titleRoom}}">
+                        <a href="{{ path('app_booking_show',{'id': room.id}) }}" title="{{room.titleRoom}}">
                             <div class="card__img">
                                 <img src="{{ asset( vich_uploader_asset(room, 'roomMainImage'))}}" alt="{{room.titleRoom}}">
                             </div>
@@ -65,10 +65,12 @@
                             <div class="card__content__left">
                                 <h3 class="room-title">{{room.titleRoom}}</h3>
                                 <ul>
+                                    {% set room_id = room.id %}
                                     <li>{{room.typeRoom}}</li>
                                     <li>{{room.sizeRoom}}m<sup>2</sup></li>
                                     <li>{{room.adultsCap}} adultes</li>
                                     <li>{{room.childrenCap}} enfants</li>
+                                    <li class="hidden">{{room.id}}</li>
                                 </ul>
                             </div>
                             <div class="card__content__right">
@@ -76,9 +78,6 @@
                                 <p class="price">{{room.priceRoom}}<sup>€</sup></p>
                                 <p class="by_night">/ nuit</p>
                             </div>
-                            
-                            {# <a href="{{ path('app_room_show',{'id': room.id}) }}" class="btn btn-white" title="Voir le détail">Voir le détail</a> #}
-                            {# <a href="{{ path('app_booking_show',{'id': room.id}) }}" class="btn btn-green book" title="Réserver">Confirmer réservation</a> #}
                         </div>
                     </div>
 
@@ -118,20 +117,14 @@
                     </tr>
 
                     <tr>
-                        {% set earliestStartDate = null %}
-                        {% set latestEndDate = null %}
-                            <td>
-                                <p class="subtitle">Dates du séjour :</p>
-                                {% for booking in bookings %}
-                                    {% set startDate = booking.startDate %}
-                                    {% set endDate = booking.endDate %}
+                        <td>
+                            <p class="subtitle">Dates du séjour :</p>
                                 <p>
-                                    Arrivée : {{ startDate|date('d-m-Y') }}
+                                    Arrivée : {{ start_date|date('d-m-Y') }}
                                     <br>
-                                    Départ : {{ endDate|date('d-m-Y') }}
+                                    Départ : {{ end_date|date('d-m-Y') }}
                                 </p>
-                                {% endfor %}    
-                            </td>
+                        </td>
                     </tr>
 
                     <tr>
@@ -142,8 +135,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <p class="subtitle">Services supplémentaires</p>
-                            <p>0 €</p>
+                            <p class="subtitle">Nombre de personnes </p>
+                            <p>{{adults}} Adultes - {{children}} Enfants</p>
                         </td>
                     </tr>
                 </tbody>
@@ -162,23 +155,30 @@
                 <tbody>
                     <tr>
                     {% set totalCost = 0 %}
-                    {% for booking in bookings %}
-                        {% set startDate = booking.startDate %}
-                        
-                        {% set endDate = booking.endDate %}
-
-                        {% set duration = endDate.diff(startDate) %}
-                        {% set numDays = duration.days + 1 %}
-                        {% set totalCost = numDays * 699 %}
-                    {% endfor %}
+                    {% set totalCost = totalCost + duration * room.priceRoom * 1.02 %}
+                    <tr>
                         <td>{{ totalCost }} €</td>
                     </tr>
                 </tbody>
             </table>
 
+            <pre>
+                {{ dump(session) }}
+            </pre>
+
             <hr>
 
-            <a href="{{ path('app_booking_show',{'id': room.id}) }}" class="btn btn-gold" title="Réserver">Confirmer la réservation</a>
+            {{ form_start(bookingConfirmForm, {'room_id': room.id}) }}
+                {{ form_widget(bookingConfirmForm.room_id, {'value': room_id}) }}
+                {{ form_widget(bookingConfirmForm.adults_cap, {'value': adults}) }}
+                {{ form_widget(bookingConfirmForm.children_cap, {'value': children}) }}
+                {{ form_widget(bookingConfirmForm.start_date, {'value': start_date|date()}) }}
+                {{ form_widget(bookingConfirmForm.end_date, {'value': end_date|date()}) }}
+                {{ form_widget(bookingConfirmForm.total_cost, {'value': totalCost}) }}
+                {{ form_widget(bookingConfirmForm.created_at, {'value': 'now'|date()})}}
+                
+            {{ form_end(bookingConfirmForm) }}
+
         </div>
 
     </div>

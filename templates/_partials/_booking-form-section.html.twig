@@ -39,7 +39,9 @@
             <input type="submit" class="btn btn-green" value="Voir les chambres">
 
 
+        {% set bookingFormData = dump(bookingForm.vars.value) %}
         {{ form_end(bookingForm) }}
+
      </div>
 </section>
 

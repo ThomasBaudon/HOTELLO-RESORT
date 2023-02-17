@@ -2,43 +2,29 @@
 
 namespace App\Entity;
 
-use App\Repository\BookingRepository;
+use App\Repository\BookingConfirmationRepository;
 use Doctrine\DBAL\Types\Types;
-use App\Entity\Trait\CreatedAtTrait;
-use App\Entity\Trait\UpdatedAtTrait;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: BookingRepository::class)]
-class Booking
+#[ORM\Entity(repositoryClass: BookingConfirmationRepository::class)]
+class BookingConfirmation
 {
-    use CreatedAtTrait;
-    use UpdatedAtTrait;
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $start_date = null;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $end_date = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updated_at = null;
-
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?bool $booking_status = null;
-
-    #[ORM\ManyToOne(inversedBy: 'bookings')]
-    private ?Room $room_id = null;
-
-    #[ORM\ManyToOne(inversedBy: 'bookings')]
-    private ?User $user_id = null;
 
     #[ORM\Column]
     private ?int $adults_cap = null;
@@ -47,12 +33,13 @@ class Booking
     private ?int $children_cap = null;
 
     #[ORM\Column]
-    private ?int $TotalCost = null;
+    private ?int $total_cost = null;
 
-    public function __construct()
-    {
-        $this->created_at = new \DateTimeImmutable();
-    }
+    #[ORM\ManyToOne(inversedBy: 'bookingConfirmations')]
+    private ?Room $room = null;
+
+    #[ORM\ManyToOne(inversedBy: 'bookingConfirmations')]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -83,6 +70,18 @@ class Booking
         return $this;
     }
 
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
     public function isBookingStatus(): ?bool
     {
         return $this->booking_status;
@@ -91,30 +90,6 @@ class Booking
     public function setBookingStatus(bool $booking_status): self
     {
         $this->booking_status = $booking_status;
-
-        return $this;
-    }
-
-    public function getRoom(): ?Room
-    {
-        return $this->room_id;
-    }
-
-    public function setRoom(?Room $room_id): self
-    {
-        $this->room_id = $room_id;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user_id;
-    }
-
-    public function setUser(?User $user_id): self
-    {
-        $this->user_id = $user_id;
 
         return $this;
     }
@@ -145,12 +120,36 @@ class Booking
 
     public function getTotalCost(): ?int
     {
-        return $this->TotalCost;
+        return $this->total_cost;
     }
 
-    public function setTotalCost(int $TotalCost): self
+    public function setTotalCost(int $total_cost): self
     {
-        $this->TotalCost = $TotalCost;
+        $this->total_cost = $total_cost;
+
+        return $this;
+    }
+
+    public function getRoom(): ?Room
+    {
+        return $this->room;
+    }
+
+    public function setRoom(?Room $room): self
+    {
+        $this->room = $room;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

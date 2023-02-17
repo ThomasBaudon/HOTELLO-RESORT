@@ -82,6 +82,9 @@ class Room implements Stringable
     #[ORM\OneToMany(mappedBy: 'room_id', targetEntity: Booking::class)]
     private Collection $bookings;
 
+    #[ORM\OneToMany(mappedBy: 'room', targetEntity: BookingConfirmation::class)]
+    private Collection $bookingConfirmations;
+
     public function __construct()
     {
         $this->equipment = new ArrayCollection();
@@ -89,6 +92,7 @@ class Room implements Stringable
         $this->photo_room = new ArrayCollection();
         $this->updated_at = new DateTimeImmutable();
         $this->bookings = new ArrayCollection();
+        $this->bookingConfirmations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -334,6 +338,36 @@ class Room implements Stringable
             // set the owning side to null (unless already changed)
             if ($booking->getRoom() === $this) {
                 $booking->setRoom(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BookingConfirmation>
+     */
+    public function getBookingConfirmations(): Collection
+    {
+        return $this->bookingConfirmations;
+    }
+
+    public function addBookingConfirmation(BookingConfirmation $bookingConfirmation): self
+    {
+        if (!$this->bookingConfirmations->contains($bookingConfirmation)) {
+            $this->bookingConfirmations->add($bookingConfirmation);
+            $bookingConfirmation->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookingConfirmation(BookingConfirmation $bookingConfirmation): self
+    {
+        if ($this->bookingConfirmations->removeElement($bookingConfirmation)) {
+            // set the owning side to null (unless already changed)
+            if ($bookingConfirmation->getRoom() === $this) {
+                $bookingConfirmation->setRoom(null);
             }
         }
 

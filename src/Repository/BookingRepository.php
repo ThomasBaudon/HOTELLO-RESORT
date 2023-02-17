@@ -44,7 +44,6 @@ class BookingRepository extends ServiceEntityRepository
         // $filters = [];
         //QueryBuilder --> DQL
         $qb = $this->createQueryBuilder('b');
-        $qb->where('b.start_date = :start_date')->setParameter('start_date', $booking->getStartDate());
 
 
         if ($booking->getStartDate()) {
@@ -67,9 +66,18 @@ class BookingRepository extends ServiceEntityRepository
             $qb->andWhere('b.children_cap = :children_cap')->setParameter('children_cap', $booking->getChildrenCap());
         }
 
+        if ($booking->getRoom()) {
+            $filters['room_id'] = $booking->getRoom();
+            $qb->andWhere('b.room_id = :room_id')->setParameter('room_id', $booking->getRoom());
+        }
+
+
 
         return $qb->getQuery()->getResult();
 
+
     }
+
+    
 
 }

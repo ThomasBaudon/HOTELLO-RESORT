@@ -70,11 +70,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Booking::class)]
     private Collection $bookings;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: BookingConfirmation::class)]
+    private Collection $bookingConfirmations;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->roles = ['ROLE_USER'];
         $this->bookings = new ArrayCollection();
+        $this->bookingConfirmations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -312,6 +316,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
             // set the owning side to null (unless already changed)
             if ($booking->getUser() === $this) {
                 $booking->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BookingConfirmation>
+     */
+    public function getBookingConfirmations(): Collection
+    {
+        return $this->bookingConfirmations;
+    }
+
+    public function addBookingConfirmation(BookingConfirmation $bookingConfirmation): self
+    {
+        if (!$this->bookingConfirmations->contains($bookingConfirmation)) {
+            $this->bookingConfirmations->add($bookingConfirmation);
+            $bookingConfirmation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookingConfirmation(BookingConfirmation $bookingConfirmation): self
+    {
+        if ($this->bookingConfirmations->removeElement($bookingConfirmation)) {
+            // set the owning side to null (unless already changed)
+            if ($bookingConfirmation->getUser() === $this) {
+                $bookingConfirmation->setUser(null);
             }
         }
 
