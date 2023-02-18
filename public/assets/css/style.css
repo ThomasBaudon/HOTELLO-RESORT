@@ -3714,19 +3714,24 @@ input[type=button] {
 .room-images__container__galery a {
   display: flex;
   width: 100%;
-}
-.room-images__container__galery a .image-room-galery {
-  width: 100%;
   height: 20rem;
   border-radius: 0.8rem;
   overflow: hidden;
 }
-.room-images__container__galery a .image-room-galery img {
+.room-images__container__galery a img {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
 
+@media screen and (min-width: 1520px) {
+  .room-images {
+    margin-bottom: 25rem;
+  }
+  .room-images__container__galery a {
+    height: 30rem;
+  }
+}
 @media screen and (max-width: 1365px) {
   .rooms-details-welcome .slider-container {
     height: 50rem;

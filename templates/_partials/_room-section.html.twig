@@ -23,7 +23,7 @@
 
                   {% for room in rooms %}
                     <div class="swiper-slide">
-                        <a href="{{ path('app_room_show',{'id': room.id}) }}" title="{{ room.titleRoom }}">
+                        <a href="{{ path('app_room_show',{'id': room.id, 'room_title':room.titleRoom}) }}" title="{{ room.titleRoom }}">
                             <img src="{{ asset( vich_uploader_asset(room, 'roomMainImage'))}}" alt="Chambre Hotello {{ room.titleRoom }}">
                             <p>{{ room.titleRoom }}</p>
                         </a>
