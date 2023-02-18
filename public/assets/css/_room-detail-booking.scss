@@ -163,6 +163,9 @@
                                     margin-left: 1.6rem;
                                 }
                             }
+                            input[type=submit]{
+                                border: none;
+                            }
                         }
     
                     }
@@ -273,6 +276,14 @@
                         line-height: 150%;
                         padding: 1rem 0;
 
+                        h3{
+                            color: var(--gold);
+                            font-size: 1.6rem;
+                            font-weight: 700;
+                            line-height: 2.4rem;
+                            text-transform: uppercase;
+                        }
+
                         .subtitle{
                             color: var(--gold);
                             font-size: 1.2rem;
@@ -282,6 +293,10 @@
                         }
                     }
                 }
+            }
+            button[type=submit]{
+                border: none;
+                transition: .3s;
             }
         }
     }

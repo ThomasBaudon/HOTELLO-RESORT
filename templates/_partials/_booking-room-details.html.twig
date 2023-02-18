@@ -1,4 +1,6 @@
 <section class="hero-image">
+
+    <h1>Confirmez votre réservation</h1>
 </section>
 
 
@@ -111,16 +113,7 @@
                 </tbody>
             </table>
 
-            <hr>
-
             <table class="booking-total">
-                <thead>
-                    <th>
-                        <h3>
-                            Total de la réservation
-                        </h3>
-                    </th>
-                </thead>
                 <tbody>
                     <tr>
                     {% set totalCost = 0 %}
@@ -131,12 +124,15 @@
                     {% set totalCost = totalCost + (totalCost * 0.02) %}
                     {% set totalCost = totalCost * duration.days %}
                     <tr>
-                        <td>{{ totalCost }} €</td>
+                        <td>
+                        <h3>
+                            Total de la réservation
+                        </h3>
+                        {{ totalCost }} €
+                        </td>
                     </tr>
                 </tbody>
             </table>
-
-            <hr>
 
             {{ form_start(bookingConfirmForm) }}
                 {{ form_widget(bookingConfirmForm) }}

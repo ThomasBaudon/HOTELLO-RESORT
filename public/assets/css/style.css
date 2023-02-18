@@ -64,17 +64,25 @@ table {
   text-align: center;
   font-size: 2rem;
   /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-direction: column;
+  -webkit-box-pack: flex-start;
+  -ms-flex-pack: flex-start;
+  -webkit-justify-content: flex-start;
   justify-content: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  -webkit-align-items: flex-start;
   align-items: flex-start;
 }
 .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 0.8rem;
 }
 .swiper-slide p {
@@ -207,7 +215,7 @@ sup {
 }
 
 header {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   display: flex;
@@ -216,7 +224,7 @@ header {
   z-index: 1001;
   background-color: var(--gold);
   width: 50%;
-  height: 11rem;
+  height: 10rem;
   border-radius: 0 0 2.4rem 0;
 }
 header .logo-container {
@@ -326,6 +334,14 @@ header nav ul li a:hover::after {
   visibility: visible;
 }
 
+@media screen and (max-width: 1440px) {
+  header {
+    height: 9rem;
+  }
+  header .logo-container {
+    margin-left: 4rem;
+  }
+}
 @media screen and (max-width: 1024px) {
   header {
     width: 100%;
@@ -473,6 +489,7 @@ header nav ul li a:hover::after {
 
 /* ANIM */
 .menu-trigger.active span:nth-of-type(1) {
+  -webkit-transform: translateY 10px rotate -45deg;
   transform: translateY(10px) rotate(-45deg);
 }
 
@@ -481,6 +498,7 @@ header nav ul li a:hover::after {
 }
 
 .menu-trigger.active span:nth-of-type(3) {
+  -webkit-transform: translateY(-10px) rotate(45deg);
   transform: translateY(-10px) rotate(45deg);
 }
 
@@ -505,9 +523,11 @@ header nav ul li a:hover::after {
     top: 0.8rem;
   }
   .menu-trigger.active span:nth-of-type(1) {
+    -webkit-transform: translateY 0.8rem rotate -45deg;
     transform: translateY(0.8rem) rotate(-45deg);
   }
   .menu-trigger.active span:nth-of-type(3) {
+    -webkit-transform: translateY(-0.8rem) rotate(45deg);
     transform: translateY(-0.8rem) rotate(45deg);
   }
 }
@@ -1280,8 +1300,7 @@ footer .footer-content {
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 3rem;
-  -moz-column-gap: 10%;
-       column-gap: 10%;
+  column-gap: 10%;
 }
 footer .footer-content__menu {
   display: flex;
@@ -1344,8 +1363,7 @@ footer .footer-content__adress .rs {
   display: flex;
   justify-content: center;
   align-items: center;
-  -moz-column-gap: 2rem;
-       column-gap: 2rem;
+  column-gap: 2rem;
   margin-top: 2rem;
 }
 footer .footer-content__adress .rs a {
@@ -1600,8 +1618,7 @@ footer .subfooter {
 .service-description__container__left img {
   width: 100%;
   height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .service-description__container__right {
   display: flex;
@@ -1679,8 +1696,7 @@ footer .subfooter {
 .bar .service-description__container__left img {
   width: 100%;
   height: 60rem;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .bar .service-description__container__right {
   order: 1;
@@ -1697,8 +1713,7 @@ footer .subfooter {
   bottom: -0.3rem;
   width: 1.6rem;
   height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 @media screen and (min-width: 1025px) {
@@ -1760,8 +1775,7 @@ footer .subfooter {
   .service-description__container__left img {
     width: 100%;
     height: auto;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
   .service-description__container__right {
     width: 100%;
@@ -1919,6 +1933,15 @@ footer .subfooter {
 }
 .inscription-section form .input input:focus-visible {
   outline: var(--gold) auto 1px;
+}
+.inscription-section form .input ul li {
+  background-color: rgba(180, 0, 0, 0.25);
+  color: rgb(180, 0, 0);
+  font-size: 1.4rem;
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid rgb(180, 0, 0);
+  border-radius: 0.4rem;
 }
 .inscription-section form .input .checkbox {
   display: inline;
@@ -2139,8 +2162,7 @@ footer .subfooter {
   position: relative;
   width: 100%;
   height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 /* Hide the images by default */
@@ -2186,8 +2208,7 @@ footer .subfooter {
   .container .slideshow-container img {
     height: auto;
     width: 100%;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
 }
 .welcome {
@@ -2655,9 +2676,7 @@ footer .subfooter {
 
 /* select */
 select {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   background-color: transparent;
   border: none;
   padding: 0 1em 0 0;
@@ -2785,8 +2804,7 @@ input[type=button] {
 .interval .img-container img {
   width: 100%;
   height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .interval h3 {
   width: 70%;
@@ -2799,6 +2817,11 @@ input[type=button] {
   margin-bottom: 1.6rem;
 }
 
+@media screen and (min-width: 961px) {
+  .interval {
+    margin-top: 8rem;
+  }
+}
 @media screen and (max-width: 960px) {
   .interval {
     height: 70vh;
@@ -2863,8 +2886,7 @@ input[type=button] {
 .room-section__left .img-container img {
   width: 100%;
   height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .room-section__left .kate-font {
   position: relative;
@@ -3064,10 +3086,8 @@ input[type=button] {
   align-items: center;
   flex-wrap: wrap;
   width: 40%;
-  -moz-column-count: 4;
-       column-count: 4;
-  -moz-column-gap: 5rem;
-       column-gap: 5rem;
+  column-count: 4;
+  column-gap: 5rem;
   row-gap: 1rem;
   margin-bottom: 1.6rem;
 }
@@ -3091,10 +3111,8 @@ input[type=button] {
   }
   .services-section__icon_container {
     width: 100%;
-    -moz-column-count: 2;
-         column-count: 2;
-    -moz-column-gap: 2rem;
-         column-gap: 2rem;
+    column-count: 2;
+    column-gap: 2rem;
     row-gap: 1rem;
   }
 }
@@ -3107,8 +3125,7 @@ input[type=button] {
   }
   .services-section__icon_container {
     width: 100%;
-    -moz-column-gap: 1rem;
-         column-gap: 1rem;
+    column-gap: 1rem;
     row-gap: 1rem;
   }
 }
@@ -3133,8 +3150,7 @@ input[type=button] {
 .goodwill-section__left .img-container img {
   width: 100%;
   height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 0.4rem;
 }
 .goodwill-section__right {
@@ -3178,8 +3194,7 @@ input[type=button] {
   .goodwill-section__left .img-container img {
     width: 100%;
     height: 100%;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
   .goodwill-section__right {
     width: 50%;
@@ -3292,8 +3307,7 @@ input[type=button] {
   position: relative;
   width: 100%;
   height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -33%);
@@ -3402,8 +3416,7 @@ input[type=button] {
     position: relative;
     width: 100%;
     height: auto;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
     top: 0;
     left: 0;
     transform: translate(0, 0);
@@ -3553,8 +3566,7 @@ input[type=button] {
 .room-description__container__left img {
   width: auto;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .room-description__container__right {
   display: flex;
@@ -3672,8 +3684,7 @@ input[type=button] {
 .room-images__container__galery a .image-room-galery img {
   width: 100%;
   height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 1365px) {
@@ -3719,8 +3730,7 @@ input[type=button] {
   .room-description__container__left img {
     width: 100%;
     height: auto;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
   .room-description__container__right {
     width: 100%;
@@ -3765,8 +3775,7 @@ input[type=button] {
     position: relative;
     width: auto;
     height: 100%;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
     top: 0;
     left: 0;
     transform: translate(0, 0);
@@ -3951,8 +3960,7 @@ input[type=button] {
 .room-presentation .room-cards__container .card__img img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .room-presentation .room-cards__container .card__content {
   width: 95%;
@@ -4032,6 +4040,12 @@ input[type=button] {
   margin-left: 1.6rem;
 }
 
+@media screen and (min-width: 1520px) {
+  .room-presentation {
+    margin-top: 7.2rem;
+    width: 65%;
+  }
+}
 @media screen and (min-width: 1025px) {
   .room-presentation .text-accueil .left {
     width: 30%;
@@ -4184,12 +4198,24 @@ input[type=button] {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 11rem;
+  height: 15rem;
   background-image: url(../img/hotello-room-welcome-1.jpg);
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: cover;
   background-color: var(--black);
+}
+.hero-image h1 {
+  position: absolute;
+  border: 1px solid var(--gold);
+  border-radius: 0.4rem;
+  color: var(--white);
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 3.6rem;
+  line-height: 150%;
+  text-align: center;
+  padding: 1rem 2rem;
 }
 
 .room-presentation-detail {
@@ -4267,8 +4293,7 @@ input[type=button] {
 .room-presentation-detail__container__left .room-cards__container .card__img img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .room-presentation-detail__container__left .room-cards__container .card__content {
   width: 100%;
@@ -4346,6 +4371,9 @@ input[type=button] {
 }
 .room-presentation-detail__container__left .room-cards__container .card__content .btn:nth-of-type(2) {
   margin-left: 1.6rem;
+}
+.room-presentation-detail__container__left .room-cards__container .card__content input[type=submit] {
+  border: none;
 }
 .room-presentation-detail__container__left hr {
   width: 100%;
@@ -4436,10 +4464,21 @@ input[type=button] {
   line-height: 150%;
   padding: 1rem 0;
 }
+.room-presentation-detail__container__right table tr td h3 {
+  color: var(--gold);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 2.4rem;
+  text-transform: uppercase;
+}
 .room-presentation-detail__container__right table tr td .subtitle {
   color: var(--gold);
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1rem;
   margin-bottom: 1rem;
+}
+.room-presentation-detail__container__right button[type=submit] {
+  border: none;
+  transition: 0.3s;
 }

@@ -42,6 +42,12 @@
 
 }
 
+@media screen and (min-width: 961px) {
+    .interval{
+        margin-top: 8rem;
+    }
+}
+
 @media screen and (max-width: 960px) {
     .interval{
         height: 70vh;

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\BookingConfirmation;
 use App\Entity\Room;
 use App\Entity\User;
 use App\Entity\Review;
@@ -39,6 +40,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Tableau de bord', 'fas fa-hotel');
+        yield MenuItem::linkToCrud('Réservations', 'fas fa-calendar-check', BookingConfirmation::class);
         yield MenuItem::linkToCrud('Clients', 'fas fa-user-group', User::class);
         yield MenuItem::linkToCrud('Chambres', 'fas fa-bed', Room::class);
         yield MenuItem::linkToCrud('Photos chambres', 'fa-solid fa-camera-retro', PhotoRoom::class);

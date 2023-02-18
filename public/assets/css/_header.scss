@@ -1,5 +1,5 @@
 header{
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     display: flex;
@@ -10,7 +10,7 @@ header{
     background-color: var(--gold);
 
     width: 50%;
-    height: 11rem;
+    height: 10rem;
     border-radius: 0 0 2.4rem 0;
 
     .logo-container{
@@ -146,6 +146,15 @@ header{
 
 }
 
+@media screen and (max-width: 1440px) {
+    header{
+        height: 9rem;
+
+        .logo-container{
+            margin-left: 4rem;
+        }
+    }
+}
 
 
 @media screen and (max-width:1024px){

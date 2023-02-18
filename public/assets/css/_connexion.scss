@@ -71,6 +71,19 @@
                 }
             }
 
+            ul{
+                li{
+                    background-color: rgba(180,0,0,.25);
+                    color: rgba(180,0,0,1);
+                    font-size: 1.4rem;
+                    text-align: center;
+                    padding: 1rem;
+                    border: 1px solid rgba(180,0,0,1);
+                    border-radius: .4rem;
+                }
+            }
+
+
             .checkbox{
                 display: inline;
                 input[type=checkbox]{
