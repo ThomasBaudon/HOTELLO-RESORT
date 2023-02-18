@@ -2,48 +2,6 @@
 </section>
 
 
-{# <section id="welcome-booking" class="welcome">
-    <img src="{{ asset('./assets/img/tag-room.svg')}}" alt="panneau de porte">
-    <h1>Réservez votre chambre</h1>
-    <hr>
-    <h2>Trouvez la chambre parfaite pour votre prochain séjour</h2>
-    <div class="reservation-container">
-        {{ form_start(bookingForm) }}
-            <div class="input-reservation">
-                {{ form_label(bookingForm.start_date) }}
-                {{ form_widget(bookingForm.start_date) }}
-            </div>
-
-            <span class="separator"></span>
-
-            <div class="input-reservation">
-                {{ form_label(bookingForm.end_date) }}
-                {{ form_widget(bookingForm.end_date) }}
-            </div>
-
-            <span class="separator"></span>
-
-            <div class="input-reservation">
-                {{ form_label(bookingForm.adults_cap) }}
-                {{ form_widget(bookingForm.adults_cap) }}
-            </div>
-
-            <span class="separator"></span>
-
-            <div class="input-reservation">
-                {{ form_label(bookingForm.children_cap) }}
-                {{ form_widget(bookingForm.children_cap) }}
-            </div>
-
-
-            <span class="separator"></span>
-
-            <input type="submit" class="btn btn-green" value="Réserver">
-
-        {{ form_end(bookingForm) }}
-    </div>
-</section> #}
-
 
 <section class="room-presentation-detail">
 
@@ -112,17 +70,28 @@
                     <tr>
                         <td>
                             <p class="subtitle">Réservation Chambre :</p>
-                            <p>{{room.titleRoom}} -  {{ room.priceRoom }} €</p>
+                            <p>{{room.typeRoom}} "{{room.titleRoom}}"</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="subtitle">Prix de la Chambre :</p>
+                            <p>{{ room.priceRoom }} € / nuit</p>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <p class="subtitle">Dates du séjour :</p>
+
+                                <p class="subtitle">Dates du séjour :</p>
                                 <p>
-                                    Arrivée : {{ start_date|date('d-m-Y') }}
+                                    Arrivée :
                                     <br>
-                                    Départ : {{ end_date|date('d-m-Y') }}
+                                    {{ app.session.all.start_date|date('d-m-Y') }}
+                                    <br>
+                                    Départ :
+                                    <br>
+                                    {{ app.session.all.end_date|date('d-m-Y') }}
                                 </p>
                         </td>
                     </tr>
@@ -136,7 +105,7 @@
                     <tr>
                         <td>
                             <p class="subtitle">Nombre de personnes </p>
-                            <p>{{adults}} Adultes - {{children}} Enfants</p>
+                            <p>{{ app.session.all.adults }} Adultes - {{ app.session.all.children }} Enfants</p>
                         </td>
                     </tr>
                 </tbody>
@@ -155,30 +124,23 @@
                 <tbody>
                     <tr>
                     {% set totalCost = 0 %}
-                    {% set totalCost = totalCost + duration * room.priceRoom * 1.02 %}
+                    {% set arrival = date(app.session.all.start_date|date('d-m-Y')) %}
+                    {% set departure = date(app.session.all.end_date|date('d-m-Y')) %}
+                    {% set duration = date(arrival).diff(date(departure)) %}
+                    {% set totalCost = totalCost + room.priceRoom %}
+                    {% set totalCost = totalCost + (totalCost * 0.02) %}
+                    {% set totalCost = totalCost * duration.days %}
                     <tr>
                         <td>{{ totalCost }} €</td>
                     </tr>
                 </tbody>
             </table>
 
-            <pre>
-                {{ dump(session) }}
-            </pre>
-
             <hr>
-            {# Formulaire récap à transmettre à la bdd BookingConfirm #}
-            {{ form_start(bookingConfirmForm, {'room_id': room.id}) }}
-                {{ form_widget(bookingConfirmForm.room_id, {'value': room_id}) }}
-                {{ form_widget(bookingConfirmForm.adults_cap, {'value': adults}) }}
-                {{ form_widget(bookingConfirmForm.children_cap, {'value': children}) }}
-                {{ form_widget(bookingConfirmForm.start_date, {'value': start_date|date()}) }}
-                {{ form_widget(bookingConfirmForm.end_date, {'value': end_date|date()}) }}
-                {{ form_widget(bookingConfirmForm.total_cost, {'value': totalCost}) }}
-                {{ form_widget(bookingConfirmForm.created_at, {'value': 'now'|date()})}}
-                
-            {{ form_end(bookingConfirmForm) }}
 
+            {{ form_start(bookingConfirmForm) }}
+                {{ form_widget(bookingConfirmForm) }}
+            {{ form_end(bookingConfirmForm) }}
         </div>
 
     </div>

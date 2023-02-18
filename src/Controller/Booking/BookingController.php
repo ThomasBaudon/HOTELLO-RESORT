@@ -3,17 +3,18 @@
 namespace App\Controller\Booking;
 
 use App\Entity\Room;
+use App\Entity\User;
+use DateTimeImmutable;
 use App\Entity\Booking;
 use App\Form\BookingFormType;
-use App\Controller\Search\BookingSearch;
-use App\Entity\BookingConfirmation;
-use App\Entity\User;
-use App\Form\BookingConfirmationType;
 use App\Repository\RoomRepository;
+use App\Entity\BookingConfirmation;
+use App\Form\BookingConfirmationType;
 use App\Repository\BookingRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\EquipmentRepository;
-use Doctrine\ORM\Mapping\Id;
+use App\Controller\Search\BookingSearch;
+use App\Repository\BookingConfirmationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -92,12 +93,11 @@ class BookingController extends AbstractController
 
     public function show(
         BookingRepository $bookingRepository,
-        BookingConfirmationType $bookingConfirmation,
         EquipmentRepository $equipmentRepository,
         Request $request,
         Room $room,
-        User $user,
         RoomRepository $roomRepository,
+        User $user,
         ): Response
     {
 
@@ -107,26 +107,41 @@ class BookingController extends AbstractController
         /* Get all bookings */
         $bookings = $bookingRepository->findAll();
         $equipments = $equipmentRepository->findAll();
-
         $session = $request->getSession();
-        $start_date = $session->get('start_date');
-        $end_date = $session->get('end_date');
-        $adults = $session->get('adults');
-        $children = $session->get('children');
-        $duration = $end_date->diff($start_date)->days;
-        $room_id = $session->get('room_id');
-        // dd($session);
+        $total_cost = 0;
+        $startDate = $session->get('start_date', new DateTimeImmutable());
+        $endDate = $session->get('end_date', new DateTimeImmutable());
+        $duration = $startDate->diff($endDate);
+        $durationArray = array(
+            'days' => $duration->days
+        );
+        $total_cost = $durationArray['days'] * $room->getPriceRoom();
+        $total_cost = $total_cost * 1.02;
+        $session->set('totalCost', $total_cost);
 
-        $roomData = ['room_id' => $room->getId()];
-        //convert in string $roomData
-        // $roomData = strval($roomData);
-        // dd($roomData);
+        
+        
         $bookingConfirm = new BookingConfirmation();
-        $bookingConfirmForm = $this->createForm(BookingConfirmationType::class, $bookingConfirm, ['data' => $roomData]);
+        
+        $bookingConfirm->setStartDate($session->get('start_date', new DateTimeImmutable()));
+        $bookingConfirm->setEndDate($session->get('end_date', new DateTimeImmutable()));
+        $bookingConfirm->setAdultsCap($session->get('adults', 0));
+        $bookingConfirm->setChildrenCap($session->get('children', 0));
+        $bookingConfirm->setRoom($session->get('room_id', 0));
+        $bookingConfirm->setTotalCost($session->get('totalCost', 0));
+        $bookingConfirm->setCreatedAt($session->get('created_at', new DateTimeImmutable()));
+        $bookingConfirm->setUser($user);
+        $bookingConfirm->setRoom($room);
+        // dd($bookingConfirm);
+        
+        
+        $bookingConfirmForm = $this->createForm(BookingConfirmationType::class);
         $bookingConfirmForm->handleRequest($request);
         if ($bookingConfirmForm->isSubmitted() && $bookingConfirmForm->isValid()) {
+            $bookingConfirm->setCreatedAt(new DateTimeImmutable());
             $this->entityManager->persist($bookingConfirm);
             $this->entityManager->flush();
+
             return $this->redirectToRoute('app_booking_confirm', ['id' => $user->getId()]);
         }
 
@@ -135,13 +150,7 @@ class BookingController extends AbstractController
             'rooms' => $roomRepository->findAll(),
             'room' => $room,
             'equipments' => $equipments,
-            'start_date' => $start_date,
-            'end_date' => $end_date,
-            'adults' => $adults,
-            'children' => $children,
-            'duration' => $duration,
             'user' => $user,
-            'room_id' => $room_id,
             'session' => $session,
             'bookingConfirmForm' => $bookingConfirmForm->createView(),
         ]);
