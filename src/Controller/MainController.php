@@ -105,10 +105,10 @@ class MainController extends AbstractController
     /* SHOW */
     #[Route('/{id}/{lastname_user}-{firstname_user}', name: 'app_main_user', requirements: ['id'=>'\d+'], methods: ['GET'])]
     public function show(
-        Request $request,
         int $id,
+        EntityManagerInterface $manager,
+        Request $request,
         User $user,
-        EntityManagerInterface $manager
         ): Response
     {
          /* NEWSLETTER PART */

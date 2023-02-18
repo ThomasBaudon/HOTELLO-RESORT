@@ -1,0 +1,223 @@
+.user-booking{
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+
+.booking-cards{
+    width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+
+        &__container{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 4rem;
+
+            .card{
+                position: relative;
+                width: 48%;
+                background-color: rgba($color: #d9d9d9, $alpha: 0.2) ;
+                border-radius: .5rem;
+                padding: 1rem;
+
+
+                &__img{
+                    position: relative;
+                    width: 100%;
+                    height: 35rem;
+                    background-color: var(--gold);
+                    margin-bottom: 2rem;
+                    border-radius: .5rem;
+                    overflow: hidden;
+
+                    &::after{
+                        position: absolute;
+                        content: '';
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        background-image: url(../img/door-hover-icon.svg);
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 8%;
+                        background-color: rgba($color: #121212, $alpha: 0.8) ;
+                        opacity: 0;
+                        transition: all .3s ease-in-out;
+                    }
+
+                    &:hover::after{
+                        opacity: 1;
+                    }
+
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                &__content{
+                    width: 95%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    padding: 0 .5rem 1.6rem .5rem;
+                    margin: 0 auto;
+
+                    &__left{
+                        width: 70%;
+
+                        h3{
+                            color: var(--green);
+                            font-family: 'Playfair display', serif;
+                            font-weight: 700;
+                            font-size: 2.4rem;
+                            line-height: 130%;
+                            margin: 0;
+                            margin-bottom: 1rem;
+                            text-transform: uppercase;
+                        }
+                        p{
+                            color: var(--black);
+                            font-family: 'Nunito', sans-serif;
+                            font-weight: 400;
+                            font-size: 1.6rem;
+                            line-height: 100%;
+                            margin: 0;
+                            margin-bottom: 1rem;
+                        }
+                    }
+
+                    &__right{
+                        width: 30%;
+                        text-align: right;
+                        margin-bottom: 2.4rem;
+
+                            h3{
+                                color: var(--green);
+                                font-family: 'Playfair display', serif;
+                                font-weight: 700;
+                                font-size: 2.4rem;
+                                line-height: 130%;
+                                margin: 0;
+                                margin-bottom: 1rem;
+                                text-transform: uppercase;
+                            }
+                            p{
+                                color: var(--black);
+                                font-family: 'Playfair display', serif;
+                                font-weight: 400;
+                                font-size: 2rem;
+                                line-height: 100%;
+                                margin: 0;
+                                margin-bottom: 1rem;
+                            }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width:1520px){
+    .user-booking{
+        margin-top: 7.2rem;
+        width: 65%;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .user-booking{
+        width: 90%;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+
+        .booking-cards{
+            &__container{
+                gap: 2rem;
+                .card{
+                    width: 48%;
+                    &__img{
+                        height: 25rem;
+                    }
+                    &__content{
+                        flex-direction: column;
+                        flex-wrap: wrap;
+                        &__left{
+                            width: 100%;
+                            h3{
+                                font-size: 2rem;
+                            }
+                            p{
+                                font-size: 1.6rem;
+                            }
+                        }
+                        &__right{
+                            width: 100%;
+                            text-align: left;
+
+                            h3{
+                                font-size: 2rem;
+                            }
+                            p{
+                                font-size: 1.6rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:575px){
+    .user-booking{
+        .booking-cards{
+            &__container{
+                gap: 2rem;
+                .card{
+                    width: 100%;
+                    &__img{
+                        height: 25rem;
+                    }
+                    &__content{
+                        flex-direction: column;
+                        flex-wrap: wrap;
+                        &__left{
+                            width: 100%;
+                            h3{
+                                font-size: 2rem;
+                            }
+                            p{
+                                font-size: 1.6rem;
+                            }
+                        }
+                        &__right{
+                            width: 100%;
+                            text-align: left;
+
+                            h3{
+                                font-size: 2rem;
+                            }
+                            p{
+                                font-size: 1.6rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

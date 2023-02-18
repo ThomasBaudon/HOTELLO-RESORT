@@ -26,7 +26,7 @@
                 <h3>Mes réservations</h3>
                 <p>Consultez <br>
                 vos réservations et vos factures.</p>
-                <a href="{{ path('app_main') }}" class="btn btn-white">Bientôt disponible</a>
+                <a href="{{ path('booking_user',{'id': app.user.id, 'lastname_user':app.user.lastnameuser, 'firstname_user':app.user.firstnameuser}) }}" class="btn btn-green">Vos réservations</a>
                 {# <a href="{{ path('app_reservations') }}">Accéder à mes réservations</a> #}
             </div>
             <div class="espace-client-section__container__card">
@@ -34,7 +34,7 @@
                 <h3>Mes avis</h3>
                 <p>Consultez et mettez à jour <br>
                 vos avis.</p>
-                <a href="{{ path('app_main') }}" class="btn btn-white">Bientôt disponible</a>
+                <a href="{{ path('app_main',{'id': app.user.id, 'lastname_user':app.user.lastnameuser, 'firstname_user':app.user.firstnameuser}) }}" class="btn btn-white">Bientôt disponible</a>
                 {# <a href="{{ path('app_avis') }}">Accéder à mes avis</a> #}
             </div>
         </div>

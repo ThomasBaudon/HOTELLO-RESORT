@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title.home'|trans }}{% endblock %}
+
+{% block body %}
+
+    <section id="espace-client-section" class="espace-client-section">
+        <img src="{{ asset('./assets/img/bonjour-icon.svg')}}" alt="Bonjour">
+        <h1>Bonjour {{ app.user.firstnameuser }}</h1>
+        <h2>Retrouver ici toutes vos réservations.</h2>
+    </section>
+
+    <section class="user-booking">
+         <div class="booking-cards">
+            <div class="booking-cards__container">
+                
+
+                {% for booking in bookings %}
+
+                    <div class="card">
+                        <a href="{{ path('app_room_show',{'id': booking.room.id, 'room_title':booking.room.titleRoom}) }}" title="{{booking.room.titleRoom}}">
+                            <div class="card__img">
+                                <img src="{{ asset('./assets/img/' ~ booking.room.titleRoom ~ '.jpg')}}" alt="Chambre">
+                            </div>
+                        </a>
+                        
+                        <div class="card__content">
+                            <div class="card__content__left">
+                                <h3>Réservation n° : {{booking.id}}</h3>
+                                <p>Arrivée : {{booking.startDate|date('d/m/Y')}}</p>
+                                <p>Départ : {{booking.endDate|date('d/m/Y')}}</p>
+                                <p>Pour : {{booking.adultsCap}} adultes et {{booking.childrenCap}} enfants</p>
+                                <p>Prix total : {{booking.totalCost}} €</p>
+                            </div>
+
+                            <div class="card__content__right">
+                                <div class="card__content__right__text">
+                                    <h3>{{booking.room.titleRoom}}</h3>
+                                    <p>{{booking.room.typeRoom}}</p>
+                                    <p>{{booking.room.sizeRoom}}m<sup>2</sup></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

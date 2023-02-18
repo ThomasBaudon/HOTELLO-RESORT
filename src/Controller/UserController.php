@@ -6,6 +6,8 @@ use App\Entity\User;
 use App\Entity\Newsletter;
 use App\Form\UserFormType;
 use App\Form\NewsletterFormType;
+use App\Repository\BookingConfirmationRepository;
+use App\Repository\RoomRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -230,8 +232,10 @@ class UserController extends AbstractController
         int $id,
         User $user,
         UserRepository $userRepository,
+        BookingConfirmationRepository $bookingConfirmationRepository,
         EntityManagerInterface $manager,
-        Request $request
+        RoomRepository $roomRepository,
+        Request $request,
         ): Response
     {
 
@@ -278,8 +282,15 @@ class UserController extends AbstractController
 
         }
 
+        $bookings = $bookingConfirmationRepository->findBy(['user' => $id], ['id' => 'DESC']);
+        $bookings = $bookingConfirmationRepository->findBy(['room' => $id], ['id' => 'ASC']);
+        $room = $roomRepository->findAll();
+
+
         return $this->render('user/booking.html.twig', [
             'user' => $user,
+            'room' => $room,
+            'bookings' => $bookings,
             'newsletterForm' => $newsletterForm->createView(),
             'form_submitted' => $form_submitted,
         ]);
