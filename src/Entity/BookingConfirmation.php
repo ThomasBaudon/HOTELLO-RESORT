@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BookingConfirmationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 
 #[ORM\Entity(repositoryClass: BookingConfirmationRepository::class)]
 class BookingConfirmation
@@ -24,9 +25,6 @@ class BookingConfirmation
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column]
-    private ?bool $booking_status = null;
-
-    #[ORM\Column]
     private ?int $adults_cap = null;
 
     #[ORM\Column]
@@ -40,6 +38,9 @@ class BookingConfirmation
 
     #[ORM\ManyToOne(inversedBy: 'bookingConfirmations')]
     private ?User $user = null;
+
+    #[ORM\Column]
+    private ?bool $bookingStatus = null;
 
     public function getId(): ?int
     {
@@ -78,18 +79,6 @@ class BookingConfirmation
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    public function isBookingStatus(): ?bool
-    {
-        return $this->booking_status;
-    }
-
-    public function setBookingStatus(bool $booking_status): self
-    {
-        $this->booking_status = $booking_status;
 
         return $this;
     }
@@ -150,6 +139,18 @@ class BookingConfirmation
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function isBookingStatus(): ?bool
+    {
+        return $this->bookingStatus;
+    }
+
+    public function setBookingStatus(bool $bookingStatus): self
+    {
+        $this->bookingStatus = $bookingStatus;
 
         return $this;
     }
