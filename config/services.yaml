@@ -29,6 +29,9 @@ services:
 
     Symfony\Component\OptionsResolver\OptionsResolver: ~
 
+    App\Twig\Extension\DateExtension:
+        tags: [twig.extension]
+
     # App\EventSubscriber\NewsletterSubscriber:
     #     tags:
     #         - { name: kernel.event_subscriber }

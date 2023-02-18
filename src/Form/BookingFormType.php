@@ -11,8 +11,8 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Validator\Constraints\GreaterThan;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 
 class BookingFormType extends AbstractType
 {
@@ -24,13 +24,28 @@ class BookingFormType extends AbstractType
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
                 'data' => new \DateTimeImmutable('now'),
+                'constraints'=>
+                [
+                    new NotBlank(['message' => 'Champs obligatoire']),
+                    new GreaterThanOrEqual([
+                        'value' =>(new \DateTimeImmutable('now'))->format('Y-m-d'),
+                        'message' => 'La date d\'arrivée doit être supérieure à la date du jour'
+                        ])
+                ]
             ])
-
+                
             ->add('end_date', DateType::class, [
                 'label' => 'Départ',
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
                 'data' => new \DateTimeImmutable('now + 1 day'),
+                'constraints'=>
+                [
+                    new GreaterThan([
+                        'value' => (new \DateTimeImmutable('now'))->format('Y-m-d'),
+                        'message' => 'La date de départ doit être supérieure à la date d\'arrivée'
+                    ])
+                ]
             ])
             ->add('adults_cap', ChoiceType::class, [
                 'choices' => [
@@ -97,3 +112,5 @@ class BookingFormType extends AbstractType
         ]);
     }
 }
+
+

@@ -241,7 +241,7 @@
                 line-height: 3.2rem;
                 margin-bottom: 2.4rem;
                 text-transform: uppercase;
-                text-align: right;
+                text-align: left;
             }
             table{
                 width: 90%;
@@ -294,9 +294,15 @@
                     }
                 }
             }
-            button[type=submit]{
-                border: none;
-                transition: .3s;
+            form{
+                display: flex;
+                align-items: center;
+
+                button[type=submit]{
+                    border: none;
+                    transition: .3s;
+                    margin-left: 1.6rem;
+                }
             }
         }
     }

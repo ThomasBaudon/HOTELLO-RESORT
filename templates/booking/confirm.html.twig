@@ -1,12 +1,24 @@
 {% extends 'base-booking.html.twig' %}
 
-{% block title %}Hello - Réserver une chambre{% endblock %}
+{% block title %}Hello - merci pour votre réservation{% endblock %}
 
 
 {% block body %}
 
-<p>
-    Confirmé
-</p>
+<section class="hero-image">
+    <h1>Merci pour votre réservation</h1>
+</section>
+
+<section id="welcome-booking" class="welcome">
+    <img src="{{ asset('./assets/img/checked.svg')}}" alt="panneau de porte">
+    <h2>Vous pouvez continuer à découvrir note établissement</h2>
+    <br>
+    <a href="{{ path('app_main') }}" class="btn btn-gold mt-2 mb-3">Retour à l'accueil</a>
+    <br>
+</section>
+    {{ include('./_partials/_spa-section.html.twig') }}
+    {# {{ include('./_partials/_services-section.html.twig') }} #}
+    {{ include('./_partials/_contact-section.html.twig') }}
+    {{ include('./_partials/_goodwill.html.twig') }}
 
 {% endblock %}

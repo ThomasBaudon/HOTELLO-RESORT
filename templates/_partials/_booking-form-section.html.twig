@@ -10,6 +10,7 @@
             <div class="input-reservation">
                 {{ form_label(bookingForm.start_date) }}
                 {{ form_widget(bookingForm.start_date) }}
+                {{ form_errors(bookingForm.start_date) }}
             </div>
 
             <span class="separator"></span>
@@ -17,6 +18,7 @@
             <div class="input-reservation">
                 {{ form_label(bookingForm.end_date) }}
                 {{ form_widget(bookingForm.end_date) }}
+                {{ form_errors(bookingForm.end_date) }}
             </div>
 
             <span class="separator"></span>
@@ -38,8 +40,7 @@
 
             <input type="submit" class="btn btn-green" value="Voir les chambres">
 
-
-        {% set bookingFormData = dump(bookingForm.vars.value) %}
+            {# {% set bookingFormData = dump(bookingForm.vars.value) %} #}
         {{ form_end(bookingForm) }}
 
      </div>
@@ -77,7 +78,11 @@
                                 </div>
                                 
                                 <a href="{{ path('app_room_show',{'id': room.id}) }}" class="btn btn-white" title="Voir le détail">Voir le détail</a>
-                                <a href="{{ path('app_booking_show',{'id': room.id}) }}" class="btn btn-green book" title="Réserver">Réserver</a>
+                                {% if app.user %}
+                                    <a href="{{ path('app_booking_show',{'id': room.id}) }}" class="btn btn-green book" title="Réserver">Réserver</a>
+                                {% else %}
+                                    <a href="{{ path('app_login') }}" class="btn btn-green">Connectez-vous pour réserver</a>
+                                {% endif %}
                             </div>
                         </div>
 

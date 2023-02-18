@@ -205,17 +205,33 @@ window.addEventListener('scroll', checkPosition);
 /* Datepicker home set value now */
 /* --------------------------------------------------------- */
 
+
+
+function updateEndDate() {
+  var startDate = new Date(document.getElementById('booking_form_start_date').value);
+  var endDate = new Date(startDate.getTime() + 24 * 60 * 60 * 1000);
+  document.getElementById('booking_form_end_date').value = endDate.toISOString().slice(0, 10);
+}
+
+document.getElementById('booking_form_start_date').addEventListener('change', updateEndDate);
+
+  
+// Sélection des éléments du formulaire
 function setToday() {
     /* Const */
-    const arrivalInput = document.getElementById("arrival");
-    const now = new Date();
-    const departureInput = document.getElementById("departure");
-    const tomorrow = new Date(now);
+    var arrivalInput = document.getElementById("booking_form_start_date");
+    var now = new Date();
+    var departureInput = document.getElementById("booking_form_end_date");
+    var tomorrow = new Date(now);
 
     /* logique */
     arrivalInput.value = now.toISOString().split("T")[0];
     tomorrow.setDate(tomorrow.getDate() + 1);
     departureInput.value = tomorrow.toISOString().split("T")[0];
-}
 
-setToday();
+  }
+  setToday();
+
+
+
+  

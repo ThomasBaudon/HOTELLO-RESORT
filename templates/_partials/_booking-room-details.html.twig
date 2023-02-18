@@ -89,11 +89,21 @@
                                 <p>
                                     Arrivée :
                                     <br>
-                                    {{ app.session.all.start_date|date('d-m-Y') }}
+                                    {% if app.session.all.start_date is not null %}
+                                        {{ app.session.all.start_date|date('d-m-Y') }}
+                                    {% else %}
+                                        {{ 'now'|date('d-m-Y') }}
+                                    {% endif %}
+
                                     <br>
                                     Départ :
                                     <br>
-                                    {{ app.session.all.end_date|date('d-m-Y') }}
+                                    {% if app.session.all.end_date is not null %}
+                                        {{ app.session.all.end_date|date('d-m-Y') }}
+                                    {% else %}
+                                        {{'now'|date_modify('+1 day')|date('d-m-Y') }}
+                                    {% endif %}
+
                                 </p>
                         </td>
                     </tr>
@@ -117,8 +127,19 @@
                 <tbody>
                     <tr>
                     {% set totalCost = 0 %}
-                    {% set arrival = date(app.session.all.start_date|date('d-m-Y')) %}
-                    {% set departure = date(app.session.all.end_date|date('d-m-Y')) %}
+
+                    {% if app.session.all.start_date is not null %}
+                        {% set arrival = date(app.session.all.start_date|date('d-m-Y')) %}
+                    {% else %}
+                        {% set arrival = date('now'|date('d-m-Y')) %}
+                    {% endif %}
+
+                    {% if app.session.all.end_date is not null %}
+                        {% set departure = date(app.session.all.end_date|date('d-m-Y')) %}
+                    {% else %}
+                        {% set departure = date('now'|date_modify('+1 day')|date('d-m-Y')) %}
+                    {% endif %}
+
                     {% set duration = date(arrival).diff(date(departure)) %}
                     {% set totalCost = totalCost + room.priceRoom %}
                     {% set totalCost = totalCost + (totalCost * 0.02) %}
@@ -135,6 +156,7 @@
             </table>
 
             {{ form_start(bookingConfirmForm) }}
+                <a href="{{ path('app_booking')}}" title="Modifier ma réservation" class="btn btn-white">Modifier ma réservation</a>
                 {{ form_widget(bookingConfirmForm) }}
             {{ form_end(bookingConfirmForm) }}
         </div>

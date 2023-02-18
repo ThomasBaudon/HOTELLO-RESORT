@@ -15,6 +15,7 @@ use App\Repository\EquipmentRepository;
 use App\Controller\Search\BookingSearch;
 use App\Repository\BookingConfirmationRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,13 +41,15 @@ class BookingController extends AbstractController
         
     
     /* ROUTE BOOKING ACCUEIL */
-    #[Route('/booking', name: 'app_booking')]
+    #[Route('/booking', name: 'app_booking')]        
     public function index(
         BookingRepository $bookingRepository,
         Request $request,
         RoomRepository $roomRepository,
         ): Response
     {
+
+
         /* Get all rooms */
         $rooms = $roomRepository->findAll();
         /* Booking Form */
@@ -90,6 +93,7 @@ class BookingController extends AbstractController
 
 /* ROUTE BOOKING DÉTAIL CHAMBRE CHOISIE */
 #[Route('/booking/show/{id}', name: 'app_booking_show', requirements: ['id'=>'\d+'], methods: ['GET', 'POST'])]
+#[Security('is_granted("ROLE_USER")')]
 
     public function show(
         BookingRepository $bookingRepository,
@@ -101,7 +105,9 @@ class BookingController extends AbstractController
         ): Response
     {
 
-
+        if ($this->getUser() === null) {
+            return $this->redirectToRoute('app_login');
+        }
 
 
         /* Get all bookings */
@@ -109,9 +115,22 @@ class BookingController extends AbstractController
         $equipments = $equipmentRepository->findAll();
         $session = $request->getSession();
         $total_cost = 0;
+        $adults = $session->get('adults', 1);
+        $children = $session->get('children', 0);
         $startDate = $session->get('start_date', new DateTimeImmutable());
         $endDate = $session->get('end_date', new DateTimeImmutable());
-        $duration = $startDate->diff($endDate);
+
+        if ($startDate > $endDate) {
+            $this->addFlash('danger', 'La date de départ doit être supérieure à la date d\'arrivée');
+            return $this->redirectToRoute('app_booking');
+        }
+
+        // $duration default 1 day if no date selected in booking form 
+        $duration = new \DateInterval('P1D');
+        if ($startDate && $endDate) {
+            $duration = $startDate->diff($endDate);
+        }
+        // $duration = $startDate->diff($endDate);
         $durationArray = array(
             'days' => $duration->days
         );
@@ -123,12 +142,34 @@ class BookingController extends AbstractController
         
         $bookingConfirm = new BookingConfirmation();
         
-        $bookingConfirm->setStartDate($session->get('start_date', new DateTimeImmutable()));
-        $bookingConfirm->setEndDate($session->get('end_date', new DateTimeImmutable()));
-        $bookingConfirm->setAdultsCap($session->get('adults', 0));
-        $bookingConfirm->setChildrenCap($session->get('children', 0));
+        if ($startDate !== null) {
+            $bookingConfirm->setStartDate($session->get('start_date', new DateTimeImmutable()));
+        }else{
+            $bookingConfirm->setStartDate(new DateTimeImmutable('now'));
+        }
+        if ($endDate !== null) {
+            $bookingConfirm->setEndDate($session->get('end_date', new DateTimeImmutable()));
+        }else{
+            $bookingConfirm->setEndDate(new DateTimeImmutable('now + 1 day'));
+
+        }
+        if ($adults !== null) {
+            $bookingConfirm->setAdultsCap($session->get('adults', 0));
+        }else{
+            $bookingConfirm->setAdultsCap(1);
+        }
+        // $bookingConfirm->setAdultsCap($session->get('adults', 0));
+        if ($children !== null) {
+            $bookingConfirm->setChildrenCap($session->get('children', 0));
+        }else{
+            $bookingConfirm->setChildrenCap(0);
+        }
+        // $bookingConfirm->setChildrenCap($session->get('children', 0));
         $bookingConfirm->setRoom($session->get('room_id', 0));
-        $bookingConfirm->setTotalCost($session->get('totalCost', 0));
+        if ($total_cost !== null) {
+            $bookingConfirm->setTotalCost($session->get('totalCost', 0));
+        }
+        // $bookingConfirm->setTotalCost($session->get('totalCost', 0));
         $bookingConfirm->setCreatedAt($session->get('created_at', new DateTimeImmutable()));
         $bookingConfirm->setUser($user);
         $bookingConfirm->setRoom($room);
