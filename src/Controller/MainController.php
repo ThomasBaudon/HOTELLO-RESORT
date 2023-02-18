@@ -103,12 +103,11 @@ class MainController extends AbstractController
     }
 
     /* SHOW */
-    #[Route('/{id}', name: 'app_main_user', requirements: ['id'=>'\d+'], methods: ['GET'])]
+    #[Route('/{id}/{lastname_user}-{firstname_user}', name: 'app_main_user', requirements: ['id'=>'\d+'], methods: ['GET'])]
     public function show(
         Request $request,
         int $id,
         User $user,
-        UserRepository $userRepository,
         EntityManagerInterface $manager
         ): Response
     {

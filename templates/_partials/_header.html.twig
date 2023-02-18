@@ -63,13 +63,13 @@
         <div class="connexion">
             <img src="{{ asset('./assets/img/avatar.svg')}}" alt="avatar">
             {# <a href="{{ path('app_logout') }}" title="Déconnexion"> #}
-            <a href="{{path('app_user',{'id': app.user.id})}}" title="espace personnel">
+            <a href="{{ path('app_user',{'id': app.user.id, 'lastname_user':app.user.lastnameuser, 'firstname_user':app.user.firstnameuser}) }}" title="espace personnel">
                 {{ app.user.firstnameuser }}
             </a>
             <div class="menu-deconnexion">
                 <ul>
                     <li>
-                        <a href="{{path('app_user',{'id': app.user.id})}}" title="Déconnexion">Espace client</a>
+                        <a href="{{ path('app_user',{'id': app.user.id, 'lastname_user':app.user.lastnameuser, 'firstname_user':app.user.firstnameuser}) }}" title="Déconnexion">Espace client</a>
                     </li>
                     <li>
                         <a href="{{ path('app_logout') }}" title="Déconnexion">Déconnexion</a>

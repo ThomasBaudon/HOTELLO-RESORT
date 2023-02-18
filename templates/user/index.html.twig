@@ -18,7 +18,7 @@
                 <h3>Mon compte</h3>
                 <p>Consultez et mettez à jour <br>
                 vos informations personnelles.</p>
-                <a href="{{ path('show_user',{'id': app.user.id}) }}" class="btn btn-green">Accéder à mon compte</a>
+                <a href="{{ path('edit_user',{'id': app.user.id, 'lastname_user':app.user.lastnameuser, 'firstname_user':app.user.firstnameuser}) }}" class="btn btn-green">Accéder à mon compte</a>
                 {# <a href="{{ path('app_account') }}">Accéder à mon compte</a> #}
             </div>
             <div class="espace-client-section__container__card">
