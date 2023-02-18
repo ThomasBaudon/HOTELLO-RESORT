@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Room;
 use App\Entity\Newsletter;
 use App\Form\NewsletterFormType;
 use App\Repository\RoomRepository;
@@ -80,10 +81,11 @@ class RoomController extends AbstractController
         ]);
     }
 
-    #[Route('/chambres/{id}', name: 'app_room_show', requirements: ['id'=>'\d+'], methods: ['GET'])]
+    #[Route('/chambres/{id}/{room_title}', name: 'app_room_show', requirements: ['id'=>'\d+'], methods: ['GET'])]
     public function show(
         Request $request,
         int $id,
+        Room $room,
         RoomRepository $roomRepository,
         EquipmentRepository $equipmentRepository,
         EntityManagerInterface $manager

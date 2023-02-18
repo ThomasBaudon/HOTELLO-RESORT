@@ -14,7 +14,7 @@
                 {% for room in rooms %}
 
                     <div class="card">
-                        <a href="{{ path('app_room_show',{'id': room.id}) }}" title="{{room.titleRoom}}">
+                        <a href="{{ path('app_room_show',{'id': room.id, 'room_title':room.titleRoom}) }}" title="{{room.titleRoom}}">
                             <div class="card__img">
                                 <img src="{{ asset( vich_uploader_asset(room, 'roomMainImage'))}}" alt="{{room.titleRoom}}">
                             </div>
@@ -35,7 +35,7 @@
                                 <p class="by_night">/ nuit</p>
                             </div>
                             
-                            <a href="{{ path('app_room_show',{'id': room.id}) }}" class="btn btn-green" title="Voir le détail">Voir le détail</a>
+                            <a href="{{ path('app_room_show',{'id': room.id, 'room_title':room.titleRoom}) }}" class="btn btn-green" title="Voir le détail">Voir le détail</a>
                         </div>
                     </div>
                 {% endfor %}
