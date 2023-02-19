@@ -17,8 +17,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -37,9 +39,20 @@ class DashboardController extends AbstractDashboardController
             ->renderContentMaximized();
     }
 
+    public function configureUserMenu(UserInterface $user): UserMenu
+    {
+        return parent::configureUserMenu($user)
+            ->displayUserAvatar(true)
+            ->displayUserName(true)
+            ->addMenuItems([
+                MenuItem::linkToRoute('Retourner sur le site', 'fa fa-home', 'app_main'),
+            ]);
+    }
+
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Tableau de bord', 'fas fa-hotel');
+        yield MenuItem::section('<hr>');
         yield MenuItem::linkToCrud('Réservations', 'fas fa-calendar-check', BookingConfirmation::class);
         yield MenuItem::linkToCrud('Clients', 'fas fa-user-group', User::class);
         yield MenuItem::linkToCrud('Chambres', 'fas fa-bed', Room::class);
@@ -50,10 +63,11 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Contacts', 'fas fa-inbox', Contact::class);
         yield MenuItem::linkToCrud('Avis', 'fas fa-comments', Review::class);
         yield MenuItem::linkToCrud('Newsletter', 'fa-regular fa-newspaper', Newsletter::class);
+
+        yield MenuItem::section('<hr>');
+
+        yield MenuItem::linkToUrl('Retourner sur le site', 'fas fa-home', '/');
+
     }
 
-    public function configureAssets(): Assets
-    {
-        return Assets::new()->addCssFile('css/admin.css');
-    }
 }
