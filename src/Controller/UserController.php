@@ -286,7 +286,6 @@ class UserController extends AbstractController
 
         $room = $roomRepository->findAll();
         $bookings = $bookingConfirmationRepository->findBy(['user' => $id], ['id' => 'DESC']);
-        $bookings = $bookingConfirmationRepository->findBy(['room' => $id], ['id' => 'ASC']);
 
 
         return $this->render('user/booking.html.twig', [
