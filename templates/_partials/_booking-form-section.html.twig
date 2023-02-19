@@ -79,7 +79,7 @@
                                 
                                 <a href="{{ path('app_room_show',{'id': room.id, 'room_title':room.titleRoom}) }}" class="btn btn-white" title="Voir le détail">Voir le détail</a>
                                 {% if app.user %}
-                                    <a href="{{ path('app_booking_show',{'id': room.id}) }}" class="btn btn-green book" title="Réserver">Réserver</a>
+                                    <a href="{{ path('app_booking_show',{'id': room.id, 'room_title':room.titleRoom}) }}" class="btn btn-green book" title="Réserver">Réserver</a>
                                 {% else %}
                                     <a href="{{ path('app_login') }}" class="btn btn-green">Connectez-vous pour réserver</a>
                                 {% endif %}

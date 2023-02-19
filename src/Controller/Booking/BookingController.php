@@ -92,7 +92,7 @@ class BookingController extends AbstractController
 
 
 /* ROUTE BOOKING DÉTAIL CHAMBRE CHOISIE */
-#[Route('/booking/show/{id}', name: 'app_booking_show', requirements: ['id'=>'\d+'], methods: ['GET', 'POST'])]
+#[Route('/booking/show/{id}/{room_title}', name: 'app_booking_show', requirements: ['id'=>'\d+'], methods: ['GET', 'POST'])]
 #[Security('is_granted("ROLE_USER")')]
 
     public function show(

@@ -16,7 +16,7 @@
             <div class="room-cards">
                 <div class="room-cards__container">
                     <div class="card">
-                        <a href="{{ path('app_booking_show',{'id': room.id}) }}" title="{{room.titleRoom}}">
+                        <a href="{{ path('app_booking_show',{'id': room.id, 'room_title':room.titleRoom}) }}" title="{{room.titleRoom}}">
                             <div class="card__img">
                                 <img src="{{ asset( vich_uploader_asset(room, 'roomMainImage'))}}" alt="{{room.titleRoom}}">
                             </div>

@@ -26,9 +26,9 @@ class UserController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    
-    #[Route('/client/{id}/{lastname_user}-{firstname_user}', name: 'app_user',  requirements: ['id'=>'\d+'], methods: ['GET'])]
-    #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_USER")')]
+/* INDEX USER - INDEX USER - INDEX USER - INDEX USER - INDEX USER - INDEX USER - INDEX USER - INDEX USER - INDEX USER - INDEX USER */    
+#[Route('/client/{id}/{lastname_user}-{firstname_user}', name: 'app_user',  requirements: ['id'=>'\d+'], methods: ['GET'])]
+#[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_USER")')]
     public function index(
         int $id,
         UserRepository $userRepository,
@@ -88,9 +88,9 @@ class UserController extends AbstractController
         ]);
     }
 
-    /* SHOW */
-    #[Route('/client/{id}/{lastname_user}-{firstname_user}', name: 'show_user', requirements: ['id'=>'\d+'], methods: ['GET'])]
-    #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_USER")')]
+/* SHOW */
+#[Route('/client/{id}/{lastname_user}-{firstname_user}', name: 'show_user', requirements: ['id'=>'\d+'], methods: ['GET'])]
+#[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_USER")')]
     public function show(
         int $id,
         User $user,
@@ -150,9 +150,9 @@ class UserController extends AbstractController
         ]);
     }
 
-    /* EDIT */
-    #[Route('/client/edit/{id}/{lastname_user}-{firstname_user}', name: 'edit_user', methods: ['GET', 'POST'])]
-    #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_USER")')]
+/* EDIT */
+#[Route('/client/edit/{id}/{lastname_user}-{firstname_user}', name: 'edit_user', methods: ['GET', 'POST'])]
+#[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_USER")')]
     public function edit(
         Request $request,
         User $user,
@@ -203,7 +203,6 @@ class UserController extends AbstractController
                 $manager->persist($newsletter);
                 $manager->flush();
                 $this->addFlash('success', 'Merci ! Votre email a bien été enregistré !');          
-                // return $this->redirectToRoute('app_main');
             }
 
         }
@@ -212,7 +211,11 @@ class UserController extends AbstractController
             
                 $userRepository->save($user, true);
             
-                return $this->redirectToRoute('show_user' , ['id' => $user->getId()]);
+                return $this->redirectToRoute('show_user' ,[
+                    'id' => $user->getId(),
+                    'lastname_user' => $user->getLastnameUser(),
+                    'firstname_user' => $user->getFirstnameUser(),
+                ]);
             }
 
         
@@ -225,13 +228,12 @@ class UserController extends AbstractController
         ]);
     }
 
-    /* BOOKING */
-    #[Route('/client/reservation/{id}/{lastname_user}-{firstname_user}', name: 'booking_user', methods: ['GET'])]
-    #[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_USER")')]
+/* BOOKING - BOOKING - BOOKING - BOOKING - BOOKING - BOOKING - BOOKING - BOOKING - BOOKING - BOOKING - BOOKING - BOOKING */
+#[Route('/client/reservation/{id}/{lastname_user}-{firstname_user}', name: 'booking_user', methods: ['GET'])]
+#[Security('is_granted("ROLE_ADMIN") or is_granted("ROLE_USER")')]
     public function booking(
         int $id,
         User $user,
-        UserRepository $userRepository,
         BookingConfirmationRepository $bookingConfirmationRepository,
         EntityManagerInterface $manager,
         RoomRepository $roomRepository,
@@ -282,9 +284,9 @@ class UserController extends AbstractController
 
         }
 
+        $room = $roomRepository->findAll();
         $bookings = $bookingConfirmationRepository->findBy(['user' => $id], ['id' => 'DESC']);
         $bookings = $bookingConfirmationRepository->findBy(['room' => $id], ['id' => 'ASC']);
-        $room = $roomRepository->findAll();
 
 
         return $this->render('user/booking.html.twig', [

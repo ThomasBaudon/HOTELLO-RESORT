@@ -45,6 +45,7 @@
                 {% endfor %}
 
             </div>
+            <a href="{{ path('app_user',{'id': app.user.id, 'lastname_user':app.user.lastnameuser, 'firstname_user':app.user.firstnameuser}) }}" class="btn btn-green mt-5">Retour sur mon espace personnel</a>
         </div>
     </section>
 
