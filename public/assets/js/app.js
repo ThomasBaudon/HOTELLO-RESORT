@@ -233,5 +233,9 @@ function setToday() {
   setToday();
 
 
-
+//Pointer on all links
+document.querySelectorAll('a').forEach(a => {
+    a.style.cursor = 'pointer';
+}
+);
   

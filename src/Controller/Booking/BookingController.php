@@ -96,6 +96,7 @@ class BookingController extends AbstractController
 #[Security('is_granted("ROLE_USER")')]
 
     public function show(
+        int $id,
         BookingRepository $bookingRepository,
         EquipmentRepository $equipmentRepository,
         Request $request,
@@ -158,20 +159,25 @@ class BookingController extends AbstractController
         }else{
             $bookingConfirm->setAdultsCap(1);
         }
-        // $bookingConfirm->setAdultsCap($session->get('adults', 0));
+
         if ($children !== null) {
             $bookingConfirm->setChildrenCap($session->get('children', 0));
         }else{
             $bookingConfirm->setChildrenCap(0);
         }
-        // $bookingConfirm->setChildrenCap($session->get('children', 0));
-        $bookingConfirm->setRoom($session->get('room_id', 0));
+
         if ($total_cost !== null) {
             $bookingConfirm->setTotalCost($session->get('totalCost', 0));
         }
-        // $bookingConfirm->setTotalCost($session->get('totalCost', 0));
+        
+        
+        
+        $session->set('booking_status', false);
+        $bookingConfirm->setBookingStatus(false);
+        
         $bookingConfirm->setCreatedAt($session->get('created_at', new DateTimeImmutable()));
-        $bookingConfirm->setUser($user);
+        $bookingConfirm->setUser($this->getUser());
+        // dd($bookingConfirm);
         $bookingConfirm->setRoom($room);
         // dd($bookingConfirm);
         
@@ -183,7 +189,7 @@ class BookingController extends AbstractController
             $this->entityManager->persist($bookingConfirm);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_booking_confirm', ['id' => $user->getId()]);
+            return $this->redirectToRoute('app_booking_confirm', ['id' => $bookingConfirm->getId()]);
         }
 
         return $this->render('booking/show.html.twig', [
